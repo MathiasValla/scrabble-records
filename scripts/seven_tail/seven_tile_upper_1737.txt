@@ -1,0 +1,95 @@
+threshold_prebonus 1737
+raw_cross 1764090
+deletion_valid_cross 240528
+raw_main_septuples 82937692
+deletion_valid_main_septuples 22137382
+main_placements 1187919660
+independent_upper_at_least_threshold 87
+survivor_count 87
+survivor 1 upper_prebonus 1841 total_with_bingo 1891 main 1377 word NEBUCHADNEZZARS indices 1 3 5 8 11 12 15 row 15 start 1
+survivor 2 upper_prebonus 1829 total_with_bingo 1879 main 1458 word OXYPHENBUTAZONE indices 1 3 4 6 8 12 15 row 15 start 1
+survivor 3 upper_prebonus 1828 total_with_bingo 1878 main 1458 word OXYPHENBUTAZONE indices 1 3 4 5 8 12 15 row 15 start 1
+survivor 4 upper_prebonus 1828 total_with_bingo 1878 main 1377 word NEBUCHADNEZZARS indices 1 3 5 8 10 12 15 row 15 start 1
+survivor 5 upper_prebonus 1827 total_with_bingo 1877 main 1458 word OXYPHENBUTAZONE indices 1 3 4 8 10 12 15 row 15 start 1
+survivor 6 upper_prebonus 1826 total_with_bingo 1876 main 1458 word OXYPHENBUTAZONE indices 1 2 3 4 8 12 15 row 15 start 1
+survivor 7 upper_prebonus 1826 total_with_bingo 1876 main 1458 word OXYPHENBUTAZONE indices 1 3 4 8 11 12 15 row 15 start 1
+survivor 8 upper_prebonus 1822 total_with_bingo 1872 main 1458 word OXYPHENBUTAZONE indices 1 3 4 7 8 12 15 row 15 start 1
+survivor 9 upper_prebonus 1822 total_with_bingo 1872 main 1458 word OXYPHENBUTAZONE indices 1 3 4 8 12 14 15 row 15 start 1
+survivor 10 upper_prebonus 1821 total_with_bingo 1871 main 1458 word OXYPHENBUTAZONE indices 1 3 4 8 12 13 15 row 15 start 1
+survivor 11 upper_prebonus 1813 total_with_bingo 1863 main 1458 word OXYPHENBUTAZONE indices 1 3 4 8 9 12 15 row 15 start 1
+survivor 12 upper_prebonus 1809 total_with_bingo 1859 main 1458 word OXYPHENBUTAZONE indices 1 2 4 6 8 12 15 row 15 start 1
+survivor 13 upper_prebonus 1808 total_with_bingo 1858 main 1458 word OXYPHENBUTAZONE indices 1 2 4 5 8 12 15 row 15 start 1
+survivor 14 upper_prebonus 1807 total_with_bingo 1857 main 1458 word OXYPHENBUTAZONE indices 1 2 4 8 10 12 15 row 15 start 1
+survivor 15 upper_prebonus 1806 total_with_bingo 1856 main 1458 word OXYPHENBUTAZONE indices 1 2 4 8 11 12 15 row 15 start 1
+survivor 16 upper_prebonus 1802 total_with_bingo 1852 main 1458 word OXYPHENBUTAZONE indices 1 2 4 7 8 12 15 row 15 start 1
+survivor 17 upper_prebonus 1802 total_with_bingo 1852 main 1458 word OXYPHENBUTAZONE indices 1 2 4 8 12 14 15 row 15 start 1
+survivor 18 upper_prebonus 1801 total_with_bingo 1851 main 1458 word OXYPHENBUTAZONE indices 1 2 4 8 12 13 15 row 15 start 1
+survivor 19 upper_prebonus 1796 total_with_bingo 1846 main 1296 word DEMYTHOLOGIZERS indices 1 4 8 9 11 12 15 row 15 start 1
+survivor 20 upper_prebonus 1795 total_with_bingo 1845 main 1296 word DEMYTHOLOGIZERS indices 1 4 8 10 11 12 15 row 15 start 1
+survivor 21 upper_prebonus 1794 total_with_bingo 1844 main 1296 word DEMYTHOLOGIZERS indices 1 4 8 9 12 14 15 row 15 start 1
+survivor 22 upper_prebonus 1793 total_with_bingo 1843 main 1458 word OXYPHENBUTAZONE indices 1 2 4 8 9 12 15 row 15 start 1
+survivor 23 upper_prebonus 1793 total_with_bingo 1843 main 1296 word DEMYTHOLOGIZERS indices 1 2 4 8 9 12 15 row 15 start 1
+survivor 24 upper_prebonus 1793 total_with_bingo 1843 main 1296 word DEMYTHOLOGIZERS indices 1 4 8 9 12 13 15 row 15 start 1
+survivor 25 upper_prebonus 1793 total_with_bingo 1843 main 1296 word DEMYTHOLOGIZERS indices 1 4 8 10 12 14 15 row 15 start 1
+survivor 26 upper_prebonus 1792 total_with_bingo 1842 main 1296 word DEMYTHOLOGIZERS indices 1 2 4 8 10 12 15 row 15 start 1
+survivor 27 upper_prebonus 1792 total_with_bingo 1842 main 1296 word DEMYTHOLOGIZERS indices 1 4 6 8 9 12 15 row 15 start 1
+survivor 28 upper_prebonus 1792 total_with_bingo 1842 main 1296 word DEMYTHOLOGIZERS indices 1 4 8 10 12 13 15 row 15 start 1
+survivor 29 upper_prebonus 1791 total_with_bingo 1841 main 1296 word DEMYTHOLOGIZERS indices 1 4 5 8 9 12 15 row 15 start 1
+survivor 30 upper_prebonus 1791 total_with_bingo 1841 main 1296 word DEMYTHOLOGIZERS indices 1 4 6 8 10 12 15 row 15 start 1
+survivor 31 upper_prebonus 1790 total_with_bingo 1840 main 1296 word DEMYTHOLOGIZERS indices 1 4 5 8 10 12 15 row 15 start 1
+survivor 32 upper_prebonus 1785 total_with_bingo 1835 main 1458 word OXYPHENBUTAZONE indices 1 2 4 8 11 12 15 row 1 start 1
+survivor 33 upper_prebonus 1784 total_with_bingo 1834 main 1296 word DEMYTHOLOGIZERS indices 1 4 8 9 10 12 15 row 15 start 1
+survivor 34 upper_prebonus 1782 total_with_bingo 1832 main 1458 word OXYPHENBUTAZONE indices 1 2 4 5 8 12 15 row 1 start 1
+survivor 35 upper_prebonus 1782 total_with_bingo 1832 main 1458 word OXYPHENBUTAZONE indices 1 2 4 8 10 12 15 row 1 start 1
+survivor 36 upper_prebonus 1780 total_with_bingo 1830 main 1296 word DEMYTHOLOGIZERS indices 1 3 4 8 9 12 15 row 15 start 1
+survivor 37 upper_prebonus 1779 total_with_bingo 1829 main 1458 word OXYPHENBUTAZONE indices 1 2 4 6 8 12 15 row 1 start 1
+survivor 38 upper_prebonus 1779 total_with_bingo 1829 main 1458 word OXYPHENBUTAZONE indices 1 2 4 8 12 13 15 row 1 start 1
+survivor 39 upper_prebonus 1779 total_with_bingo 1829 main 1458 word OXYPHENBUTAZONE indices 1 3 4 8 11 12 15 row 1 start 1
+survivor 40 upper_prebonus 1779 total_with_bingo 1829 main 1296 word DEMYTHOLOGIZERS indices 1 3 4 8 10 12 15 row 15 start 1
+survivor 41 upper_prebonus 1776 total_with_bingo 1826 main 1458 word OXYPHENBUTAZONE indices 1 2 4 7 8 12 15 row 1 start 1
+survivor 42 upper_prebonus 1776 total_with_bingo 1826 main 1458 word OXYPHENBUTAZONE indices 1 2 4 8 12 14 15 row 1 start 1
+survivor 43 upper_prebonus 1776 total_with_bingo 1826 main 1458 word OXYPHENBUTAZONE indices 1 3 4 5 8 12 15 row 1 start 1
+survivor 44 upper_prebonus 1776 total_with_bingo 1826 main 1458 word OXYPHENBUTAZONE indices 1 3 4 8 10 12 15 row 1 start 1
+survivor 45 upper_prebonus 1774 total_with_bingo 1824 main 1458 word OXYPHENBUTAZONE indices 1 2 4 8 9 12 15 row 1 start 1
+survivor 46 upper_prebonus 1773 total_with_bingo 1823 main 1458 word OXYPHENBUTAZONE indices 1 3 4 6 8 12 15 row 1 start 1
+survivor 47 upper_prebonus 1773 total_with_bingo 1823 main 1458 word OXYPHENBUTAZONE indices 1 3 4 8 12 13 15 row 1 start 1
+survivor 48 upper_prebonus 1772 total_with_bingo 1822 main 1458 word OXYPHENBUTAZONE indices 1 2 3 4 8 12 15 row 1 start 1
+survivor 49 upper_prebonus 1770 total_with_bingo 1820 main 1458 word OXYPHENBUTAZONE indices 1 3 4 7 8 12 15 row 1 start 1
+survivor 50 upper_prebonus 1770 total_with_bingo 1820 main 1458 word OXYPHENBUTAZONE indices 1 3 4 8 12 14 15 row 1 start 1
+survivor 51 upper_prebonus 1768 total_with_bingo 1818 main 1458 word OXYPHENBUTAZONE indices 1 3 4 8 9 12 15 row 1 start 1
+survivor 52 upper_prebonus 1760 total_with_bingo 1810 main 1377 word OXYPHENBUTAZONE indices 1 3 5 6 8 12 15 row 15 start 1
+survivor 53 upper_prebonus 1760 total_with_bingo 1810 main 1323 word DEMYTHOLOGIZING indices 1 4 8 9 11 12 15 row 15 start 1
+survivor 54 upper_prebonus 1760 total_with_bingo 1810 main 1323 word DEMYTHOLOGIZING indices 1 4 8 9 12 13 15 row 15 start 1
+survivor 55 upper_prebonus 1759 total_with_bingo 1809 main 1323 word DEMYTHOLOGIZING indices 1 4 8 10 11 12 15 row 15 start 1
+survivor 56 upper_prebonus 1759 total_with_bingo 1809 main 1323 word DEMYTHOLOGIZING indices 1 4 8 10 12 13 15 row 15 start 1
+survivor 57 upper_prebonus 1758 total_with_bingo 1808 main 1377 word OXYPHENBUTAZONE indices 1 3 5 8 10 12 15 row 15 start 1
+survivor 58 upper_prebonus 1757 total_with_bingo 1807 main 1377 word OXYPHENBUTAZONE indices 1 2 3 5 8 12 15 row 15 start 1
+survivor 59 upper_prebonus 1757 total_with_bingo 1807 main 1377 word OXYPHENBUTAZONE indices 1 3 5 8 11 12 15 row 15 start 1
+survivor 60 upper_prebonus 1757 total_with_bingo 1807 main 1323 word DEMYTHOLOGIZING indices 1 2 4 8 9 12 15 row 15 start 1
+survivor 61 upper_prebonus 1756 total_with_bingo 1806 main 1323 word DEMYTHOLOGIZING indices 1 2 4 8 10 12 15 row 15 start 1
+survivor 62 upper_prebonus 1756 total_with_bingo 1806 main 1323 word DEMYTHOLOGIZING indices 1 4 6 8 9 12 15 row 15 start 1
+survivor 63 upper_prebonus 1755 total_with_bingo 1805 main 1323 word DEMYTHOLOGIZING indices 1 4 5 8 9 12 15 row 15 start 1
+survivor 64 upper_prebonus 1755 total_with_bingo 1805 main 1323 word DEMYTHOLOGIZING indices 1 4 6 8 10 12 15 row 15 start 1
+survivor 65 upper_prebonus 1754 total_with_bingo 1804 main 1323 word DEMYTHOLOGIZING indices 1 4 5 8 10 12 15 row 15 start 1
+survivor 66 upper_prebonus 1753 total_with_bingo 1803 main 1377 word OXYPHENBUTAZONE indices 1 3 5 7 8 12 15 row 15 start 1
+survivor 67 upper_prebonus 1753 total_with_bingo 1803 main 1377 word OXYPHENBUTAZONE indices 1 3 5 8 12 14 15 row 15 start 1
+survivor 68 upper_prebonus 1753 total_with_bingo 1803 main 1323 word BENZODIAZEPINES indices 1 4 6 7 8 12 15 row 15 start 1
+survivor 69 upper_prebonus 1752 total_with_bingo 1802 main 1377 word OXYPHENBUTAZONE indices 1 3 5 8 12 13 15 row 15 start 1
+survivor 70 upper_prebonus 1750 total_with_bingo 1800 main 1323 word BENZODIAZEPINES indices 1 2 4 6 8 12 15 row 15 start 1
+survivor 71 upper_prebonus 1750 total_with_bingo 1800 main 1323 word BENZODIAZEPINES indices 1 4 6 8 10 12 15 row 15 start 1
+survivor 72 upper_prebonus 1750 total_with_bingo 1800 main 1323 word BENZODIAZEPINES indices 1 4 6 8 12 14 15 row 15 start 1
+survivor 73 upper_prebonus 1750 total_with_bingo 1800 main 1323 word DEMYTHOLOGIZING indices 1 4 8 9 12 14 15 row 15 start 1
+survivor 74 upper_prebonus 1749 total_with_bingo 1799 main 1323 word DEMYTHOLOGIZING indices 1 4 8 10 12 14 15 row 15 start 1
+survivor 75 upper_prebonus 1748 total_with_bingo 1798 main 1323 word BENZODIAZEPINES indices 1 2 4 7 8 12 15 row 15 start 1
+survivor 76 upper_prebonus 1748 total_with_bingo 1798 main 1323 word BENZODIAZEPINES indices 1 4 7 8 10 12 15 row 15 start 1
+survivor 77 upper_prebonus 1748 total_with_bingo 1798 main 1323 word BENZODIAZEPINES indices 1 4 7 8 12 14 15 row 15 start 1
+survivor 78 upper_prebonus 1748 total_with_bingo 1798 main 1323 word DEMYTHOLOGIZING indices 1 4 8 9 10 12 15 row 15 start 1
+survivor 79 upper_prebonus 1744 total_with_bingo 1794 main 1377 word OXYPHENBUTAZONE indices 1 3 5 8 9 12 15 row 15 start 1
+survivor 80 upper_prebonus 1744 total_with_bingo 1794 main 1323 word DEMYTHOLOGIZING indices 1 3 4 8 9 12 15 row 15 start 1
+survivor 81 upper_prebonus 1743 total_with_bingo 1793 main 1323 word BENZODIAZEPINES indices 1 3 4 6 8 12 15 row 15 start 1
+survivor 82 upper_prebonus 1743 total_with_bingo 1793 main 1323 word BENZODIAZEPINES indices 1 4 6 8 12 13 15 row 15 start 1
+survivor 83 upper_prebonus 1743 total_with_bingo 1793 main 1323 word DEMYTHOLOGIZING indices 1 3 4 8 10 12 15 row 15 start 1
+survivor 84 upper_prebonus 1742 total_with_bingo 1792 main 1323 word BENZODIAZEPINES indices 1 4 5 6 8 12 15 row 15 start 1
+survivor 85 upper_prebonus 1741 total_with_bingo 1791 main 1323 word BENZODIAZEPINES indices 1 3 4 7 8 12 15 row 15 start 1
+survivor 86 upper_prebonus 1741 total_with_bingo 1791 main 1323 word BENZODIAZEPINES indices 1 4 7 8 12 13 15 row 15 start 1
+survivor 87 upper_prebonus 1740 total_with_bingo 1790 main 1323 word BENZODIAZEPINES indices 1 4 5 7 8 12 15 row 15 start 1

@@ -1,0 +1,33 @@
+name: Public smoke tests
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  toy-proof-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Compile the independent scanner
+        run: |
+          mkdir -p tmp
+          c++ -O3 -std=c++17 scripts/scan_k_upper.cpp -o tmp/scan_k_upper
+          c++ -O3 -std=c++17 scripts/exact_product_search.cpp -o tmp/exact_product_search
+      - name: Boundary and completeness regressions
+        run: |
+          python scripts/test_record_bounds.py
+          python scripts/test_seven_completeness.py
+      - name: Check that optimized Python is refused
+        run: |
+          if python -O scripts/reproduce_release.py; then
+            echo 'ERROR: proof driver accepted disabled assertions'
+            exit 1
+          fi

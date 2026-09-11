@@ -1,0 +1,4 @@
+# Versions used for the reproduced computations (Python 3.10.18).
+numpy==1.26.4
+scipy==1.15.3
+Pillow==11.1.0

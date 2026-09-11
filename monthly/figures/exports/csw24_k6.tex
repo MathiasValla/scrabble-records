@@ -1,0 +1,289 @@
+\documentclass[border=2pt]{standalone}
+\usepackage{times,tikz}
+\usepackage{Scrabble}
+\colorlet{triplewordscore}{black!42}
+\colorlet{doublewordscore}{black!20}
+\colorlet{tripleletterscore}{black!32}
+\colorlet{doubleletterscore}{black!12}
+\colorlet{scrabblebloard}{white}
+\newcommand{\RecordTile}[5]{%
+  \draw[draw=black,fill=#4,line width=.5pt] (#1-.45,#2-.45) rectangle (#1+.45,#2+.45);
+  \node[text=#5,font=\fontsize{9}{10}\selectfont,inner sep=0pt] at (#1-.10,#2+.06) {#3};}
+
+\begin{document}
+\begin{EnvScrabble}[Scale=0.72,Labels=false,Border=false]
+\tikzset{every node/.style={}}
+\draw[black!22,line width=.5pt,step=1] (-.5,-.5) grid (14.5,14.5);
+\draw[line width=.7pt] (-.5,-.5) rectangle (14.5,14.5);
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,14) {1};
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,13) {2};
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,12) {3};
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,11) {4};
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,10) {5};
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,9) {6};
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,8) {7};
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,7) {8};
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,6) {9};
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,5) {10};
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,4) {11};
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,3) {12};
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,2) {13};
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,1) {14};
+\node[font=\fontsize{8}{9}\selectfont] at (-.95,0) {15};
+\node[font=\fontsize{8}{9}\selectfont] at (0,15) {A};
+\node[font=\fontsize{8}{9}\selectfont] at (1,15) {B};
+\node[font=\fontsize{8}{9}\selectfont] at (2,15) {C};
+\node[font=\fontsize{8}{9}\selectfont] at (3,15) {D};
+\node[font=\fontsize{8}{9}\selectfont] at (4,15) {E};
+\node[font=\fontsize{8}{9}\selectfont] at (5,15) {F};
+\node[font=\fontsize{8}{9}\selectfont] at (6,15) {G};
+\node[font=\fontsize{8}{9}\selectfont] at (7,15) {H};
+\node[font=\fontsize{8}{9}\selectfont] at (8,15) {I};
+\node[font=\fontsize{8}{9}\selectfont] at (9,15) {J};
+\node[font=\fontsize{8}{9}\selectfont] at (10,15) {K};
+\node[font=\fontsize{8}{9}\selectfont] at (11,15) {L};
+\node[font=\fontsize{8}{9}\selectfont] at (12,15) {M};
+\node[font=\fontsize{8}{9}\selectfont] at (13,15) {N};
+\node[font=\fontsize{8}{9}\selectfont] at (14,15) {O};
+\RecordTile{0}{14}{O}{black}{white}
+\node[text=white,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (0.4,13.61) {1};
+\RecordTile{1}{14}{X}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (1.4,13.61) {8};
+\RecordTile{2}{14}{Y}{black}{white}
+\node[text=white,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (2.4,13.61) {4};
+\RecordTile{3}{14}{P}{black}{white}
+\node[text=white,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (3.4,13.61) {3};
+\RecordTile{4}{14}{H}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (4.4,13.61) {4};
+\RecordTile{5}{14}{E}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (5.4,13.61) {1};
+\RecordTile{6}{14}{N}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (6.4,13.61) {1};
+\RecordTile{7}{14}{B}{black}{white}
+\node[text=white,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (7.4,13.61) {3};
+\RecordTile{8}{14}{U}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (8.4,13.61) {1};
+\RecordTile{9}{14}{T}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (9.4,13.61) {1};
+\RecordTile{10}{14}{A}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (10.4,13.61) {1};
+\RecordTile{11}{14}{Z}{black}{white}
+\node[text=white,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (11.4,13.61) {10};
+\RecordTile{12}{14}{O}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (12.4,13.61) {1};
+\RecordTile{13}{14}{N}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (13.4,13.61) {1};
+\RecordTile{14}{14}{E}{black}{white}
+\node[text=white,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (14.4,13.61) {1};
+\RecordTile{0}{13}{P}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (0.4,12.61) {3};
+\RecordTile{1}{13}{E}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (1.4,12.61) {1};
+\RecordTile{2}{13}{A}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (2.4,12.61) {1};
+\RecordTile{3}{13}{R}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (3.4,12.61) {1};
+\RecordTile{5}{13}{D}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (5.4,12.61) {2};
+\RecordTile{6}{13}{O}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (6.4,12.61) {1};
+\RecordTile{7}{13}{R}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (7.4,12.61) {1};
+\RecordTile{8}{13}{R}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (8.4,12.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (9,13) {TL};
+\RecordTile{11}{13}{O}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (11.4,12.61) {1};
+\RecordTile{12}{13}{B}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (12.4,12.61) {3};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (13,13) {DW};
+\RecordTile{14}{13}{J}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (14.4,12.61) {8};
+\RecordTile{0}{12}{A}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (0.4,11.61) {1};
+\RecordTile{1}{12}{D}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (1.4,11.61) {2};
+\RecordTile{2}{12}{R}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (2.4,11.61) {1};
+\RecordTile{3}{12}{E}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (3.4,11.61) {1};
+\RecordTile{4}{12}{D}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (4.4,11.61) {2};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (6,12) {DL};
+\RecordTile{7}{12}{A}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (7.4,11.61) {1};
+\RecordTile{8}{12}{E}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (8.4,11.61) {1};
+\RecordTile{11}{12}{O}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (11.4,11.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (12,12) {DW};
+\RecordTile{14}{12}{A}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (14.4,11.61) {1};
+\RecordTile{0}{11}{C}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (0.4,10.61) {3};
+\RecordTile{2}{11}{A}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (2.4,10.61) {1};
+\RecordTile{3}{11}{Q}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (3.4,10.61) {10};
+\RecordTile{4}{11}{U}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (4.4,10.61) {1};
+\RecordTile{5}{11}{I}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (5.4,10.61) {1};
+\RecordTile{6}{11}{L}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (6.4,10.61) {1};
+\RecordTile{7}{11}{I}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (7.4,10.61) {1};
+\RecordTile{8}{11}{\textit{n}}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (8.4,10.61) {0};
+\RecordTile{9}{11}{E}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (9.4,10.61) {1};
+\RecordTile{11}{11}{G}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (11.4,10.61) {2};
+\RecordTile{14}{11}{C}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (14.4,10.61) {3};
+\RecordTile{0}{10}{I}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (0.4,9.61) {1};
+\RecordTile{2}{10}{K}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (2.4,9.61) {5};
+\RecordTile{3}{10}{U}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (3.4,9.61) {1};
+\RecordTile{4}{10}{E}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (4.4,9.61) {1};
+\RecordTile{6}{10}{I}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (6.4,9.61) {1};
+\RecordTile{7}{10}{N}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (7.4,9.61) {1};
+\RecordTile{8}{10}{T}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (8.4,9.61) {1};
+\RecordTile{9}{10}{R}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (9.4,9.61) {1};
+\RecordTile{10}{10}{E}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (10.4,9.61) {1};
+\RecordTile{11}{10}{A}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (11.4,9.61) {1};
+\RecordTile{12}{10}{T}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (12.4,9.61) {1};
+\RecordTile{14}{10}{U}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (14.4,9.61) {1};
+\RecordTile{0}{9}{F}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (0.4,8.61) {4};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (1,9) {TL};
+\RecordTile{2}{9}{S}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (2.4,8.61) {1};
+\RecordTile{3}{9}{\textit{a}}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (3.4,8.61) {0};
+\RecordTile{4}{9}{L}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (4.4,8.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (5,9) {TL};
+\RecordTile{7}{9}{W}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (7.4,8.61) {4};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (9,9) {TL};
+\RecordTile{11}{9}{M}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (11.4,8.61) {3};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (13,9) {TL};
+\RecordTile{14}{9}{L}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (14.4,8.61) {1};
+\RecordTile{0}{8}{Y}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (0.4,7.61) {4};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (2,8) {DL};
+\RecordTile{3}{8}{L}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (3.4,7.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (6,8) {DL};
+\RecordTile{7}{8}{A}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (7.4,7.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (8,8) {DL};
+\RecordTile{11}{8}{E}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (11.4,7.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (12,8) {DL};
+\RecordTile{14}{8}{A}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (14.4,7.61) {1};
+\RecordTile{0}{7}{I}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (0.4,6.61) {1};
+\RecordTile{3}{7}{I}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (3.4,6.61) {1};
+\RecordTile{7}{7}{S}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (7.4,6.61) {1};
+\RecordTile{11}{7}{T}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (11.4,6.61) {1};
+\RecordTile{12}{7}{O}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (12.4,6.61) {1};
+\RecordTile{13}{7}{O}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (13.4,6.61) {1};
+\RecordTile{14}{7}{T}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (14.4,6.61) {1};
+\RecordTile{0}{6}{N}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (0.4,5.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (2,6) {DL};
+\RecordTile{3}{6}{F}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (3.4,5.61) {4};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (6,6) {DL};
+\RecordTile{7}{6}{H}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (7.4,5.61) {4};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (8,6) {DL};
+\RecordTile{11}{6}{E}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (11.4,5.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (12,6) {DL};
+\RecordTile{14}{6}{I}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (14.4,5.61) {1};
+\RecordTile{0}{5}{G}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (0.4,4.61) {2};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (1,5) {TL};
+\RecordTile{3}{5}{I}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (3.4,4.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (5,5) {TL};
+\RecordTile{7}{5}{I}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (7.4,4.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (9,5) {TL};
+\RecordTile{11}{5}{S}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (11.4,4.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (13,5) {TL};
+\RecordTile{14}{5}{O}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (14.4,4.61) {1};
+\RecordTile{3}{4}{E}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (3.4,3.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (4,4) {DW};
+\RecordTile{7}{4}{N}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (7.4,3.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (10,4) {DW};
+\RecordTile{14}{4}{N}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (14.4,3.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (0,3) {DL};
+\RecordTile{3}{3}{D}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (3.4,2.61) {2};
+\RecordTile{7}{3}{G}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (7.4,2.61) {2};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (11,3) {DW};
+\RecordTile{14}{3}{S}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (14.4,2.61) {1};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (2,2) {DW};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (6,2) {DL};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (8,2) {DL};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (12,2) {DW};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (1,1) {DW};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (5,1) {TL};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (9,1) {TL};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (13,1) {DW};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (0,0) {TW};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (3,0) {DL};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (7,0) {TW};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (11,0) {DL};
+\node[font=\fontsize{8}{9}\selectfont,inner sep=0pt] at (14,0) {TW};
+\RecordTile{4}{-1.6}{B}{black}{white}
+\node[text=white,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (4.4,-1.99) {3};
+\RecordTile{5}{-1.6}{E}{black}{white}
+\node[text=white,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (5.4,-1.99) {1};
+\RecordTile{6}{-1.6}{E}{white}{black}
+\node[text=black,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (6.4,-1.99) {1};
+\RecordTile{7}{-1.6}{O}{black}{white}
+\node[text=white,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (7.4,-1.99) {1};
+\RecordTile{8}{-1.6}{P}{black}{white}
+\node[text=white,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (8.4,-1.99) {3};
+\RecordTile{9}{-1.6}{Y}{black}{white}
+\node[text=white,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (9.4,-1.99) {4};
+\RecordTile{10}{-1.6}{Z}{black}{white}
+\node[text=white,font=\fontsize{8}{9}\selectfont,inner sep=0pt,anchor=south east] at (10.4,-1.99) {10};
+\draw[line width=.7pt] (3.45,-2.1)--(10.55,-2.1);
+\node[font=\fontsize{9}{10}\selectfont,anchor=east] at (3.1,-1.6) {Rack};
+\end{EnvScrabble}
+
+\end{document}
