@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage{maa-monthly}
-\usepackage{booktabs,array,tikz,listings}
+\usepackage{booktabs,array,tikz}
 \input{figures/board_style}
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}
@@ -8,448 +8,684 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newcommand{\word}[1]{\texttt{#1}}
 \setlength{\emergencystretch}{18pt}
-\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,columns=fullflexible}
-\title{How Much Can One Tile Be Worth?\\Scrabble with a Fixed Number of Tiles}
-\markright{Scrabble with a Fixed Number of Tiles}
+\title{How Much Can a Scrabble Move Score?\\Exact Records from One Tile to Seven}
+\markright{Exact Scrabble Records}
 \author{}
 \date{}
+
 \begin{document}
-\begin{center}
-{\Large Title Page for \textit{The American Mathematical Monthly}}\par
-\vspace{80pt}
-\textbf{How Much Can One Tile Be Worth?\\Scrabble with a Fixed Number of Tiles}\par
-\vspace{30pt}
-Anonymous research manuscript\par
-\vspace{30pt}
-Exact move scores for one through seven tiles in NWL23 and CSW24.
-\end{center}
-\clearpage
 \maketitle
 \begin{abstract}
-How much can a Scrabble player achieve with just one tile? The answer is 213 points in the North American dictionary, and 225 in Collins. Two tiles can score 459 and 483. We determine the maxima for every rack contribution from one through seven tiles, culminating in 1786 for NWL23 and 1787 for CSW24. The mathematics separates three easily confused objects: a collection of scoring words, a legal board, and a position that can actually occur in a game. Elementary deletion and exchange arguments reduce the upper bounds to finite, reproducible integer calculations. The last North American case becomes a small connectivity problem; the Collins construction needs a two-letter bridge. Comparing dictionaries reveals that the crucial extra word need not even be one of the words scored. The larger dictionary can also give the smaller maximum: 1721 rather than 1723 with six tiles. Independent forward verifiers check complete legal histories, permanent blanks, and both players' racks and draws.
+How many points can one Scrabble move score if it adds exactly $k$ tiles? We
+answer this question for $k=1,\ldots,7$ under NWL23, the North American
+tournament dictionary, and CSW24, the international Collins dictionary. The
+answers range from 213 points for one tile to 1787 for seven. The proof
+separates three questions: can the chosen words be scored together, can the
+surrounding board be legal, and can that board arise in an actual game?
+Elementary bounds reduce the first question to finite enumeration. Completion
+arguments settle the few remaining boards, and explicit move histories settle
+the third. The larger dictionary usually gives the larger record, but not for
+six tiles.
 \end{abstract}
-\noindent\textbf{Keywords:} Scrabble, extremal combinatorics, computer-assisted proof, dictionary comparison.
+\noindent\textbf{Keywords:} Scrabble, extremal combinatorics,
+computer-assisted proof, dictionary comparison.
 
-\section{Two tiles, one hundred and five points}
-There are Scrabble moves whose beauty lies in how little they add. In the broadcast position that motivated this investigation, Evan Chester places just a \word{Z} and an \word{S}, turning an existing \word{AG} into \word{ZAGS}. The \word{Z} lands on a double-letter square; the \word{S}, on a triple-word square, also completes \word{VIDIOTS}. The arithmetic is
+\section{A two-tile surprise}
+
+The play that prompted this article looks almost modest. We label the columns
+A--O from left to right and the rows 1--15 from top to bottom. A still from the
+round-17 broadcast of the 2026 Word Cup shows Evan Chester facing Steve Grob,
+both listed in the event's top division \cite{wordcup}. The letters \word{AG}
+were already side by side near the right edge. Chester put \word{Z} on L8 and
+\word{S} on O8, around the old letters on M8 and N8, making \word{ZAGS}. The
+\word{Z} landed on a double-letter square. The \word{S} landed on a triple-word
+square and also completed the vertical word \word{VIDIOTS}. Those two little
+tiles scored as follows. A \word{Z} is worth 10 points, doubled here to 20;
+\word{A}, \word{G}, and \word{S} are worth 1, 2, and 1.
 \[
-  3(20+1+2+1)+3(4+1+2+1+1+1+1)=72+33=105.
+  3(20+1+2+1)+3(4+1+2+1+1+1+1)=72+33=105
 \]
-The supplied image identifies the event as the 2026 World Cup, round 17, against Steve Grob. We can check the score directly from that image; we do not use its reported two-tile record status as an independently established historical fact.
+points. The broadcast called it a competition record for a two-tile play. That
+historical claim is only our starting point; none of the proofs below depends
+on it.
 
-For documented tournament context, NASPA's records list \word{CAZIQUES} for 392, played by Karl Khoshnaw in Manchester on 11 April 1982 under OSW, and three 311-point plays in its North American tournament category. Its 365-point \word{QUIXOTRY}, by Michael Cresta in 2006, belongs to the separate club category \cite{naspa-records}. These are achievements against actual opponents, under the dictionaries of their time. They are not upper bounds over all possible positions.
+We recall the rules we need. The board is a $15\times15$ grid, and H8 is its centre.
+The bag contains 98 letter tiles of fixed multiplicities and two blanks, and a
+player holds at most seven tiles. The first move must cover H8. Later, a player
+may pass or place one to seven tiles in a single row or column, possibly with
+old tiles between them; every square from the first tile to the last must then
+be occupied, forming one contiguous main word. The occupied board must remain connected. Every
+maximal horizontal or vertical string of length at least two that the move
+creates must belong to the chosen dictionary \cite{rules}.
 
-That second question has a long recreational history. Scrabulizer's account records constructed 1780-point TWL06 and 1785-point SOWPODS moves in 2008 \cite{scrabulizer}. Popular retellings circulated 1778 as a theoretical maximum \cite{reddit}; Puzzling juxtaposes records under different dictionaries \cite{puzzling}. In 2024, Bob Lucassen found the 1786-point NWL23 construction reproduced here. Woogles reports that his satisfiability computation proves optimality \cite{woogles}. We do not claim that construction as new, nor use the reported solver conclusion as our upper-bound certificate. Instead, we expose and independently reproduce the finite reductions. Even ``possible'' needs care: does it describe scoring words, a legal board, or a board that could arise in a game?
+Each letter has a face value. Some squares double or triple the value of a new
+tile; others double or triple an entire word containing that tile. A premium
+works only when its square is first covered. All words made by the move are
+scored: the word along the direction of play is the \emph{main word}, and the
+perpendicular words through new tiles are \emph{crosswords}. Thus \word{ZAGS}
+was the main word and \word{VIDIOTS} a crossword. A blank may represent any
+letter but always scores zero. Playing all seven rack tiles adds a 50-point
+bonus. The full tile list and premium-square coordinates are recorded in the
+Supplementary Material.
 
-Nor is the Collins score 1787 new: the contributor DejMar reported it in 2016 and clarified in 2018 that the construction used CSW15, not the older SOWPODS list \cite{dejmar}. Our task is to certify the version-specific maxima and their attaining histories, rather than claim priority for previously reported numbers.
+This makes Chester's 105 points less mysterious, but it raises a cleaner
+question. Fix $k$, the number of tiles placed on the turn. How large can the
+score be if the players and the draws cooperate perfectly? Write this maximum
+as $M_k(D)$, where $D$ is the permitted dictionary. We use NWL23, the North
+American tournament dictionary, and CSW24, the international Collins
+dictionary \cite{nwl,csw,wespa-open}. The dictionary is part of the rules: a
+word accepted in one form of the game may fail in the other.
 
-We begin at the small end. Let $M_k(D)$ be the largest ordinary move score obtainable by placing exactly $k$ tiles in a game with dictionary $D$. How much of the spectacular score is already available when $k=1$ or $2$? The answers are surprisingly large, and changing dictionary changes the reason as well as the number.
+Real tournament records provide useful perspective. NASPA lists Karl
+Khoshnaw's 392-point \word{CAZIQUES}, played in Manchester in 1982, and three
+311-point plays in its North American tournament category \cite{naspa-records}.
+Constructed positions go much higher. Scrabulizer records 1780- and 1785-point
+constructions from 2008, and the contributor DejMar reported a 1787-point CSW15
+construction in 2016 \cite{scrabulizer,dejmar}. In 2024 Bob Lucassen found the
+1786-point NWL23 construction used below \cite{woogles}. Our concern is not
+priority for those numbers, but proof: are they really the best possible for
+their stated dictionaries, and what happens for every smaller value of $k$?
 
-\section{The rules that matter}
-The board has $15\times15$ squares. Columns are A--O, rows 1--15; H8 is the centre. There are 98 lettered tiles and two blanks. The first word covers H8. A later move places between one and seven tiles in one row or column, with no gap in the resulting word; existing tiles may fill its interior. The board remains connected. Every new maximal horizontal or vertical string of length at least two must belong to the dictionary \cite{rules}.
-
-Only newly covered premiums count. Letter premiums are applied before word premiums, and multiple word premiums multiply. A new premium contributes to each word formed through that square. Blanks have permanent value zero, though their squares still activate word premiums. Exactly seven newly played tiles earn an additional 50 points \cite{rules}. We exclude challenge bonuses, time penalties, endgame rack transfers, and unchallenged invalid words. The players' choices and draws may be extraordinarily cooperative; the definition is existential, not probabilistic.
-
-The dictionaries are versioned NWL23 and CSW24 files, identified by hashes in the reproducibility instructions; licensed dictionary files are not to be redistributed with the public code. NASPA identifies NWL2023 as its competitive lexicon effective 29 February 2024 \cite{nwl}; WESPA publishes CSW24 material and specifies CSW24 for its 2026 Open \cite{csw,wespa-open}. The KWG files contain 212,868 and 299,162 entries respectively, but only 196,601 and 280,887 have board-playable lengths 2--15. Neither full-file count should be confused with its playable count.
-
-\begin{theorem}[The first two rows]\label{thm:small}
-For the standard English board, tile supply, and scoring rules,
+\begin{theorem}[The fourteen records]\label{thm:records}
+For ordinary move scoring on the standard English board,
 \[
-\begin{array}{c|rr}
- & \mathrm{NWL23}&\mathrm{CSW24}\\\hline
-M_1&213&225\\
-M_2&459&483
+\begin{array}{c|rrrrrrr}
+k&1&2&3&4&5&6&7\\\hline
+M_k(\mathrm{NWL23})&213&459&882&1130&1401&1723&1786\\
+M_k(\mathrm{CSW24})&225&483&912&1349&1478&1721&1787
 \end{array}
 \]
-The maxima are attained on legally constructed boards.
+Every value is attained in a legal game.
 \end{theorem}
 
-The remainder of the proof has two different jobs. An upper bound may grant a fictitious player extra freedom. An attaining construction must obey every rule. Confusing these jobs was the source of an error in an earlier six-tile calculation.
+We exclude challenge bonuses, time penalties, endgame rack transfers, and
+unchallenged invalid words. The theorem is existential: the positions need not
+be sensible tournament strategy. The two finite word sets are versioned by
+counts and SHA-256 hashes in the Supplementary Material, making the statement
+independent of later dictionary revisions.
 
-\section{From whole games to a few intersecting words}
-For $k\ge2$, rotate the description by transposition if necessary so that the move is horizontal. The premium board is invariant under transposition. There is one main word $W$, containing every new square, and at most $k$ perpendicular words, one through each new square. For $k=1$, there are at most two words; either orientation may be absent. Words elsewhere contribute nothing to this move.
+\section{What an upper bound must remember}
+
+A candidate record has three layers. First come the words scored on the final
+turn. They must share letters without asking for more tiles than the bag
+contains. Second comes the rest of the board: it must be connected and contain
+no stray nonwords. Third comes time: the board must be constructible from an
+opening word through legal turns. For an upper bound we may safely forget some
+of these restrictions; for equality we must restore all of them.
+
+Suppose first that $k\ge2$. By reflecting across the main diagonal, we may take
+the move to be horizontal. It makes one horizontal main word $W$ and at most
+$k$ vertical crosswords, one through each new tile. A one-tile move makes at
+most two words and is treated in both orientations.
 
 \begin{lemma}[Deletion fragments]\label{lem:deletion}
-Remove the newly played tiles from a scored word. Every remaining consecutive fragment of length at least two must belong to $D$.
+Delete the newly placed tiles from a word scored on the final turn. Every
+remaining consecutive fragment of length at least two was already a word.
 \end{lemma}
 \begin{proof}
-Those letters were already present. Each internal fragment ends at a square that was empty before the move. An exterior fragment cannot have a further adjacent old letter beyond the scored word, since the scored word was chosen maximal after the move. Thus each nontrivial fragment was a maximal word before the move. A one-letter fragment need not itself be a dictionary entry: it may have been connected perpendicularly. Empty fragments impose no condition.
+The letters of such a fragment were already present. An internal fragment ends
+where the board was empty before the move. An exterior fragment cannot extend
+beyond the final word, which was chosen maximal. Thus every nontrivial fragment
+was a maximal string before the turn. A one-letter or empty fragment imposes no
+condition: the single old tile may have been connected in the other direction.
 \end{proof}
 
-That final sentence matters in code. A new tile at the last position leaves an empty suffix, which is legal. Rejecting it silently deletes a family of possible plays. The reproduction tests explicitly include this boundary case for each $k=2,\ldots,7$.
-
-\begin{lemma}[The premium ceiling]\label{lem:premium}
-The main-word multiplier of a $k$-tile move is at most $3^{\min(k,3)}$. Each perpendicular word has multiplier at most three.
+\begin{lemma}[Premium ceiling]\label{lem:premium}
+The main-word multiplier of a $k$-tile move is at most
+$3^{\min(k,3)}$. A crossword multiplier is at most three.
 \end{lemma}
 \begin{proof}
-An edge row contains three triple-word squares and no double-word squares. The middle row has two triple-word squares and one double-word square, whose product is 18. Every other row has at most two double-word squares and no triple-word squares. Activating at most $k$ of these premiums gives the stated ceiling; transposition covers columns. A perpendicular word contains only one new square, so activates at most one word premium. Old premiums never reactivate.
+An edge row contains three triple-word squares and no double-word squares. The
+middle row contains two triple-word squares and one double-word square, whose
+product is only 18. Every other row contains at most two double-word squares and
+no triple-word square. At most $k$ of these premiums can be activated.
+Transposition gives the same statement for columns. A crossword contains only
+one new square, so it activates at most one word premium.
 \end{proof}
-The ceiling concerns multipliers, not total scores: letter values, letter premiums, and simultaneous crosses still have to be optimized.
 
-Write $v(a)$ for the face value of letter $a$, and $\lambda_p,\mu_p$ for the letter and word multipliers at square $p$. If $I$ indexes the new letters of $W$, its score with real tiles everywhere is
+This bound concerns multipliers, not the whole score. To keep the remaining
+arithmetic exact, let $v(a)$ be the face value of the letter $a$, and let
+$\lambda_p$ and $\mu_p$ be the letter and word multipliers at square $p$. If
+$I$ indexes the new letters of $W$, then the all-real-tile score of the main
+word is
 \begin{equation}\label{eq:main}
  A(W,I)=\left(\prod_{i\in I}\mu_{p_i}\right)
- \left[\sum_{i=1}^{|W|}v(W_i)+\sum_{i\in I}(\lambda_{p_i}-1)v(W_i)\right].
+ \left[\sum_{i=1}^{|W|}v(W_i)+
+       \sum_{i\in I}(\lambda_{p_i}-1)v(W_i)\right].
 \end{equation}
-Old premiums are absent from this formula. A cross through new letter $x$ at $p$ scores $\mu_p[v(C)+(\lambda_p-1)v(x)]$ before blanks.
+Old premium squares do not appear: they never reactivate.
 
-For a fitted main placement $P$, let $C_j(P)$ be the largest score of any deletion-valid cross fitting through its $j$th new tile, including the zero option of no cross. Then
-\begin{equation}\label{eq:upper}
+For a fitted main word $P$, let $C_j(P)$ be the largest all-real score of any
+deletion-valid crossword through its $j$th new tile, including the option of no
+crossword. Then
+\begin{equation}\label{eq:independent}
  U(P)=A(P)+\sum_{j=1}^k C_j(P)+50\mathbf1_{\{k=7\}}
 \end{equation}
-is an upper bound. Each actual cross is in its enumerated domain; replacing it by the independent maximum can only increase the sum. Tile scarcity, word interactions, support tiles, connectivity, and playability have all been relaxed. Consequently the bound needs none of those assumptions to be true of its fictitious maximizer.
+is an upper bound. It gives each cross its favorite surrounding letters
+independently, even when those choices compete for the same physical tiles.
+That deliberate generosity makes $U(P)$ useful for discarding most placements.
 
-\section{Blanks belong to squares, not to words}
-A tempting collection of words often uses two \word{Z}'s or too many \word{P}'s. The supply must be counted on the union of physical squares: a crossing tile is used once, although it contributes to two word scores.
-
-For each occupied scoring square $s$, add its coefficients from every scored word to obtain $c_s$. Let $n_a$ be the number of squares showing $a$, $B_a$ the number of real $a$-tiles, and $e_a=(n_a-B_a)_+$. Order the coefficients of the $a$-squares as $c_{a,1}\le\cdots\le c_{a,n_a}$.
+The candidate patterns must also respect the bag. A crossing square is one physical tile even
+though it contributes to two words. For each scored square $s$, add its
+coefficients in all scored words and call the sum $c_s$. If the board displays
+$n_a$ copies of $a$ but the bag has only $B_a$ real copies, at least
+$e_a=(n_a-B_a)_+$ of them are blanks. Order the coefficients of the $a$-squares
+as $c_{a,1}\le\cdots\le c_{a,n_a}$.
 
 \begin{lemma}[Exact blank penalty]\label{lem:blank}
-The scoring pattern is impossible if $\sum_a e_a>2$. Otherwise its maximum score under the physical tile supply, before any additional support is considered, is
+The scored skeleton is impossible if $\sum_a e_a>2$. Otherwise its greatest
+score on the scored squares under the tile supply is its all-real score minus
 \begin{equation}\label{eq:blank}
- A_{\rm all}-\sum_a v(a)\sum_{j=1}^{e_a}c_{a,j}.
+ \sum_a v(a)\sum_{j=1}^{e_a}c_{a,j}.
 \end{equation}
-The bingo bonus, when present, is added afterward.
 \end{lemma}
 \begin{proof}
-At least $e_a$ of the $a$-squares must be blanks. A blank at $s$ loses exactly $v(a)c_s$. If a proposed assignment makes a larger-coefficient square blank while leaving a smaller-coefficient square real, swapping their physical tiles cannot lower the score. Repetition gives the displayed minimum loss. Letters have independent real-tile supplies; their only shared constraint is the total of two blanks. Using an additional, unforced blank cannot improve the score.
+A blank on an $a$-square $s$ loses exactly $v(a)c_s$. If a blank occupies a
+larger-coefficient square while a real $a$ occupies a smaller one, swapping the
+two cannot lower the score. Repeating the swap places the forced blanks on the
+least expensive squares. The real-tile supplies are independent, and the two
+blanks are their only shared resource.
 \end{proof}
 
-The lemma is exact for the scoring pattern and optimistic for its completion. Additional support tiles might force further blanks. For pruning a partially selected product, the same calculation is a lower bound on its eventual loss: a subset already exceeding a letter's supply must contain the excess blanks itself, and later crosses can only increase its coefficients.
-
-For a one-tile move the formula simplifies. Every old square has coefficient $\mu_p$, and the new square has coefficient $\lambda_p\mu_p$ or $2\lambda_p\mu_p$. Since each English letter has a real tile, a maximum keeps the new tile real; swapping it with an old copy otherwise improves or preserves the score. Thus the penalty is $\mu_p\sum_a e_av(a)$.
-
-\section{The exhaustive part of the small theorem}
-For one tile, enumerate every dictionary word and distinguished letter occurrence passing Lemma~\ref{lem:deletion}. Fit it to each square in both directions. Include single-word moves, and pair horizontal and vertical occurrences with the same new letter. Apply Lemma~\ref{lem:blank}. Lists are sorted by all-real score; a suffix is skipped only if even its all-real score is below the current maximum. Every omitted score is therefore bounded above by an already examined score. The maxima of this relaxed space are exactly 213 and 225.
-
-For two tiles, enumerate every word of length 2--15, every pair of new indices, and all fitting horizontal placements. The enumeration is over all choices, not a list of plausible long words. Table~\ref{tab:enumeration} gives the freshly reproduced counts. At threshold 459, only 81 NWL23 placements and 256 CSW24 placements survive the independent bound. Enumerate their complete cross products, retaining the no-cross options, enforcing the common bag, and applying the exact blank penalty. No incidental-word rejection is used. NWL23 leaves one pattern at score at least 459, scoring 459; CSW24 leaves 369, none above 483. These are upper bounds on real play, regardless of whether any retained pattern is completable.
-
-\begin{table}[htbp]\centering\small
-\caption{Fresh exhaustive counts for one and two tiles. The last three rows use the inclusive two-tile threshold 459.}\label{tab:enumeration}
-\begin{tabular}{@{}lrr@{}}\toprule
-Quantity & NWL23 & CSW24\\\midrule
-Playable dictionary entries &196,601&280,887\\
-Raw distinguished occurrences &1,764,090&2,557,653\\
-Deletion-valid occurrences &240,528&387,172\\
-Raw pairs of new indices &7,656,225&11,273,568\\
-Deletion-valid pairs &817,488&1,409,087\\
-Fitted main placements &91,639,770&155,270,805\\
-Independent-bound survivors &81&256\\
-Bag-feasible products &1&369\\
-Maximum product score &459&483\\\bottomrule
-\end{tabular}
-\end{table}
-
-This establishes the four upper bounds in Theorem~\ref{thm:small}. The search uses integer arithmetic. A second, deliberately direct enumerator checks the common C++ scanner against every placement in a small artificial dictionary for $k=2,\ldots,7$. Further adversarial tests check transposition, impossible three-blank demands, and a shared square whose blank penalty must be counted in two words. These tests support the implementation; the exhaustive dictionary runs, rather than the tests alone, supply the numerical part of the proof.
-
-\section{Four boards that attain the bounds}
-Figure~\ref{fig:small-boards} displays the Collins two-tile position. The supplementary board atlas displays all four small-case witnesses with their complete final racks. Its final section lists their placement histories, including scores of every setup move. The verifier checks board boundaries, alignment, word membership, connection to the centre, every incidental word, new-tile counts, permanent blanks, and the physical bag after every move.
-
-For the NWL23 one-tile witness, add \word{S} at O15. This completes two words: \word{HYDROXYZINES} and \word{MICROTECHNIQUES}. Their face sums are 38 and 33. Each receives the new triple-word premium, giving $3(38+33)=213$. The old dictionary words are \word{HYDROXYZINE} and \word{MICROTECHNIQUE}.
-
-In CSW24, the same \word{S} completes \word{METHOXYBENZENES} and \word{QUICKSILVERINGS}, worth $3(41+34)=225$. None of these two words or their singular predecessors occurs in our NWL23 input. Both one-tile constructions use no blanks.
-
-For two tiles in NWL23, play \word{Y} at H15 and \word{S} at O15. These join \word{PA} and \word{CHEQUE} into \word{PAYCHEQUES}. The two triple-word squares multiply the main word by nine. The crosses are \word{XYLOGRAPHY} and \word{KATZENJAMMERS}, each tripled:
-\[
-  9\cdot29+3\cdot29+3\cdot37=261+87+111=459.
-\]
-An auxiliary \word{A} at I13 is a blank, outside every word scored on the final move.
-
-For CSW24, retain the same new letters and squares but complete \word{JAYHAWKERS}, \word{QUALIFICATORY}, and \word{METHOXYBENZENES}:
-\[
-  9\cdot30+3\cdot30+3\cdot41=270+90+123=483.
-\]
-Its 11-move setup uses no blanks. One useful construction starts with \word{ALIF} through H8 and grows \word{FIREBOMB} across row 8. This provides a bridge to \word{BENZENE} in column O. A separate \word{CAT} below \word{ALIF} allows the gap to be filled while making \word{QUALIFICATOR}. The finished board uses just 48 tiles.
-
-\begin{figure}[t]\centering
-\input{figures/csw24_k2}
-\caption{A 483-point two-tile move in CSW24. Black tiles are newly placed; the complete seven-tile rack appears below. Each premium is labeled, so the board remains readable in monochrome.}\label{fig:small-boards}
-\end{figure}
-
-There is also a rack issue, which a bare sequence of board moves can conceal. For these four witnesses it has a simple resolution.
-\begin{lemma}[Realizing a sparse history]\label{lem:racks}
-Suppose a legal, positive-scoring placement history uses at most 86 physical tiles altogether, with at most seven newly placed on each move. It can be realized by two players with legal draws and intervening passes.
-\end{lemma}
-\begin{proof}
-Give the second player seven tiles not used anywhere in the history, and let that player pass throughout. List the first player's required tiles in chronological order of placement, choosing any order within each move. Append unused physical tiles until the list has seven more tiles than the whole history needs; at most $86+7=93$ tiles are required for this stream after the opponent's seven are reserved. Deal its first seven tiles and draw along the stream. Before every prescribed move the rack contains the next seven tiles of the stream, so it contains that move's at most seven required tiles. After playing them, draw the next tiles. Every prescribed move scores positively in the displayed certificates, so intervening single passes do not end the game by a scoreless-turn rule.
-\end{proof}
-All four boards use at most 48 tiles. Lemma~\ref{lem:racks} therefore supplies legitimate racks and draws as well as legal board histories. This completes the attainment part and proves Theorem~\ref{thm:small}.
-
-\section{What the extra dictionary words actually change}
-The twelve-point one-tile increase is transparent: the sum of the two word values rises from 71 to 75, and the new square triples the four-point gain. The two-tile increase of 24 has three contributions: nine from the main word, three from the first cross, and twelve from the second cross. They add to $9+3+12=24$.
-
-But the vocabulary change is subtler than those score differences suggest. \word{JAYHAWKERS} and \word{QUALIFICATORY} are in both dictionaries. The CSW construction nevertheless cannot be imported into NWL23: \word{JA}, the fragment before the new \word{Y}, is absent there; so is \word{QUALIFICATOR}, which must precede the final \word{Y} in the cross. The other cross, \word{METHOXYBENZENES}, and its predecessor are also absent. Membership of the final words alone would miss two independent obstructions.
-
-The dictionaries are not nested. The NWL23 word \word{OPACIFICATIONS} is absent from CSW24, yet is essential to our six- and seven-tile constructions. A larger dictionary can enable a different construction while disabling the one already found. Reusing the algorithm is appropriate; reusing either the numerical answer or its witness without checking every word is not.
-
-\section{Three tiles: the same main word, a different answer}
-\begin{proposition}\label{prop:csw-three}
-The three-tile maximum in CSW24 is 912.
-\end{proposition}
-\begin{proof}
-At the inclusive threshold 883, the independent bound leaves seven main placements. Complete cross-product enumeration with the common physical bag, accelerated by Lemma~\ref{lem:prices} below, leaves 11,350 scoring products. Their largest value is 912. No support-word or connectivity assumption is used in this exclusion, so it bounds every genuine move.
-
-To attain it, place \word{W,S,S} at A15, H15, O15 and form \word{WHIPPERSNAPPERS}. The old fragments are \word{HIPPER} and \word{NAPPER}. Two old \word{P}'s, at D15 and E15, are blanks; the main word therefore scores $783-2(3\cdot27)=621$. The crosses are \word{KABELJOUW}, \word{METHOXYBENZENES}, and \word{QUALIFICATIVES}. They score 75, 123, and 93, respectively. Thus the total is $621+75+123+93=912$.
-
-Here is the complete setup, in order; a coordinate names the first square of a word, and H or V gives its direction:
-\begin{center}\small
-\begin{tabular}{@{}rlll rlll@{}}
-1&V&\word{BENZENE}&H8&8&H&\word{EUTECTIC}&H9\\
-2&V&\word{METHOXYBENZENE}&H1&9&V&\word{CAT}&O9\\
-3&H&\word{EE}&G14&10&H&\word{ORIENTAL}&H5\\
-4&H&\word{HIPPER}&B15&11&V&\word{ALIF}&O4\\
-5&V&\word{SH}&B14&12&V&\word{QUALIFICATIVE}&O2\\
-6&V&\word{OU}&A13&13&H&\word{AE}&N14\\
-7&V&\word{KABELJOU}&A7&14&H&\word{NAPPER}&I15
-\end{tabular}
-\end{center}
-Each step places at most seven tiles and scores positively. The verifier checks every word and bag count after every step, and the final board has 65 tiles. Lemma~\ref{lem:racks} supplies the racks and draws; their explicit stream is also included in the certificate.
-\end{proof}
-
-The NWL23 three-tile construction uses the same main word, new squares, and main-word blank penalty. Its crosses score $60+105+96=261$; Collins increases these to $75+123+93=291$. The net gain is thirty points, with no contribution from the main word. The CSW-only terminal \word{W} in \word{KABELJOUW} is especially telling: \word{KABELJOU} itself is in NWL23, but the final hook is not. The short supporting words \word{EE} and \word{OU} are also Collins-only. Again, a dictionary matters both on and away from the scored words. The board and complete final rack appear in the supplementary atlas.
-
-\section{Four tiles: chemistry and the centre square}
-\begin{proposition}\label{prop:csw-four}
-The four-tile maximum in CSW24 is 1349.
-\end{proposition}
-\begin{proof}
-At threshold 1350, the complete independent scan leaves only three main placements from 953,946,180 fitted placements. The resource bound excludes one; exhaustive products exclude the other two even before checking board completion. This proves the upper bound.
-
-Place \word{M,B,Z,S} at A15, H15, K15, O15. The main word is \word{METHOXYBENZENES}, scoring $27(41)=1107$. Its four crosses are \word{HYPOCHONDRIASM}, \word{JAMB}, \word{WOOTZ}, and \word{QUICKSILVERINGS}. A2 holds an old blank \word{H}, reducing the first cross from 90 to 78. The total is
-\[
-1107+78+45+17+102=1349.
-\]
-The second blank is a supporting \word{H} at B14 and is not scored by the final move. The checked 21-move setup uses 72 tiles, so Lemma~\ref{lem:racks} applies. Its board, complete rack, and machine-readable history are in the supplement.
-\end{proof}
-
-This construction has a convenient spine. Begin with \word{TUTOR} at H8, extend it to \word{TUTORIAL}, and grow \word{TIRED} down column J. The word \word{JUDO} connects it to both \word{JAM} and \word{WOOT}. On the right, \word{SILVER} grows into \word{SILVERING}, then \word{QUICKSILVERING}. On the left, \word{FORESTER} becomes \word{DEFORESTER}, providing the anchor for \word{HOND}, \word{CHONDRI}, and finally \word{HYPOCHONDRIAS}. Small hooks attach the bottom fragments \word{ETHOXY}, \word{EN}, and \word{ENE}.
-
-One tied scoring pattern illustrates the difference between a legal diagram and a reachable game. Replacing two crossings by \word{PROVERB} and \word{JEEZ} also gives 1349 in the scoring relaxation. But \word{PROVERB} would run from H9 to H15. Its maximality forces H8 to be empty. Every game after the opening has a tile at H8, which can never be removed. No amount of support-word repair can save that pattern. We retained it in the upper-bound relaxation, but could not use it as an attaining witness.
-
-The difference from the NWL23 optimum is 219 points. The main word changes from \word{OXYHAEMOGLOBINS}, scoring 891, to the Collins-only \word{METHOXYBENZENES}, scoring 1107. Of the gain, 216 points come from the main word and three from the aggregate cross contribution, which rises from 239 to 242. This is a different mechanism from the thirty-point three-tile gain, which comes entirely from crossings.
-
-\section{Five tiles: a missing centre costs two points}
-\begin{proposition}\label{prop:csw-five}
-The five-tile maximum in CSW24 is 1478.
-\end{proposition}
-\begin{proof}
-The independent scan at threshold 1479 leaves twelve main placements among 1,552,255,935 fitted placements. Complete cross products under the common tile supply leave just ten patterns: three score 1480, seven score 1479. Every one has \word{PROVERB} from H9 to H15, so every one forces H8 empty. The opening covers H8 permanently, giving the required contradiction.
-
-Place \word{M,H,B,Z,S} at A15, D15, H15, K15, O15. Again the main word is \word{METHOXYBENZENES}. The new \word{H} activates D15's double-letter square, while the three triple-word premiums still multiply. The main score rises from 1107 to $27(41+4)=1215$, giving
-\[
-1215+78+21+45+17+102=1478.
-\]
-The crossings, in order, are \word{HYPOCHONDRIASM}, \word{PENNYWORTH}, \word{JAMB}, \word{WOOTZ}, and \word{QUICKSILVERINGS}. A2 is a blank \word{H}, costing twelve points; D10 is a blank \word{Y} in \word{PENNYWORTH}, costing four. All new tiles are real. The independent verifier checks the 24-move setup and its 81-tile final board; Lemma~\ref{lem:racks} again supplies racks and draws.
-\end{proof}
-
-The construction shares its right-hand spine with the four-tile board. A \word{YIELDER} across D10--J10 provides the blank \word{Y}. Build \word{PENNY} on that anchor and extend it to \word{PENNYWORT}. The bridge \word{CLAP} links its top to \word{CHONDRI}; extend this to the required left-hand word. The old bottom fragments are now \word{ET}, \word{OXY}, \word{EN}, and \word{ENE}. Five new tiles simultaneously complete six words.
-
-The extra new \word{H} adds 108 points to the main word and 21 through its cross, accounting for the 129-point jump from four tiles. Compared with NWL23's 1401, however, the main-word advantage is 81 and the total cross contribution is four points lower. The net dictionary advantage is $81-4=77$, much smaller than the four-tile advantage of 219.
-
-\section{The larger NWL23 cases and a repaired proof}
-The common scanner has been rerun for $k=3,\ldots,7$. Table~\ref{tab:larger} reports its complete counts at the first score above the earlier attaining constructions. For seven tiles the threshold 1737 is before the bingo; it corresponds to a total of 1787.
-
-\begin{table}[htbp]\centering\small
-\caption{NWL23 independent-cross scans. Thresholds are pre-bingo scores. These counts alone do not establish optimality.}\label{tab:larger}
-\begin{tabular}{@{}rrrrr@{}}\toprule
-$k$&Threshold&Raw index sets&Fitted placements&Survivors\\\midrule
-3&883&21,441,146&263,013,720&4\\
-4&1131&43,492,783&558,818,205&10\\
-5&1402&67,766,643&907,615,980&2\\
-6&1724&83,642,940&1,157,520,345&9\\
-7&1737&82,937,692&1,187,919,660&87\\\bottomrule
-\end{tabular}
-\end{table}
-
-For three through five tiles, fresh exact product exclusions remove every survivor even before asking whether its supporting board is legal. Attainment illustrates three distinct uses of the same triple-triple-triple geometry. The main word runs from A15 to O15 in each case.
-
-With three tiles, place \word{W,S,S} at A15, H15, O15 to make \word{WHIPPERSNAPPERS}. Its four \word{P}'s require two blanks, at E15 and K15 in this construction. The resulting main score is $27(29-6)=621$, not the all-real 783. The crosses \word{RICKSHAW}, \word{OBJECTIVIZES}, and \word{DEMISEMIQUAVERS} contribute $60+105+96$, giving 882. A twelve-move setup grows \word{OBJECT} through the centre into \word{OBJECTIVIZE}; \word{VENDETTA} connects it to the right-hand cross, and \word{RABIETIC} to the left. The two bottom fragments are \word{HIPPER} and \word{NAPPER}.
-
-With four tiles, place \word{O,Y,O,S} at A15, C15, H15, O15 to make \word{OXYHAEMOGLOBINS}. The main word contributes 891. Its crosses, \word{BALDACHINO}, \word{PLETHYSMOGRAPHY}, \word{JOCKO}, and \word{VENTRILOQUIZES}, contribute $54+26+54+105$, totaling 1130. The blanks are both \word{H}'s in the ordinary column-C cross, at C5 and C14. Their combined loss is eight points. Putting either in the tripled main word instead would be much more expensive. The 25-move setup leaves \word{X}, \word{HAEM}, and \word{GLOBIN} on the bottom row; the isolated \word{X} is supported by \word{AX}.
-
-With five tiles, the main word is \word{DICHLOROBENZENE}. Its new letters are \word{D,L,O,Z,E}, at A15, E15, H15, L15, O15. No blanks are needed. L15 doubles the new \word{Z}, so the main word scores $27(32+10)=1134$. The crosses \word{HYPERVENTILATED}, \word{OVERFULFILL}, \word{JOCKO}, \word{QUARTZ}, and \word{MYXAMOEBAE} contribute $81+20+54+34+78=267$, giving 1401. In the 21-move setup, \word{NAPERIES} through H8 anchors two left-hand crosses; \word{FADO} and \word{CITER} carry the construction to the right. The old bottom fragments are \word{ICH}, \word{OR}, \word{BEN}, and \word{EN}.
-
-The three final boards have 61, 84, and 78 tiles. Complete histories and permanent blank assignments are checked in the certificates, and Lemma~\ref{lem:racks} supplies playable rack streams. The supplementary atlas shows every board and its complete final rack.
-
-Six tiles need a stronger argument. The nine independent-bound survivors produce exactly twenty bag-feasible scoring patterns at 1724 or more, including apparent 1725s. An earlier program rejected them because the union of their scoring words already contained an illegal incidental string. That rejection is unsound: extra support tiles can sometimes repair such a string. For example, the forced row fragments \word{C.NQ} and \word{C.EQ} can occur inside \word{CINQ} and \word{CHEQUE}, respectively. Dots denote still-optional support, not permanently empty squares.
-
-The corrected test asks whether a row can be completed at all. Enumerate every dictionary word on every interval matching the forced letters and avoiding forced-empty cells. Permit isolated letters too. A left-to-right dynamic program covers all required cells by such intervals, separated by empty squares; optional cells may remain empty. Failure is conclusive. Different rows are even allowed unlimited independent tile supplies, making this a relaxation of any real completion.
-
-Four of the twenty patterns force the row
-\[
-\word{CO.Q...D...G..A},
-\]
-which admits no such completion. The other sixteen leave an old \word{X} at B1, with A1 and C1 empty before the move. That tile must connect downward: it has no possible upward or horizontal neighbour. Enumerate every NWL23 word of length 2--15 beginning with \word{X}, respecting the existing letters, and repeat the permissive row-completion test. None succeeds. These two completion-safe checks reproduce the audit's split of $4+16$ and eliminate every score at least 1724.
-
-The attaining six-tile play places \word{O,X,P,B,Z,E} at A1, B1, D1, H1, L1, O1 to make \word{OXYPHENBUTAZONE}. The main word scores 1458; its crosses score $69+11+34+57+31+63=265$, giving 1723. A checked 22-move setup uses 85 tiles with one non-scoring blank. Consequently the reproduced NWL23 vector through six tiles is
-\[
- (M_1,\ldots,M_6)=(213,459,882,1130,1401,1723).
-\]
-
-\section{Seven tiles: buying an upper bound with letter prices}
-The bingo adds exactly 50, so excluding scores above 1786 means excluding word-score sums at least 1737. Our fresh scan gives 87 main placements above this threshold. Their crosses cannot be optimized independently forever: the same two blanks must pay for every shortage.
-
-Here is a useful bound with a short proof. Give each letter $a$ any nonnegative rational price $p_a$. For cross option $o$ in slot $j$, let $s_{jo}$ be its all-real score and $a_{jo}$ its vector of old-tile counts, excluding the already counted new tile. Let $m$ be the main word's count vector and $B$ the real bag. Put
+For the largest cases, a second upper bound keeps the Cartesian products small.
+Give each letter $a$ any nonnegative rational price $p_a$. For an option $o$ in
+crossword slot $j$, let $s_{jo}$ be its score and $a_{jo}$ its vector of old
+tile counts, excluding the shared new square. Let $m$ count each physical
+main-word square once, let $B$ be the real bag, and put
 \[
  z_j=\max_o(s_{jo}-p\cdot a_{jo}),\qquad
  t=\max\bigl(0,\max_a(p_a-v(a))\bigr).
 \]
+
 \begin{lemma}[Resource prices]\label{lem:prices}
-Every scoring product through this main placement has pre-bingo score at most
+Every product through that main placement has pre-bingo score at most
 \[
- A+p\cdot(B-m)+\sum_j z_j+2t.
+ A+p\cdot(B-m)+\sum_jz_j+2t.
 \]
-If option $o_j$ is chosen at some slots, subtract their nonnegative reduced costs $z_j-s_{jo_j}+p\cdot a_{jo_j}$ from this bound.
+For any options already chosen, their nonnegative reduced costs
+$z_j-s_{jo}+p\cdot a_{jo}$ may be subtracted from this bound.
 \end{lemma}
 \begin{proof}
-Let $e_a$ be the number of blanks assigned to letter $a$ in a feasible product. Its counts satisfy $m+\sum_j a_{jo_j}\le B+e$ coordinatewise, with $\sum_a e_a\le2$. Each blank loses at least $v(a)$ because every scored physical square has coefficient at least one. Thus the score is at most
+If $e_a$ blanks represent letter $a$, feasibility gives
+$m+\sum_j a_{jo_j}\le B+e$ coordinatewise and $\sum_a e_a\le2$. Each blank
+loses at least $v(a)$. Hence the score is at most
 \[
- A+\sum_j(s_{jo_j}-p\cdot a_{jo_j})
- +p\cdot(B-m)+\sum_a(p_a-v(a))e_a.
+ A+\sum_j(s_{jo_j}-p\cdot a_{jo_j})+p\cdot(B-m)
+   +\sum_a(p_a-v(a))e_a.
 \]
-Bound the last sum by $2t$ and each unchosen slot by $z_j$. This also proves the reduced-cost version.\qedhere
+The last sum is at most $2t$, and every unchosen option is bounded by $z_j$.
 \end{proof}
 
-A linear program proposes prices. We round them to multiples of $1/1024$ and recompute every maximum and inequality with integers. Any nonnegative prices give a valid certificate, even if the numerical optimizer did a poor job. Fixed-threshold enumeration retains all products, not merely the best few. This reproduces 3748 products across fourteen main placements in about 72 seconds on the development machine. Completion-safe row tests leave 255; mandatory hooks from isolated old top-row letters leave 34.
+The prices used in the certificates are multiples of $1/1024$, so every
+comparison is an integer comparison. How the prices were found is irrelevant
+to validity: any nonnegative prices satisfying the displayed inequalities give
+the bound.
 
-\section{The last 193 boards}
-All 34 residual moves form \word{OXYPHENBUTAZONE} across the top row. Delete their seven new tiles. Every remaining top-row component must have a downward connection somewhere: above it is the board edge, and beside it are squares that must remain empty until the final move. Choose one such connection from each component and enumerate every fitting dictionary word that could be its maximal vertical word. Enforce the common bag, but allow other support tiles later.
+We now make the finite reduction precise. A \emph{scoring skeleton} is a triple
+$(N,F,E)$. Here $N$ is the set of new squares, $F$ assigns letters to the
+union of the main word and its crosswords, and $E$ consists of squares forced
+empty: the squares just beyond those maximal words, and both perpendicular
+neighbors of a new tile that makes no crossword. Shared squares occur only once
+in $F$. A \emph{completion} extends $F$ to a final board, leaves $E$ empty,
+uses the common 100-tile supply with at most two blanks, is connected, and has
+every maximal string of length at least two in $D$. If the skeleton contains
+old tiles, its move is not the opening move, so its completion must also contain
+H8. Every legal move has a completion; the converse need not hold.
 
-Incidental illegal rows must then be repaired. For each forced nonword, enumerate every possible final maximal word covering it; its interval cannot end next to an already forced letter. Retain compatible choices and their required additions under the common bag. Already legal runs need not be extended at this stage. This is complete as a reduction: in any genuine completion, select its actual words covering the forced nonwords and discard all other optional additions. One of the enumerated reduced boards remains as a subboard; discarded letters return to the available supply. Vertical nonwords at this stage are not grounds for rejection.
+The Chester play gives a small example. Its new set is
+$N=\{\mathrm{L8},\mathrm{O8}\}$. The map $F$ spells \word{ZAGS} on L8--O8
+and \word{VIDIOTS} on O2--O8, counting O8 only once. The forced-empty set
+contains K8, O1, O9, L7, and L9: these prevent either scored word from
+extending and prevent the new \word{Z} from making an unlisted crossword.
+Deleting the new letters leaves the old words \word{AG} and \word{VIDIOT}.
+This skeleton remembers exactly what the final score forces and nothing else.
 
-This shared-bag enumeration eliminates 33 patterns. The remaining pattern has new positions 1, 2, 4, 8, 11, 12, and 15, with crosses
+\begin{lemma}[Line relaxation]\label{lem:line}
+For one row, write a forced letter as itself, a forced empty square as
+\word{\#}, and every other square as a dot. A left-to-right recursion decides
+exactly whether the dots can be filled or left empty so that each maximal
+occupied interval is either one square or a word in $D$. Every completion of a
+scoring skeleton passes this test in every row and column.
+\end{lemma}
+\begin{proof}
+At the first unprocessed square, either leave an optional dot empty, or choose
+each dictionary interval beginning there that matches all forced letters and
+avoids every \word{\#}; continue after a separating empty square. These are
+exactly the possibilities for the first maximal interval. Induction on the
+unprocessed suffix proves the first statement. A true completion supplies one
+such filling. Allowing isolated squares and allowing different lines to reuse
+the same remaining tiles only enlarge the set of completions.
+\end{proof}
+
+\begin{lemma}[Hooks and reduced boards]\label{lem:hooks}
+Suppose an old top-edge letter or block has only new or forced-empty horizontal
+neighbors. Every completion contains a perpendicular dictionary word through
+at least one of its squares. After one such \emph{mandatory hook} is chosen for
+each block, every completion contains a reduced board obtained by retaining
+only the dictionary intervals needed to repair its forced nonwords. If no such
+reduced board respects one shared tile supply, no completion exists.
+\end{lemma}
+\begin{proof}
+Before the final move, the block cannot connect through the new squares or
+through the outside of the board. Since the old board was connected, it must
+connect downward through a maximal perpendicular word. For each forced illegal
+run in a row, a completion has a unique maximal horizontal dictionary word
+containing that run; retain its squares and discard every optional square not
+so selected. This is one of the enumerated reduced boards and is a subboard of
+the completion. Finally, every retained square is one physical tile. Enumerating
+all hook and repair choices while debiting their union from a single multiset
+therefore rejects only tile-infeasible boards.
+\end{proof}
+
+\begin{proposition}[Completeness of the finite reduction]
+\label{prop:complete}
+Fix $D$, $k$, and a pre-bingo threshold $q$. The following enumeration contains
+the scoring skeleton of every legal $k$-tile move scoring at least $q$ before
+the seven-tile bonus.
+\begin{enumerate}
+\item Choose a word $W\in D$, the $k$ new positions in $W$, an orientation,
+and a fit on the board; retain only deletion-valid choices.
+\item Retain a fit if its independent bound \eqref{eq:independent}, without the
+bonus, is at least $q$. The resource-price bound may reject it only when the
+integer inequality in Lemma~\ref{lem:prices} is below $q$.
+\item Enumerate the Cartesian product of all deletion-valid crossword options,
+merge shared squares, and apply the exact blank penalty.
+\item Apply centre occupancy, line compatibility, mandatory-hook, reduced-board,
+and shared-bag tests as needed.
+\end{enumerate}
+Consequently, if every retained skeleton fails one of these necessary tests,
+no such move exists.
+\end{proposition}
+\begin{proof}
+Take a legal move at or above $q$. Reflection lets us make its main word
+horizontal when $k\ge2$. Its actual main word, new positions, orientation, and
+location occur in step 1 by Lemma~\ref{lem:deletion}. Its actual crosswords are
+among the independently chosen maxima, so it cannot fail step 2. They occur as
+one tuple in step 3; merging squares gives its physical multiset, and
+Lemma~\ref{lem:blank} gives the best possible placement of any forced blanks.
+Its final board is a completion of the resulting skeleton. Hence it passes the
+centre and compatible-line conditions, contains one of the enumerated words
+for each mandatory hook, contains the corresponding reduced board, and obeys
+the shared bag. Thus no stated rejection can remove the chosen move.
+\end{proof}
+
+Table~\ref{tab:audit} is the complete audit trail. For $k\ge2$, the column
+headed $q$ omits the 50-point bonus when $k=7$; ``first stage'' counts main
+placements left by the independent bound, and ``exact stage'' counts their
+shared-square, bag-feasible crossword tuples. For $k=1$, those columns instead
+give deletion-valid word occurrences and crossing pairs scored above the live
+branch bound. A zero in the last column is the conclusion of a necessary test,
+not a failure to find an example.
+
+\begin{table}[htbp]\centering\scriptsize
+\caption{Certificate counts for the finite reduction.}\label{tab:audit}
+\begin{tabular}{@{}llrrrp{.42\textwidth}@{}}\toprule
+$D$&$k$&$q$&First stage&Exact stage&Final necessary test\\\midrule
+NWL23&1&--&240,528&36,941&largest score 213\\
+CSW24&1&--&387,172&27,520&largest score 225\\
+NWL23&2&459&81&1&largest product 459\\
+CSW24&2&459&256&369&largest product 483\\
+NWL23&3&883&4&0&product enumeration: 0\\
+CSW24&3&883&7&11,350&largest product 912\\
+NWL23&4&1131&10&0&product enumeration: 0\\
+CSW24&4&1350&3&0&resource/product bounds: 0\\
+NWL23&5&1402&2&0&product enumeration: 0\\
+CSW24&5&1479&12&10&H8 occupancy: 0\\
+NWL23&6&1724&9&20&rows leave 16; hooks: 0\\
+CSW24&6&1722&21&15,809&rows leave 3,352; hooks leave 7; shared bag: 0\\
+NWL23&7&1737&87&3,748&rows leave 255; hooks leave 34; 193 reduced boards; connectors: 0\\
+CSW24&7&1738&168&420,538&rows leave 11,753; hooks leave 22; H8 leaves 9; shared bag: 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The certificate of schema \word{upper-bound-audit-v1} maps every row to its
+upper scan, exact-product output, final-completion output, and their hashes.
+Its verifier parses those artifacts and checks every count in the table.
+
+Finally, an arrangement of valid words is not yet a game. The small boards use
+the following simple observation; the nearly full seven-tile boards receive
+explicit two-player rack certificates.
+
+\begin{lemma}[Sparse histories]\label{lem:racks}
+A legal positive-scoring placement history using at most 86 physical tiles can
+be realized by two players with legal racks and draws.
+\end{lemma}
+\begin{proof}
+Reserve for the second player seven tiles unused by the history, and let that
+player pass. Order the first player's required tiles by move, append seven
+unused tiles, deal the first seven, and draw along this list. Before each move
+the rack contains every tile that move requires. At most $86+7=93$ stream tiles
+are needed after the opponent's rack is reserved. Because every placement
+scores, the intervening single passes do not end the game; the appended filler
+tiles also prevent the builder from emptying a rack before the record move.
+Any tiles not yet named are placed at the inaccessible end of the bag.
+\end{proof}
+
+
+\section{One and two tiles}
+
+For a square $p$ and a letter $a$, let $H(p,a)$ be the set of all
+deletion-valid occurrences of dictionary words that fit horizontally through
+$p$ with distinguished letter $a$ at $p$. Define $V(p,a)$ vertically. These
+sets are finite and explicit.
+
+\begin{proposition}
+$M_1(\mathrm{NWL23})=213$ and $M_1(\mathrm{CSW24})=225$.
+\end{proposition}
+\begin{proof}
+A one-tile move makes at most one horizontal and one vertical word. By
+Lemma~\ref{lem:deletion}, it therefore appears in
 \[
-\begin{gathered}
-\word{OPACIFICATIONS},\ \word{XEROSES},\ \word{PREADJUSTING},\\
-\word{BRAINWASHING},\ \word{AMELIORATIVE},\ \word{ZOOGAMETE},\ \word{EQUALITY}.
-\end{gathered}
+ \bigcup_{p,a}\bigl(H(p,a)\cup V(p,a)\cup
+                       (H(p,a)\times V(p,a))\bigr).
 \]
-These crosses contribute $69+14+26+63+17+31+60$ before the blank correction.
-Its reduced preboards form a set of exactly 193 distinct positions. Comparing sets of board coordinates is essential: two correct enumerators need not assign the same record numbers or serialize their records in the same order.
+For every member of this union, the enumeration applies the premium at $p$,
+counts the common new square once in the tile supply but once in each word's
+score, and applies Lemma~\ref{lem:blank}. This gives maxima 213 and 225.
 
-Every reduced board has three connected components, both blanks forced, and between two and six real tiles left after reserving the final seven tiles. What can these few letters connect?
+For completeness, the implementation sorts each $H(p,a)$ and $V(p,a)$ by its
+all-real contribution. During the nested scan, the first unvisited term bounds
+every later term. A suffix is skipped only when that bound is smaller than the
+incumbent; induction over the sorted lists shows that no skipped pair can
+improve it. This branch-and-bound changes the running time, not the set being
+maximized.
+
+Equality is simple. In NWL23, adding \word{S} at O15 completes
+\word{HYDROXYZINES} and \word{MICROTECHNIQUES}; both meet the new triple-word
+square, giving $3(38+33)=213$. In CSW24, the same geometry completes
+\word{METHOXYBENZENES} and \word{QUICKSILVERINGS}, giving
+$3(41+34)=225$.
+\end{proof}
+
+\begin{proposition}
+$M_2(\mathrm{NWL23})=459$ and $M_2(\mathrm{CSW24})=483$.
+\end{proposition}
+\begin{proof}
+Apply Proposition~\ref{prop:complete} with $q=459$. The two $k=2$ rows of
+Table~\ref{tab:audit} show that the largest exact scoring products are 459 and
+483. These are upper bounds even though the product stage ignores connectivity
+and chronology.
+
+For equality in NWL23, play \word{Y} at H15 and \word{S} at O15 to make
+\word{PAYCHEQUES}. The main word covers two triple-word squares; the crosses are
+\word{XYLOGRAPHY} and \word{KATZENJAMMERS}. Thus
+\[
+ 9\cdot29+3\cdot29+3\cdot37=459.
+\]
+In CSW24, \word{JAYHAWKERS}, \word{QUALIFICATORY}, and
+\word{METHOXYBENZENES} give
+\[
+ 9\cdot30+3\cdot30+3\cdot41=483.
+\]
+The Supplementary Material gives legal histories for all four boards.
+\end{proof}
+
+Figure~\ref{fig:two} shows the 483-point position.
+
+\begin{figure}[t]\centering
+\input{figures/csw24_k2}
+\caption{The 483-point CSW24 two-tile move. Black tiles are newly placed; the
+complete rack appears below the board.}\label{fig:two}
+\end{figure}
+
+The dictionary difference is not visible from the three final words alone.
+Although \word{JAYHAWKERS} and \word{QUALIFICATORY} occur in both dictionaries,
+the required predecessors \word{JA} and \word{QUALIFICATOR} do not occur in
+NWL23. A record board depends on the words that existed before the record move,
+not merely on the words scored after it.
+
+\section{Three tiles}
+
+\begin{proposition}\label{prop:three}
+$M_3(\mathrm{NWL23})=882$ and $M_3(\mathrm{CSW24})=912$.
+\end{proposition}
+\begin{proof}
+Proposition~\ref{prop:complete} and Table~\ref{tab:audit} find no NWL23 scoring
+product at 883 or above, while the largest CSW24 product at that threshold is
+912. Hence the two upper bounds are 882 and 912.
+
+Both records use the main word \word{WHIPPERSNAPPERS}, made by placing
+\word{W,S,S} at A15, H15, O15. Four displayed \word{P}'s force two blanks, so
+the tripled main word scores $27(29-6)=621$. In NWL23 the crosses
+\word{RICKSHAW}, \word{OBJECTIVIZES}, and \word{DEMISEMIQUAVERS} add
+$60+105+96$, for 882. In CSW24 the crosses \word{KABELJOUW},
+\word{METHOXYBENZENES}, and \word{QUALIFICATIVES} add $75+123+93$, for
+912. The supplementary histories use 61 and 65 tiles, so
+Lemma~\ref{lem:racks} supplies legal racks and draws.
+\end{proof}
+
+Here the entire thirty-point difference comes from the crosswords. The final
+\word{W} of \word{KABELJOUW}, together with the short supporting words
+\word{EE} and \word{OU}, is available only in Collins.
+
+\section{Four tiles}
+
+\begin{proposition}\label{prop:four}
+$M_4(\mathrm{NWL23})=1130$ and $M_4(\mathrm{CSW24})=1349$.
+\end{proposition}
+\begin{proof}
+Proposition~\ref{prop:complete} and Table~\ref{tab:audit} exclude NWL23 scores
+of 1131 or more and CSW24 scores of 1350 or more.
+
+For NWL23, place \word{O,Y,O,S} at A15, C15, H15, O15 to make
+\word{OXYHAEMOGLOBINS}. The main word scores 891. The crosses
+\word{BALDACHINO}, \word{PLETHYSMOGRAPHY}, \word{JOCKO}, and
+\word{VENTRILOQUIZES} add $54+26+54+105$, giving 1130. Two old \word{H}'s in
+the column-C cross are blanks.
+
+For CSW24, place \word{M,B,Z,S} at A15, H15, K15, O15 to make
+\word{METHOXYBENZENES}. It scores $27\cdot41=1107$. The crosses
+\word{HYPOCHONDRIASM}, \word{JAMB}, \word{WOOTZ}, and
+\word{QUICKSILVERINGS} add $78+45+17+102$, giving 1349. An old blank
+\word{H} accounts for the reduction from 90 to 78 in the first cross. The two
+histories use 84 and 72 tiles and therefore satisfy Lemma~\ref{lem:racks}.
+\end{proof}
+
+One product tied at 1349 reveals why reachability cannot be ignored. It contains
+\word{PROVERB} from H9 to H15. Since the scored word is maximal, H8 must be
+empty; but the opening move covers H8, and tiles are never removed. The scoring
+pattern is sound, yet no game can reach it.
+
+\section{Five tiles}
+
+\begin{proposition}\label{prop:five}
+$M_5(\mathrm{NWL23})=1401$ and $M_5(\mathrm{CSW24})=1478$.
+\end{proposition}
+\begin{proof}
+Proposition~\ref{prop:complete} excludes NWL23 scores of 1402 or more. For
+CSW24, the ten scoring skeletons at 1479 or more all contain maximal
+\word{PROVERB} from H9 to H15. Maximality forces H8 to be empty, but every one
+is a nonopening position and H8 has been occupied since the first move. Thus
+they are all impossible.
+
+The NWL23 construction places \word{D,L,O,Z,E} at A15, E15, H15, L15, O15 to
+make \word{DICHLOROBENZENE}. The main word scores $27(32+10)=1134$. Its five
+crosses add
+\[
+ \begin{aligned}
+ &\word{HYPERVENTILATED}:81,\qquad \word{OVERFULFILL}:20,\\
+ &\word{JOCKO}:54,\qquad \word{QUARTZ}:34,\qquad
+ \word{MYXAMOEBAE}:78.
+ \end{aligned}
+\]
+for 1401.
+
+The CSW24 construction places \word{M,H,B,Z,S} at A15, D15, H15, K15, O15 to
+make \word{METHOXYBENZENES}. The new \word{H} is doubled, so the main word
+scores $27(41+4)=1215$. Its five crosses contribute
+$78+21+45+17+102=263$, giving 1478. The histories use 78 and 81 tiles.
+\end{proof}
+
+
+\section{Six tiles}
+
+Six tiles are the first case in which plausible scoring patterns survive the
+bag calculation and require a systematic completion argument.
+
+\begin{proposition}\label{prop:six}
+$M_6(\mathrm{NWL23})=1723$ and $M_6(\mathrm{CSW24})=1721$.
+\end{proposition}
+\begin{proof}
+For NWL23, apply the compatible-row test to the twenty skeletons listed in
+Table~\ref{tab:audit}. Four force the incompatible row
+\[
+ \word{CO.Q...D...G..A}.
+\]
+The other sixteen leave an old \word{X} at B1 with A1 and C1 unavailable
+before the move. It must be joined downward by a mandatory hook. None of the
+165 NWL23 words of board length beginning with \word{X} matches the forced
+letters and leaves all rows compatible. Proposition~\ref{prop:complete} now
+excludes 1724.
+
+The attaining move places \word{O,X,P,B,Z,E} at A1, B1, D1, H1, L1, O1,
+forming \word{OXYPHENBUTAZONE}. The main word scores 1458, and its six crosses
+add $69+11+34+57+31+63=265$, for 1723. Its 22 setup moves place 79 tiles;
+the six-tile record move brings the board total
+to 85, so Lemma~\ref{lem:racks} applies.
+
+For CSW24, compatible rows and mandatory hooks leave seven skeletons. For each,
+the shared-bag completion enumerates every hook and every required row interval
+jointly, debiting their union from one physical tile multiset. None survives,
+so 1722 is impossible.
+
+The CSW24 move places \word{O,Y,P,B,Z,E} at A1, C1, D1, H1, L1, O1. Again the
+main word is \word{OXYPHENBUTAZONE} and scores 1458. Its crosses are
+\word{OPACIFYING}, \word{YARAKS}, \word{PREQUALIFIED},
+\word{BRAINWASHING}, \word{ZOOGAMETES}, and \word{EJACULATIONS}, worth
+$63+13+29+63+32+63=263$. The 25 setup moves place 87 tiles, and the record
+move brings the board total to 93. One
+player reserves the seven tiles of the last setup move, \word{PACIFYING}; the
+full rack-and-draw certificate verifies that neither player goes out early.
+\end{proof}
+
+The international dictionary has far more playable entries, but its six-tile
+maximum is two points lower. The NWL23 construction relies on
+\word{OPACIFICATIONS}, which is absent from CSW24. Dictionaries are not nested,
+so their sizes do not order their records.
+
+\section{Seven tiles}
+
+For seven tiles, the 50-point bonus is constant. We therefore state exclusion
+thresholds before the bonus.
+
 \begin{lemma}[Three-component connector]\label{lem:connector}
-Suppose a board has three components and some set of at most $R$ new squares connects them. It contains a connecting subset that is the union of two simple paths from a suitable one of the components to the other two, with no path traversing a third old component.
+If at most $R$ new squares connect three old components, some connecting subset
+is the union of two simple paths from one component to the other two; neither
+path passes through the third component.
 \end{lemma}
 \begin{proof}
-Contract each old component to a terminal vertex. Choose an inclusion-minimal connecting subset of new vertices, then a spanning tree, pruning nonterminal leaves. A tree connecting three terminals has either a terminal on the path between the other two, or one branching vertex with three terminal branches. In the first case choose the middle terminal as root; in the second choose any terminal. The two root-to-terminal paths cover the tree. Lift their new vertices back to squares. Each segment outside the old components is a simple path. If a path meets its target earlier through an extra adjacency, stop there; the union still connects all three terminals and uses a subset of the chosen new squares.\qedhere
+Contract the old components to three terminals. Choose an inclusion-minimal
+connecting set of new vertices, take a spanning tree, and prune nonterminal
+leaves. Either one terminal lies on the path between the other two, or the tree
+has one branching vertex with three terminal branches. In the first case root
+at the middle terminal; in the second root at any terminal. Two root-to-terminal
+paths cover the tree, so their union uses no more than the original $R$ new
+vertices. If a lifted path meets its target component early, stop there.
 \end{proof}
 
-Enumerate such paths of length at most $R$, their unions of size at most $R$, and every assignment of the remaining letter multiset to those unions. Extra unused letters are not discarded: each row and each column may use the \emph{entire} leftover multiset independently to repair its nonwords. This is more permissive than any common-board completion. A failed line therefore proves impossibility. The run checks 24,293 cores and 5,518,820 assignments. Row completion rejects 5,518,814; column completion rejects the last six. No 1787-point play remains.
-
-\begin{theorem}[North American maxima]\label{thm:nwl}
-Under NWL23,
-\[
- (M_1,\ldots,M_7)=(213,459,882,1130,1401,1723,1786).
-\]
-\end{theorem}
-\begin{proof}
-The preceding exhaustive upper-bound reductions establish the exclusions. The first six attaining histories were described above. For seven, the supplementary atlas reproduces Lucassen's 1786 board. Its final words score $1458+69+11+34+13+57+31+63+50=1786$.
-
-Its 97 tiles exceed the scope of Lemma~\ref{lem:racks}, but a second player resolves the difficulty. Player B reserves the seven tiles needed for the last setup move, \word{LADDERLIKE}, and passes while A performs the first 23 setup moves. A's draw stream is those 83 setup tiles, followed by the seven record tiles and the three unused tiles. At that point A holds \word{BENOPXZ}. B plays \word{LADDERLIKE} and draws the last three tiles, so does not go out. A plays the record move and goes out. The independent history verifier checks all moves, alternating turns, blank assignments, racks, draws, and the bag. Endgame transfers are excluded from $M_7$.\qedhere
-\end{proof}
-\section{Six tiles in Collins: a two-letter bridge}
-
-For six tiles in Collins, a fresh scan at threshold 1722 covers 1,987,507,110 fitted main placements and retains 21. Their complete resource-constrained products leave 15,809 scoring patterns. Permissive row completion eliminates 12,457, and mandatory singleton hooks eliminate 3,345. Seven patterns remain. A shared-bag hook and row-completion enumeration eliminates all seven, establishing the upper bound
-\[
- M_6(\mathrm{CSW24})\le1721.
-\]
-Here an additional necessary test saves considerable work: for each forced nonword in a row, try every matching dictionary interval and allow it the entire remaining bag independently of all other rows and fragments. An actual completed word is one such interval and cannot use more than the remaining bag, including the two blanks. Thus failure safely prunes the partial board; success promises nothing about simultaneous completion. The checker retains the final-move tiles in the global supply count even though they are not yet on the board. Small exhaustive counterexample tests exercise this pruning, and rerunning the NWL23 hook stage still gives the same 193 reduced boards.
-
-\begin{proposition}\label{prop:csw-six}
-The six-tile maximum in CSW24 is 1721.
+\begin{proposition}\label{prop:seven}
+$M_7(\mathrm{NWL23})=1786$ and $M_7(\mathrm{CSW24})=1787$.
 \end{proposition}
 \begin{proof}
-For attainment, place \word{O,Y,P,B,Z,E} at A1, C1, D1, H1, L1, O1. The main word is again \word{OXYPHENBUTAZONE}, now with the \word{X} already present. Its score is 1458. The crosses, in order, are \word{OPACIFYING}, \word{YARAKS}, \word{PREQUALIFIED}, \word{BRAINWASHING}, \word{ZOOGAMETES}, and \word{EJACULATIONS}, giving
+\emph{NWL23.} At pre-bingo score 1737, the compatible-row and mandatory-hook
+tests leave the 34 skeletons shown in Table~\ref{tab:audit}. All use
+\word{OXYPHENBUTAZONE} across the top row. Removing the seven new letters
+leaves old top-row blocks that must connect downward: the board edge is above
+them, while the intervening new squares were empty before the turn. Enumerating
+every mandatory dictionary hook and every required row repair eliminates 33
+skeletons. The last yields 193 reduced boards.
+
+Each reduced board has three components, both blanks already committed, and at
+most six real tiles left. By Lemma~\ref{lem:connector}, any completion contains
+one of the enumerated two-path connector cores. All three choices of root, all
+simple paths of the permitted length, and every multiset-respecting letter
+assignment are tried. For each assignment, every row and then every column is
+allowed to use the entire leftover multiset independently when repairing its
+nonwords. This relaxation considers 24,293 cores and 5,518,820 assignments.
+Only six pass every row, and each fails a column. Thus no pre-bingo score of
+1737 is possible, so 1787 is impossible.
+
+Lucassen's construction places \word{O,X,P,B,N,Z,E} on the seven empty squares
+of the top-row \word{OXYPHENBUTAZONE}. Its words contribute
 \[
-1458+63+13+29+63+32+63=1721.
+1458+69+11+34+13+57+31+63+50=1786.
 \]
-The \word{A} at D6 is a blank and costs one point in \word{PREQUALIFIED}. The blank \word{N} at I4 is outside the scored words. The supplementary atlas gives the full 93-tile board.
+The board uses 97 tiles. A two-player certificate reserves
+\word{LADDERLIKE} for the second player's last setup move and follows both
+racks and every draw through the 24 setup moves and the record move.
 
-A connected board alone would not finish the proof. The independent verifier replays 25 setup moves. They begin with \word{SH} through H8, grow it to \word{RAINWASH}, and use \word{INTREAT} and \word{AQUILINE} as bridges. Another particularly economical bridge is \word{TOOT} at L8--O8: its two middle letters connect the existing \word{OOGAMETES} and \word{JACULATIONS} columns. The last setup move extends \word{PA} to \word{PACIFYING} with seven tiles.
+\emph{CSW24.} At pre-bingo score 1738, the first necessary tests leave nine
+skeletons. For each, the shared-bag completion enumerates every mandatory hook
+and row repair together and finds none. Proposition~\ref{prop:complete}
+therefore excludes every total of 1788 or more.
 
-Player B reserves those seven tiles, passing while A plays the first 24 setup moves, which use 80 tiles. A's draw stream is those 80 tiles, then the six record tiles, then the seven unused tiles. Just before B's move, A holds \word{BEEOPYZ}. B plays \word{PACIFYING} and draws the six tiles left in the bag; A then plays the six-tile record and retains one \word{E}. No player has gone out prematurely. Every setup move scores positively, so the intervening passes do not terminate play. This is a full game-history certificate, not just a simultaneous word arrangement.
-\end{proof}
-
-The two dictionaries therefore reverse order at six tiles. Compared with the NWL23 construction, the main score is unchanged. The six cross differences are $-6,+2,-5,+6,+1,0$, summing to $-2$. In particular, CSW24's extra vocabulary cannot replace the missing \word{OPACIFICATIONS} without a loss. Cardinality alone says nothing about inclusion of lexicons, much less monotonicity of their maxima.
-
-\section{Seven tiles in Collins: the predecessor makes the difference}
-\begin{proposition}\label{prop:csw-seven}
-The seven-tile maximum in CSW24 is 1787.
-\end{proposition}
-\begin{proof}
-The complete scan at pre-bingo threshold 1738 covers 2,038,152,480 fitted placements and retains 168. Integer resource certificates and complete product enumeration leave 420,538 scoring patterns. Permissive row completion excludes 408,785; mandatory singleton hooks exclude 11,731 more; thirteen force the centre empty. Only nine remain, all scoring 1788 after the bingo. The shared-bag hook search eliminates all nine, proving the upper bound 1787. A separate streaming checker reconstructs every product's score and blank penalty and repeats the completion tests. Streaming changes storage, not the enumerated set or the pruning conditions.
-
-For attainment, play \word{O,X,P,B,A,Z,E} at A1, B1, D1, H1, K1, L1, O1, again making \word{OXYPHENBUTAZONE}. The crosses, in order, are \word{OPACIFYING}, \word{XED}, \word{PREQUALIFIED}, \word{BRAINWASHING}, \word{AMELIORATIVE}, \word{ZOOGAMETES}, and \word{EJACULATIONS}. Figure~\ref{fig:csw-seven} shows the construction. Its score is
+For equality, place \word{O,X,P,B,A,Z,E} at A1, B1, D1, H1, K1, L1, O1. The
+main word is \word{OXYPHENBUTAZONE}; the crosses are \word{OPACIFYING},
+\word{XED}, \word{PREQUALIFIED}, \word{BRAINWASHING},
+\word{AMELIORATIVE}, \word{ZOOGAMETES}, and \word{EJACULATIONS}. The score is
 \[
 1458+63+11+30+63+17+32+63+50=1787.
 \]
-The only blanks are an \word{A} at C2 and an \word{M} at F3, both outside the scored words. They lose no points on the record move.
-
-The forward verifier checks 27 setup moves. Start with \word{SH} through H8, extend to \word{RAINWASH}, and use \word{DIVULGE} to reach the future \word{OOGAMETE} column. On the left, \word{DEEM} becomes \word{ADDEEM}; the short hook \word{YAD} attaches the old \word{Y}. The bridge \word{TETRI} at K9--O9 joins the right-hand component: its middle \word{T,R} are the two letters missing from the reduced board. Grow \word{IONS} to \word{JACULATIONS} on that bridge, then finish the remaining columns. Every intermediate word, score, and physical tile count is checked. The final board uses 96 tiles.
-
-Player B reserves the seven tiles \word{CFGIINY} for the last setup move, \word{PACIFYING}. Player A's stream consists of the 82 tiles needed for the first 26 setup moves, then \word{ABEOPXZ}, then the four unused tiles. B passes between A's positive-scoring setup moves. Just before B's move, A has the record rack. B plays seven tiles and draws \word{EKLW}, so does not go out. A then plays the record and goes out. The explicit alternating rack/draw certificate verifies every step; endgame transfers are excluded from the claimed score.
+Figure~\ref{fig:seven} shows the board. Its 27 setup moves place 89 tiles; the
+record move brings the board total to 96. The
+second player reserves the seven tiles of the last setup move,
+\word{PACIFYING}, then draws four tiles and does not go out. The first player
+holds \word{ABEOPXZ}, plays the record, and goes out. The certificate verifies
+every intermediate word, blank, rack, draw, and score.
 \end{proof}
 
 \begin{figure}[t]\centering
 \input{figures/csw24_k7}
-\caption{A 1787-point CSW24 construction. The rack is \word{ABEOPXZ}; black tiles are newly played. Both italic blanks, at C2 and F3, are auxiliary. The short bridge \word{TETRI} connects the right-hand column to the rest of the pre-final board.}\label{fig:csw-seven}
+\caption{The 1787-point CSW24 move. Black tiles are newly placed; italic letters
+are blanks. Both blanks lie outside the words scored on the final turn.}
+\label{fig:seven}
 \end{figure}
 
-The one-point gain over NWL23 is not explained by a more valuable main word: both main words score 1458, and both receive the same bingo. Relative to the North American construction, the cross changes contribute $-6,0,-4,+6,+1,0$, and replacing the 13-point \word{NARROWING} cross by 17-point \word{AMELIORATIVE} adds four. Their sum is one. The new tile shifts from G1's \word{N} to K1's \word{A}; neither square has a premium.
+All eight words scored by this Collins move are also in NWL23. Nevertheless,
+the board cannot be copied into North American play: \word{JACULATIONS}, which
+must exist before the final \word{E} makes \word{EJACULATIONS}, is absent from
+NWL23. Once again, the decisive dictionary word is a predecessor rather than a
+word on the final score sheet.
 
-More strikingly, all eight words scored by the Collins move belong to NWL23 too. But \word{JACULATIONS}, the word that must precede \word{EJACULATIONS}, does not. The support words \word{ADDEEM}, \word{OO}, and \word{YAD} are also Collins-only. Thus the final score table, even checked against both dictionaries, cannot certify a North American move. The deletion lemma detects the decisive obstruction before any board search.
+Propositions~\ref{prop:three}--\ref{prop:seven}, together with the one- and
+two-tile enumeration, prove the upper bounds in Theorem~\ref{thm:records}. The
+displayed constructions and the complete histories in the Supplementary
+Material prove equality.
 
-\begin{table}[htbp]\centering\small
-\caption{Exact ordinary move maxima. The difference is CSW24 minus NWL23; seven tiles include the 50-point bingo.}\label{tab:status}
-\begin{tabular}{@{}rrrr@{}}\toprule
-$k$&NWL23&CSW24&Difference\\\midrule
-1&213&225&12\\
-2&459&483&24\\
-3&882&912&30\\
-4&1130&1349&219\\
-5&1401&1478&77\\
-6&1723&1721&$-2$\\
-7&1786&1787&1\\\bottomrule
-\end{tabular}
-\end{table}
+\section{Reproducibility}
 
-\section{Reproducibility and limits of the evidence}
-The accompanying source package contains programs, small certificate fixtures, constructions, tests, and version-matched input hashes. The top-level driver regenerates all fourteen claims from the dictionary files, rather than trusting stored verdicts. Separate checkers verify each attaining history. The upper-bound code has no SAT dependency. The numerical theorem remains computer-assisted: the finite dictionaries and their exhaustive treatment are part of the evidence, not a short dictionary-free inequality. This is not a Lean or Coq formalization.
+The accompanying source package regenerates all fourteen finite enumerations
+from the two identified digital dictionaries. Independent programs verify each
+attaining history, including alignment, word membership, the centre-square
+rule, incidental words, permanent blanks, physical tile counts, racks, and
+draws. Small artificial dictionaries test the placement enumeration for every
+$k=2,\ldots,7$; further tests target transposition, boundary fragments,
+three-blank impossibility, shared-square penalties, and completion pruning.
 
-The single-tile checker reruns both dictionaries. The common C++ scanner accepts $k$ and a dictionary as arguments. The two-tile product enumerator retains every record at a fixed threshold, never just the best few. The NWL23 C++ exclusions for $k=3,4,5$ require that no threshold record exist; their record display cap therefore cannot discard a successful exclusion counterexample. The NWL23 six-tile repair retains all twenty products and certifies their completion obstructions. The obsolete partial-board legality filter is not used to establish any theorem in this manuscript.
+The top-level driver is \word{scripts/reproduce\_release.py}. It compiles the
+two enumeration programs, exports and hashes both word sets, repeats every
+upper-bound stage in Table~\ref{tab:audit}, and then invokes separate forward
+verifiers for the fourteen histories. The Supplementary Material gives exact
+filenames and SHA-256 hashes for the one-tile and consolidated upper-bound
+certificates, the witness collection, the fresh-run state and verdict, and the
+dense NWL23 rack certificate.
 
-Board figures use the \word{Scrabble} TikZ package with final-size typography and monochrome-safe premium labels \cite{scrabble-package}. Standalone sources, vector PDFs, and EPS files accompany the manuscript. Research and code preparation used an AI assistant; responsibility for every mathematical claim remains with the authors. The public software is MIT-licensed; journal and TeX dependencies are fetched separately from hash-pinned official archives. The source package excludes licensed dictionary exports and private audit conversations, and explains how reviewers can supply version-matched dictionaries. Anonymous review requires a metadata-clean snapshot without identifying repository links.
+The proof is computer-assisted, not formally verified in a proof assistant.
+Its trust base consists of the stated reductions, integer arithmetic, the
+published source, the compiler and interpreter, and the two version-matched
+dictionaries. Licensed dictionary data are identified by cryptographic hashes
+but are not redistributed. The Supplementary Material places each of the
+fourteen record boards and its complete tile-placement history on one page;
+passes and rack refills remain in the machine-readable certificates.
 
-\begin{figure}[htbp]\centering
-\input{figures/record_curve}
-\caption{The two exact record curves. Their markers nearly coincide at six and seven tiles, where the differences are two points and one point respectively; Table~\ref{tab:status} gives the exact values. The seven-tile step includes the 50-point bingo.}\label{fig:curve}
-\end{figure}
+The point of the calculation is ultimately simple. A huge word and three
+triple-word squares are only the beginning. The same physical blank may affect
+two scores; an innocent-looking predecessor may belong to the wrong dictionary;
+and the last bridge between two parts of a board may exhaust the bag. A record
+needs all three layers at once: a collection of scoring words, a legal board,
+and a game that can actually reach it.
 
-\section{How exceptional are these scores?}
-There is no canonical uniform distribution on ``all possible Scrabble plays.'' A tournament sample measures human choices under competition; a sample of scoring patterns includes impossible boards. Annotated games and statistics by tiles played are available through Cross-Tables and the RandomRacer project \cite{randomracer}, but they are not used for Figure~\ref{fig:distributions}. To make the illustrative comparison completely reproducible, we instead specify a modest cooperative-game model.
-
-The opening proposal chooses uniformly a dictionary word of length 2--7 and a horizontal position covering H8. Later proposals choose an occupied square uniformly, a matching dictionary word--letter occurrence uniformly among words of length 2--15, and an orientation uniformly. Accept the first proposal giving a legal positive-scoring move with one to seven new tiles and at most 86 physical tiles on the board. A real tile is used whenever available; an exhausted letter supply forces a permanent blank. Infeasible proposals are rejected. Stop after 24 accepted moves or after 3000 consecutive unsuccessful proposals. Racks are realized by Lemma~\ref{lem:racks}; they are not independent random competition racks.
-
-We generated 1000 independent-model games per dictionary, using deterministic per-game seeds derived by SHA-256 from master seed 20260910, the dictionary name, and the game index. Both fixed-count runs finished before their time limits; no time-censored partial sample is used. From each game containing a post-opening $k$-tile move, choose one such move uniformly. Thus $N_k$ counts qualifying games, not correlated turns, and the plotted law is conditional on a game containing such a move. All 2000 histories, physical bags, rack streams, and sampled scores were independently replayed.
-
-Write $\widehat F_k$ for a plotted empirical distribution and $F_k$ for its model law. Conditional on $N_k$, the Dvoretzky--Kiefer--Wolfowitz--Massart bound \cite{dkw} and a union bound give simultaneous 95\% bands for all fourteen curves:
-\[
- \max(0,\widehat F_k-\epsilon_k)\le F_k\le
- \min(1,\widehat F_k+\epsilon_k),\qquad
- \epsilon_k=\sqrt{\frac{\log(560)}{2N_k}}.
-\]
-As usual for a seeded simulation, this uncertainty statement concerns the ideal independent sampling model, not a claim of randomness of the fixed seed. The panels report $N_k$; the exact summary data also accompany the source. Band half-widths range from 0.057 to 0.152. The one-tile estimates are notably less precise: their half-widths are 0.138 for NWL23 and 0.152 for CSW24. The very visible seven-tile shift largely reflects the 50-point bonus; neither the observed score frequencies nor the largest sampled value, 239, estimates an extremal score. No conclusion about tournament scoring frequencies follows from this experiment.
-
-\begin{figure}[htbp]\centering
-\input{figures/score_distributions}
-\caption{Empirical score distributions under the specified cooperative-game model, not tournament statistics or a uniform sample of legal plays. Each panel gives NWL23/CSW24 sample sizes. The seven-tile panel uses a different horizontal scale so that its entire tail is shown.}\label{fig:distributions}
-\end{figure}
-
-\section{What makes a record possible}
-The largest words are only the beginning. Premiums explain the scale, but a repeated letter can exhaust the blanks, a missing predecessor can invalidate a cross, and a last bridge can exhaust the bag. A record needs all three objects: scoring words, a legal board, and an actual game. Our upper bounds relax these requirements explicitly; the attaining histories restore them.
-
-\clearpage
 \bibliographystyle{vancouver}
 \bibliography{references}
 \end{document}

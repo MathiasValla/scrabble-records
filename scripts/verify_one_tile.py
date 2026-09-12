@@ -184,7 +184,11 @@ def main() -> None:
         ),
     }
 
-    certificate = {"upper_bounds": upper_bounds, "constructions": constructions}
+    certificate = {
+        "schema": "one-tile-certificate-v1",
+        "upper_bounds": upper_bounds,
+        "constructions": constructions,
+    }
     out_path = OUT / "one_tile_certificate.json"
     out_path.write_text(json.dumps(certificate, indent=2, sort_keys=True))
 

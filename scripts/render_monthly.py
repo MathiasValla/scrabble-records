@@ -7,11 +7,17 @@ from PIL import Image, ImageDraw
 
 ROOT=Path(__file__).resolve().parents[1]
 folder=ROOT/'tmp/pdfs/monthly_review';folder.mkdir(parents=True,exist_ok=True)
-for name in ('manuscript','board_atlas'):
+for name in ('manuscript','supplementary_material'):
     prefix=folder/name
+    for stale in folder.glob(f'{name}-*.png'):
+        stale.unlink()
+    for stale in folder.glob(f'{name}_sheet*.png'):
+        stale.unlink()
     subprocess.run(['pdftoppm','-scale-to','1100','-png',str(ROOT/'monthly'/f'{name}.pdf'),str(prefix)],check=True)
     info=subprocess.check_output(['pdfinfo',str(ROOT/'monthly'/f'{name}.pdf')],text=True)
     count=int(re.search(r'^Pages:\s+(\d+)',info,re.M).group(1))
+    if name=='supplementary_material':
+        assert count==15, f'expected 14 record pages and one guide page, got {count}'
     pages=[folder/f'{name}-{i:0{len(str(count))}d}.png' for i in range(1,count+1)]
     assert all(p.exists() for p in pages)
     for offset in range(0,len(pages),6):

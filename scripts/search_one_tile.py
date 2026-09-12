@@ -229,7 +229,7 @@ def build_candidates(legal_words: set[str]) -> dict[str, dict[int, list[Candidat
     }
     raw = 0
     deletion_ok = 0
-    for word in legal_words:
+    for word in sorted(legal_words):
         if not 2 <= len(word) <= 15:
             continue
         base = score_of(word)

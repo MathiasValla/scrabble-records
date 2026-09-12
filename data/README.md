@@ -1,8 +1,13 @@
 # Versioned Dictionary Inputs
 
-The proof uses authorized NWL23 and CSW24 KWG files supplied for this project.
-Dictionary binaries and complete word exports are deliberately absent from the
-review archive. Obtain the relevant lexicons through authorized channels.
+The proof uses the NWL23 and CSW24 dictionary files publicly served by the
+[Woogles web client](https://github.com/woogles-io/liwords/blob/master/liwords-ui/src/wasm/loader.ts).
+They were retrieved on 2026-09-12 from
+`https://woogles.io/wasm/2024/NWL23.kwg` and
+`https://woogles.io/wasm/2024/CSW24.kwg`. Fresh downloads from those two URLs
+matched the certified binary hashes below byte for byte. The files are omitted
+from the public repository because dictionary redistribution rights are
+separate from this project's MIT license.
 
 The reproduction driver requires these exact SHA-256 hashes:
 
@@ -17,6 +22,19 @@ The exported sorted word files have these SHA-256 hashes:
 
 - NWL23: `5254d44586c3af6a8530427b14ef0251af5aa47906ce32a45e4c229261b1456b`
 - CSW24: `5646ebbca6b1d5e57459ec431ee81aa8f627e81ab121fe9c7a815221cb727912`
+
+For a reproducible acquisition, run:
+
+```sh
+curl -fsSL https://woogles.io/wasm/2024/NWL23.kwg -o data/NWL23.kwg
+curl -fsSL https://woogles.io/wasm/2024/CSW24.kwg -o data/CSW24.kwg
+shasum -a 256 data/NWL23.kwg data/CSW24.kwg
+```
+
+`scripts/export_words.py` decodes little-endian 32-bit nodes, traverses every
+accepting path, retains uppercase alphabetic entries, sorts them
+lexicographically, and writes one newline-terminated entry per line. The proof
+uses the resulting word sets, not implementation-specific node order.
 
 Official edition information is available from
 [NASPA](https://www.scrabbleplayers.org/w/NWL2023) and

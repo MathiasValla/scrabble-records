@@ -1,0 +1,401 @@
+{
+  "claim": "Every numerical row in the manuscript's finite-reduction audit table is checked against its generated artifacts.",
+  "exact_maxima": {
+    "CSW24": {
+      "1": 225,
+      "2": 483,
+      "3": 912,
+      "4": 1349,
+      "5": 1478,
+      "6": 1721,
+      "7": 1787
+    },
+    "NWL23": {
+      "1": 213,
+      "2": 459,
+      "3": 882,
+      "4": 1130,
+      "5": 1401,
+      "6": 1723,
+      "7": 1786
+    }
+  },
+  "rows": [
+    {
+      "artifacts": [
+        {
+          "path": "output/one_tile_certificate.json",
+          "sha256": "033a6d7681face564db6c049db51dff143bc32476613d3eac72c4afb7dd9d4b3"
+        },
+        {
+          "path": "output/NWL23_k2_upper.txt",
+          "sha256": "e45519d66c981c84621199293e410294e72b5905acda28b1b7988c9c3404ede3"
+        }
+      ],
+      "conclusion": {
+        "largest_score": 213
+      },
+      "dictionary": "NWL23",
+      "exact_stage": 36941,
+      "first_stage": 240528,
+      "k": 1,
+      "threshold_prebonus": null
+    },
+    {
+      "artifacts": [
+        {
+          "path": "output/one_tile_certificate.json",
+          "sha256": "033a6d7681face564db6c049db51dff143bc32476613d3eac72c4afb7dd9d4b3"
+        },
+        {
+          "path": "output/CSW24_k2_upper.txt",
+          "sha256": "20cb32e230774d507b0180616a5cf3f5d2ca070873b207592709aef09e7eb625"
+        }
+      ],
+      "conclusion": {
+        "largest_score": 225
+      },
+      "dictionary": "CSW24",
+      "exact_stage": 27520,
+      "first_stage": 387172,
+      "k": 1,
+      "threshold_prebonus": null
+    },
+    {
+      "artifacts": [
+        {
+          "path": "output/NWL23_k2_upper.txt",
+          "sha256": "e45519d66c981c84621199293e410294e72b5905acda28b1b7988c9c3404ede3"
+        },
+        {
+          "path": "output/NWL23_k2_products.json",
+          "sha256": "a6a0f463129ac59101e06cc868b59ac0d0d91dd2a4bce394fb1d9eda27f7961c"
+        }
+      ],
+      "conclusion": {
+        "largest_product": 459
+      },
+      "dictionary": "NWL23",
+      "exact_stage": 1,
+      "first_stage": 81,
+      "k": 2,
+      "threshold_prebonus": 459
+    },
+    {
+      "artifacts": [
+        {
+          "path": "output/CSW24_k2_upper.txt",
+          "sha256": "20cb32e230774d507b0180616a5cf3f5d2ca070873b207592709aef09e7eb625"
+        },
+        {
+          "path": "output/CSW24_k2_products.json",
+          "sha256": "e1ba85a0fa9961606e6fe42617564a0bda7f2f4eb67d3bf25e14df2e290a7f5b"
+        }
+      ],
+      "conclusion": {
+        "largest_product": 483
+      },
+      "dictionary": "CSW24",
+      "exact_stage": 369,
+      "first_stage": 256,
+      "k": 2,
+      "threshold_prebonus": 459
+    },
+    {
+      "artifacts": [
+        {
+          "path": "output/NWL23_k3_upper.txt",
+          "sha256": "f75e95ebec849bfcba26953f9b4c6523fa1499944280d8329b6e5e79e30fc529"
+        },
+        {
+          "path": "output/NWL23_k3_cpp_exclusion.json",
+          "sha256": "665b735b42d2916aec71aaaff16442681432e439bf23246ecd4f33331fce6a21"
+        },
+        {
+          "path": "output/reproduction/NWL23_k3/rank1_result.txt",
+          "sha256": "d7d7200f1cbae190cd67ab41d414b89d7d953a23fc8ce5f60b5dc7ca5af9d263"
+        },
+        {
+          "path": "output/reproduction/NWL23_k3/rank2_result.txt",
+          "sha256": "0b7b245fc31c08ef79062bf2a4d6f2b91dddb4c63d940792899bb7b7574270de"
+        },
+        {
+          "path": "output/reproduction/NWL23_k3/rank3_result.txt",
+          "sha256": "9b28be18326a52096d354af69972ec66ace2e1e75bfaf5656cda3831c1957483"
+        },
+        {
+          "path": "output/reproduction/NWL23_k3/rank4_result.txt",
+          "sha256": "311f8e96de268b7f490cee1127004172c6de97b8c0be12b4e45a3c8423d8a6cf"
+        }
+      ],
+      "conclusion": {
+        "product_enumeration_remaining": 0
+      },
+      "dictionary": "NWL23",
+      "exact_stage": 0,
+      "first_stage": 4,
+      "k": 3,
+      "threshold_prebonus": 883
+    },
+    {
+      "artifacts": [
+        {
+          "path": "output/CSW24_k3_upper.txt",
+          "sha256": "4fda5e93798ce2edbeb7eaf67c4256697336d909d1fa2f74269144c2ce4f14be"
+        },
+        {
+          "path": "output/CSW24_k3_verified_upper.json",
+          "sha256": "e943ef29412af5df362f2f21aedadaffb272b8a97a16e25c1d1ce4d986a1a496"
+        }
+      ],
+      "conclusion": {
+        "largest_product": 912
+      },
+      "dictionary": "CSW24",
+      "exact_stage": 11350,
+      "first_stage": 7,
+      "k": 3,
+      "threshold_prebonus": 883
+    },
+    {
+      "artifacts": [
+        {
+          "path": "output/NWL23_k4_upper.txt",
+          "sha256": "c7941cb17b915a121dbe1e9be6f6761294945faa6cd1c7787f4a566ca9c8ddc9"
+        },
+        {
+          "path": "output/NWL23_k4_cpp_exclusion.json",
+          "sha256": "8086fcae48ec172cd13e76b484e576f88d2c8bddd9cf2b28607f3772092638e4"
+        },
+        {
+          "path": "output/reproduction/NWL23_k4/rank1_result.txt",
+          "sha256": "830e1b096744dd23001b24d4208ddde9157b39ab321fa5546c23ff4e0137a24a"
+        },
+        {
+          "path": "output/reproduction/NWL23_k4/rank2_result.txt",
+          "sha256": "35100aceda5d81e6e03a6dfc6f431d8e9ce39e59021c9895ffe6f2c98ca58acf"
+        },
+        {
+          "path": "output/reproduction/NWL23_k4/rank3_result.txt",
+          "sha256": "055f9ed7fbf6047b29bf7ccf2bcec529ab73810107b1e2bec2dfabc8420dadc2"
+        },
+        {
+          "path": "output/reproduction/NWL23_k4/rank4_result.txt",
+          "sha256": "e2e53cc8d5ca7b6220c9d0b8cbff2b70e3379980420e19db1311391af166e926"
+        },
+        {
+          "path": "output/reproduction/NWL23_k4/rank5_result.txt",
+          "sha256": "42e1224ca94675e55718046a09edf26e48f1c152a50d0ae9450d85b14a829829"
+        },
+        {
+          "path": "output/reproduction/NWL23_k4/rank6_result.txt",
+          "sha256": "055f9ed7fbf6047b29bf7ccf2bcec529ab73810107b1e2bec2dfabc8420dadc2"
+        },
+        {
+          "path": "output/reproduction/NWL23_k4/rank7_result.txt",
+          "sha256": "42e1224ca94675e55718046a09edf26e48f1c152a50d0ae9450d85b14a829829"
+        },
+        {
+          "path": "output/reproduction/NWL23_k4/rank8_result.txt",
+          "sha256": "5e464d74fa055bb786d0492096dfe7a69a18a3cbfcdf52208c12d6358306173a"
+        },
+        {
+          "path": "output/reproduction/NWL23_k4/rank9_result.txt",
+          "sha256": "35100aceda5d81e6e03a6dfc6f431d8e9ce39e59021c9895ffe6f2c98ca58acf"
+        },
+        {
+          "path": "output/reproduction/NWL23_k4/rank10_result.txt",
+          "sha256": "185e4d3c058ad106caae5238e308a3939847dc5ab1008fd2508a45cad2c03047"
+        }
+      ],
+      "conclusion": {
+        "product_enumeration_remaining": 0
+      },
+      "dictionary": "NWL23",
+      "exact_stage": 0,
+      "first_stage": 10,
+      "k": 4,
+      "threshold_prebonus": 1131
+    },
+    {
+      "artifacts": [
+        {
+          "path": "output/CSW24_k4_upper.txt",
+          "sha256": "e82e58af7cec16b2aeb712639596f3dbd8c41812f744e2685859cc751e6e68bd"
+        },
+        {
+          "path": "output/CSW24_k4_verified_upper.json",
+          "sha256": "66501cd9d25548c26b03ee63c1eb1e37f90304c9245117f32351a3cb635e5d33"
+        }
+      ],
+      "conclusion": {
+        "resource_product_remaining": 0
+      },
+      "dictionary": "CSW24",
+      "exact_stage": 0,
+      "first_stage": 3,
+      "k": 4,
+      "threshold_prebonus": 1350
+    },
+    {
+      "artifacts": [
+        {
+          "path": "output/NWL23_k5_upper.txt",
+          "sha256": "3cd574901211d7d0bc188b66c49f042388476e721deb72495819528ff942feae"
+        },
+        {
+          "path": "output/NWL23_k5_cpp_exclusion.json",
+          "sha256": "6cdab2a2bbefed16b91263ab5133202d1ddeddbd6ea8ab09e89d595bf5cbba29"
+        },
+        {
+          "path": "output/reproduction/NWL23_k5/rank1_result.txt",
+          "sha256": "926ab916e3843ae5926be264962adb805412bde08766d122e04ba779fd81cb2a"
+        },
+        {
+          "path": "output/reproduction/NWL23_k5/rank2_result.txt",
+          "sha256": "567f2ee3876a6d5d8ee5cefa2365a8522025439b55b35fbe181687878eab9342"
+        }
+      ],
+      "conclusion": {
+        "product_enumeration_remaining": 0
+      },
+      "dictionary": "NWL23",
+      "exact_stage": 0,
+      "first_stage": 2,
+      "k": 5,
+      "threshold_prebonus": 1402
+    },
+    {
+      "artifacts": [
+        {
+          "path": "output/CSW24_k5_upper.txt",
+          "sha256": "11b7268ebbd77d2693807d03c68f6f4562c2a4a33883d61a0029c30d4ce21c26"
+        },
+        {
+          "path": "output/CSW24_k5_verified_upper.json",
+          "sha256": "2f31361b071bfb306c99e483a6e09d8b56178957e0797ba06d212027ca9ba7bf"
+        }
+      ],
+      "conclusion": {
+        "centre_occupancy_remaining": 0
+      },
+      "dictionary": "CSW24",
+      "exact_stage": 10,
+      "first_stage": 12,
+      "k": 5,
+      "threshold_prebonus": 1479
+    },
+    {
+      "artifacts": [
+        {
+          "path": "output/NWL23_k6_upper.txt",
+          "sha256": "a4bb9238e951d1d1a2c4286ba1e5c2c68950c12d1612fd2906f7c8e2c462ac6b"
+        },
+        {
+          "path": "output/NWL23_k6_products.json",
+          "sha256": "4db4d05cb8c7d26e2186030b42f2f7e2ba653fc75b4a1958bf324d53e1c0f2be"
+        },
+        {
+          "path": "output/NWL23_k6_completion_safe.json",
+          "sha256": "a8b6ef646f65cc56a87580b047c4610013e6a2aded7e7fb942348cd1bcd15a81"
+        }
+      ],
+      "conclusion": {
+        "after_hooks": 0,
+        "after_rows": 16
+      },
+      "dictionary": "NWL23",
+      "exact_stage": 20,
+      "first_stage": 9,
+      "k": 6,
+      "threshold_prebonus": 1724
+    },
+    {
+      "artifacts": [
+        {
+          "path": "output/CSW24_k6_upper.txt",
+          "sha256": "995dc7db89b2d0fdb3aeeeafef3b8dc560f79e6ece0ea5f7d1458f9c2ce33cf1"
+        },
+        {
+          "path": "output/CSW24_k6_screened.json",
+          "sha256": "69c26969a225b7e0d0649c00b5cdea1f78e21461ac6937a8fb3f001df19f2643"
+        },
+        {
+          "path": "output/CSW24_k6_verified_upper.json",
+          "sha256": "c5029db140cbf494aa2115514439f833612acf79e393ba440c9143b11f979e71"
+        }
+      ],
+      "conclusion": {
+        "after_hooks": 7,
+        "after_rows": 3352,
+        "after_shared_bag": 0
+      },
+      "dictionary": "CSW24",
+      "exact_stage": 15809,
+      "first_stage": 21,
+      "k": 6,
+      "threshold_prebonus": 1722
+    },
+    {
+      "artifacts": [
+        {
+          "path": "output/NWL23_k7_upper.txt",
+          "sha256": "dc1c86798960266dd99d762cc8aa0a5f8d714e1460e15cdaf4c62924dcfaa93c"
+        },
+        {
+          "path": "output/seven_completion_stage1.json",
+          "sha256": "854206d9da5cede0e29c603c70cbbf39d7385d97cfaa38528f4ee0c25a198c81"
+        },
+        {
+          "path": "output/seven_hooks/summary.json",
+          "sha256": "a67554e1967608fc8f57b3461a3d3f03c6a183022abb5d2bddb6cd58d6bdc58b"
+        },
+        {
+          "path": "output/seven_tail/rec74_reproduced.json",
+          "sha256": "17481f60decb08a618af68fd568372b6918c6187420d7beddf572f699cfb1176"
+        }
+      ],
+      "conclusion": {
+        "after_hooks": 34,
+        "after_rows": 255,
+        "connecting_cores": 24293,
+        "core_assignments": 5518820,
+        "reduced_boards": 193,
+        "remaining": 0
+      },
+      "dictionary": "NWL23",
+      "exact_stage": 3748,
+      "first_stage": 87,
+      "k": 7,
+      "threshold_prebonus": 1737
+    },
+    {
+      "artifacts": [
+        {
+          "path": "output/CSW24_k7_upper.txt",
+          "sha256": "0f9bac20dfbc8a82d0358e7b5330b74f73d5aae223b3b05cb1c6455bada0357a"
+        },
+        {
+          "path": "output/CSW24_k7_screened.json",
+          "sha256": "c6cd226626deae09cc4efcab0a6414f0899d861a8a0e7d47a3723d43f4d48cb0"
+        },
+        {
+          "path": "output/CSW24_k7_verified_upper.json",
+          "sha256": "48004bc6d682174309a2cd9128dc5fb550af730476f0b9cf0e3245be4aa11108"
+        }
+      ],
+      "conclusion": {
+        "after_centre": 9,
+        "after_hooks": 22,
+        "after_rows": 11753,
+        "after_shared_bag": 0
+      },
+      "dictionary": "CSW24",
+      "exact_stage": 420538,
+      "first_stage": 168,
+      "k": 7,
+      "threshold_prebonus": 1738
+    }
+  ],
+  "schema": "upper-bound-audit-v1"
+}

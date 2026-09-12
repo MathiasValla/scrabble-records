@@ -8,6 +8,7 @@ from pathlib import Path
 import subprocess
 import sys
 import time
+import shutil
 
 ROOT=Path(__file__).resolve().parents[1]
 EXPECTED={
@@ -23,16 +24,24 @@ def main():
     parser.add_argument('--check-existing',action='store_true',help='Check artifacts and witnesses without repeating exhaustive searches')
     args=parser.parse_args()
     (ROOT/'tmp').mkdir(exist_ok=True)
-    logs=ROOT/'output/reproduction/logs'
+    logs=ROOT/'output/reproduction'/('existing_check_logs' if args.check_existing else 'fresh_logs')
     logs.mkdir(parents=True,exist_ok=True)
     for name,digest in EXPECTED.items():
         assert hashlib.sha256((ROOT/'data'/f'{name}.kwg').read_bytes()).hexdigest()==digest
 
     started=time.monotonic()
     state_path=logs.parent/('existing_check_state.json' if args.check_existing else 'run_state.json')
-    state=dict(complete=False,started_utc=datetime.now(timezone.utc).isoformat(),
+    packages={}
+    try:
+        from importlib.metadata import version
+        packages={name:version(name) for name in ('numpy','scipy')}
+    except Exception:
+        pass
+    compiler=subprocess.check_output(['c++','--version'],text=True).splitlines()[0]
+    state=dict(schema='reproduction-run-state-v1',complete=False,
+               started_utc=datetime.now(timezone.utc).isoformat(),
                mode='artifact check only' if args.check_existing else 'fresh exhaustive reproduction',
-               python=sys.version,steps=[],
+               environment=dict(python=sys.version,compiler=compiler,packages=packages),steps=[],
                source_sha256={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest()
                               for p in sorted((ROOT/'scripts').rglob('*')) if p.suffix in ('.py','.cpp')})
     def save_state():
@@ -55,6 +64,7 @@ def main():
             raise
         elapsed=time.monotonic()-start
         state['steps'].append(dict(name=label,seconds=round(elapsed,3),
+                                  log=str((logs/f'{label}.log').relative_to(ROOT)),
                                   log_sha256=hashlib.sha256((logs/f'{label}.log').read_bytes()).hexdigest()))
         save_state()
         print(f'OK {label} ({elapsed:.1f}s)',flush=True)
@@ -103,6 +113,10 @@ def main():
     run('csw_seven_witness',[sys.executable,'scripts/verify_csw_seven.py'])
     run('seven_racks',[sys.executable,'scripts/verify_seven_racks.py'])
     run('seven_chain',[sys.executable,'scripts/verify_seven_chain.py'])
+    audit_command=[sys.executable,'scripts/verify_upper_bound_audit.py']
+    if args.check_existing:
+        audit_command.append('--check-existing')
+    run('upper_bound_audit',audit_command)
     from search_one_tile import iter_words
     from verify_1786 import Kwg
     for name in EXPECTED:
@@ -130,7 +144,8 @@ def main():
     assert csw_seven['upper_bound']==1787 and csw_seven['remaining']==0
     for path,digest in csw_seven['input_sha256'].items():
         assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest()==digest
-    output=dict(exact={'NWL23':{'1':213,'2':459,'3':882,'4':1130,'5':1401,'6':1723,'7':1786},
+    output=dict(schema='reproduction-verdict-v1',
+                exact={'NWL23':{'1':213,'2':459,'3':882,'4':1130,'5':1401,'6':1723,'7':1786},
                        'CSW24':{'1':225,'2':483,'3':912,'4':1349,'5':1478,'6':1721,'7':1787}},
                 pending=[],
                 larger_witnesses=larger,kwg_sha256=EXPECTED,
@@ -144,6 +159,18 @@ def main():
                  elapsed_seconds=round(time.monotonic()-started,3),
                  result_sha256=hashlib.sha256(destination.read_bytes()).hexdigest())
     save_state()
+    aliases={
+        ROOT/'output/one_tile_certificate.json': ROOT/'certificates/one_tile_certificate.json',
+        ROOT/'certificates/upper_bound_audit.json': ROOT/'certificates/upper_bound_audit.json',
+        ROOT/'output/seven_rack_certificate.json': ROOT/'certificates/nwl23_k7_rack_certificate.json',
+        destination: ROOT/'certificates'/name,
+    }
+    if not args.check_existing:
+        aliases[state_path]=ROOT/'certificates/fresh_run_state.json'
+    for source,target in aliases.items():
+        target.parent.mkdir(exist_ok=True)
+        if source.resolve()!=target.resolve():
+            shutil.copyfile(source,target)
     print('VERIFIED: all fourteen exact maxima, NWL23 and CSW24 k=1..7.',flush=True)
 
 

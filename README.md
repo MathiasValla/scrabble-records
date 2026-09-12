@@ -1,4 +1,4 @@
-# Scrabble with a Fixed Number of Tiles
+# How Much Can a Scrabble Move Score?
 
 Reproducible computer-assisted extremal proofs for the standard 15 by 15
 English Scrabble board, with exact dictionary editions NWL23 and CSW24.
@@ -24,7 +24,8 @@ we do not claim priority for that previously reported number.
 
 The English article targets **The American Mathematical Monthly**. It is a
 research manuscript, not an accepted paper. See [the manuscript source](monthly/manuscript.tex),
-[manuscript PDF](monthly/manuscript.pdf), and [board atlas](monthly/board_atlas.pdf).
+[manuscript PDF](monthly/manuscript.pdf), and
+[Supplementary Material](monthly/supplementary_material.pdf).
 Author declarations and journal submission steps remain in [the checklist](MONTHLY_SUBMISSION.md).
 
 ## Reproduce All Fourteen Maxima
@@ -58,7 +59,9 @@ nohup python -u scripts/reproduce_release.py > reproduction.log 2>&1 &
 
 Keep the computer awake. Atomic progress is recorded in
 `output/reproduction/run_state.json`; individual logs are in
-`output/reproduction/logs/`. Success requires `complete: true`, a matching
+`output/reproduction/fresh_logs/`. Artifact-only checks use the separate
+`output/reproduction/existing_check_logs/` directory and cannot overwrite a
+fresh run's evidence. Success requires `complete: true`, a matching
 result hash, `pending: []`, and all fourteen entries in
 `output/reproduction_verified.json`. An older result file alone does not
 certify a newer interrupted run. The progress record includes source and log
@@ -122,7 +125,6 @@ It does not install system packages or run with administrator privileges.
 ```sh
 python scripts/fetch_tex_dependencies.py
 python scripts/build_monthly_figures.py
-python scripts/build_sampling_figure.py
 python scripts/build_monthly.py
 python scripts/export_monthly_figures.py
 python scripts/render_monthly.py
@@ -130,7 +132,7 @@ python scripts/render_monthly.py
 
 Run the proof first to regenerate the construction certificates. To typeset
 only the already supplied figure sources, the fetch and `build_monthly.py`
-commands suffice. The fourteen board/rack figures and two graphs have
+commands suffice. The fourteen board/rack figures have
 standalone TeX, PDF, and EPS exports in `monthly/figures/exports/`.
 Hashes pin the external TeX archives; an upstream change fails closed instead
 of silently substituting another dependency version.
@@ -138,23 +140,6 @@ The MAA endpoint sometimes rejects automated downloads (HTTP 403). In that
 case, use the journal's [Templates and Styleguide link](https://maa.org/publication/the-american-mathematical-monthly/)
 to obtain the archive as `tmp/tex_archives/monthly_templates.zip`, then rerun
 the fetch command. The cached archive is subject to exactly the same hash check.
-
-The seven-panel distribution figure uses 1,000 cooperative random games per
-dictionary, **not tournament statistics**. Complete generated histories are
-in `data/sampling/`; the figure builder replays all 2,000 games and their racks.
-One post-opening k-tile move is selected per qualifying game. The article
-specifies the sampling model, sample sizes, and model-based DKW uncertainty.
-To regenerate the simulations (about 65--70 seconds per dictionary locally):
-
-```sh
-python scripts/sample_reachable_games.py NWL23 --games 1000 --total-seconds 180
-python scripts/sample_reachable_games.py CSW24 --games 1000 --total-seconds 180
-python scripts/build_sampling_figure.py
-```
-
-On a slower machine, increase the simulation time limit. Incomplete samples
-are rejected, never silently used. Fresh samples under `output/sampling/`
-take precedence over the archived histories.
 
 ## Release Boundary
 
@@ -166,3 +151,11 @@ The MIT license covers project software; see [THIRD_PARTY.md](THIRD_PARTY.md)
 for exclusions, attribution, and separately reserved manuscript rights.
 The public GitHub repository is not anonymous: use a metadata-clean review
 snapshot if requested by the journal's double-anonymous process.
+
+Verify an unpacked public snapshot before use:
+
+```sh
+python scripts/verify_release_manifest.py .
+```
+
+For the review archive, pass `--manifest REVIEW_MANIFEST.json` instead.

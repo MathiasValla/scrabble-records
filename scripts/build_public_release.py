@@ -16,8 +16,9 @@ verify_csw_six_upper verify_csw_seven_upper verify_small_records
 verify_csw_three verify_csw_four verify_csw_five find_csw_six_history
 verify_csw_six build_csw_seven_baseline test_csw_seven_witness
 find_csw_seven_history verify_csw_seven verify_seven_racks verify_seven_chain
-build_monthly_figures build_sampling_figure build_monthly export_monthly_figures
-render_monthly sample_reachable_games fetch_tex_dependencies build_public_release'''.split()
+verify_upper_bound_audit verify_release_manifest build_review_bundle
+build_monthly_figures build_monthly export_monthly_figures
+render_monthly fetch_tex_dependencies build_public_release'''.split()
 
 
 def source_closure():
@@ -46,16 +47,28 @@ def selected_files():
     selected = source_closure()
     selected.update(ROOT/'scripts/seven_tail'/name for name in
                     ('032.txt', 'rec74_horizontal_bases.json', 'seven_tile_upper_1737.txt'))
-    selected.update(p for p in (ROOT/'monthly').rglob('*') if p.suffix in ('.tex', '.bib', '.pdf', '.eps'))
+    selected.update(p for p in (ROOT/'monthly').rglob('*')
+                    if p.suffix in ('.tex', '.bib', '.sty', '.bst', '.pdf', '.eps')
+                    and p.name not in ('board_atlas.tex', 'board_atlas.pdf')
+                    and p.name not in ('sampling_statistics.tex', 'small_record_histories.tex')
+                    and p.stem not in ('sampling_distributions', 'score_distributions', 'record_curve'))
     selected.update(ROOT/name for name in ('README.md', 'LICENSE', 'THIRD_PARTY.md',
                     'MONTHLY_SUBMISSION.md', 'REPRODUCTION_STATUS.md', 'requirements-reproduce.txt',
                     '.gitignore', 'data/README.md', '.github/workflows/ci.yml'))
     files = {p.relative_to(ROOT).as_posix(): p for p in selected}
-    for name in ('NWL23', 'CSW24'):
-        original = ROOT/'data/sampling'/f'{name}.json'
-        if not original.exists():
-            original = ROOT/'output/sampling'/name/'sample.json'
-        files[f'data/sampling/{name}.json'] = original
+    certificate_sources = {
+        'certificates/record_witnesses.json': ROOT/'certificates/record_witnesses.json',
+        'certificates/one_tile_certificate.json': ROOT/'certificates/one_tile_certificate.json',
+        'certificates/upper_bound_audit.json': ROOT/'certificates/upper_bound_audit.json',
+        'certificates/reproduction_verified.json': ROOT/'certificates/reproduction_verified.json',
+        'certificates/reproduction_existing_checked.json': ROOT/'certificates/reproduction_existing_checked.json',
+        'certificates/fresh_run_state.json': ROOT/'certificates/fresh_run_state.json',
+        'certificates/nwl23_k7_rack_certificate.json': ROOT/'certificates/nwl23_k7_rack_certificate.json',
+    }
+    for name, source in certificate_sources.items():
+        if not source.is_file():
+            raise FileNotFoundError(f'Missing generated certificate: {source}')
+        files[name] = source
     return files
 
 
@@ -82,8 +95,13 @@ def main():
         if source.resolve() != target.resolve():
             shutil.copyfile(source, target)
         manifest[name] = hashlib.sha256(data).hexdigest()
-    record = dict(purpose='Public source and artifact integrity; not a proof by itself',
-                  files=manifest, required_external_inputs=['data/NWL23.kwg', 'data/CSW24.kwg'])
+    record = dict(schema='release-manifest-v1',
+                  purpose='Public source and artifact integrity; not a proof by itself',
+                  files=manifest,
+                  required_external_inputs={
+                      'data/NWL23.kwg': '3e74af981fdd974e107283f686da0fe4b7ec84ad0d825d444330c338c33b91ba',
+                      'data/CSW24.kwg': '62ca7a84f07429a9976f77a4f74b94911aca5d49cce050dce72dd0e032c0566f',
+                  })
     (destination/'RELEASE_MANIFEST.json').write_text(json.dumps(record, indent=2, sort_keys=True)+'\n')
     print(f'Exported {len(files)} allowlisted files to {destination}')
 

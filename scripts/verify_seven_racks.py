@@ -57,7 +57,8 @@ def main():
                             rack_after=''.join(sorted(racks[player].elements())),bag_left=len(bag_order)))
         if i<len(history)-3:actions.append(dict(player='B',pass_turn=True))
     assert not racks[0] and sum(racks[1].values())==3 and not bag_order
-    out=dict(status='verified',score=1786,final_board_tiles=len(board),initial_racks=initial,
+    out=dict(schema='nwl23-k7-rack-certificate-v1',status='verified',score=1786,
+             final_board_tiles=len(board),initial_racks=initial,
              initial_bag_order=stream[7:],actions=actions,final_racks=[''.join(sorted(r.elements())) for r in racks],
              note='Endgame rack transfers are not part of the ordinary 1786-point move score.')
     (ROOT/'output/seven_rack_certificate.json').write_text(json.dumps(out,indent=2,sort_keys=True)+'\n')

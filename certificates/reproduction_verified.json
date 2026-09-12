@@ -1,0 +1,920 @@
+{
+  "exact": {
+    "CSW24": {
+      "1": 225,
+      "2": 483,
+      "3": 912,
+      "4": 1349,
+      "5": 1478,
+      "6": 1721,
+      "7": 1787
+    },
+    "NWL23": {
+      "1": 213,
+      "2": 459,
+      "3": 882,
+      "4": 1130,
+      "5": 1401,
+      "6": 1723,
+      "7": 1786
+    }
+  },
+  "kwg_sha256": {
+    "CSW24": "62ca7a84f07429a9976f77a4f74b94911aca5d49cce050dce72dd0e032c0566f",
+    "NWL23": "3e74af981fdd974e107283f686da0fe4b7ec84ad0d825d444330c338c33b91ba"
+  },
+  "larger_witnesses": {
+    "3": {
+      "blank_cells": [
+        [
+          15,
+          5
+        ],
+        [
+          15,
+          11
+        ]
+      ],
+      "final_board": [
+        "..............D",
+        "..............E",
+        "..............M",
+        ".......O......I",
+        ".......B......S",
+        ".......J......E",
+        ".......E......M",
+        "RABIETIC......I",
+        "I......T......Q",
+        "C......I......U",
+        "K......VENDETTA",
+        "S......I......V",
+        "H......Z......E",
+        "A.....AE.....AR",
+        "WHIPPERSNAPPERS"
+      ],
+      "final_tiles": [
+        [
+          15,
+          1
+        ],
+        [
+          15,
+          8
+        ],
+        [
+          15,
+          15
+        ]
+      ],
+      "lexicon": "NWL23",
+      "pre_final_words": [
+        "RABIETIC",
+        "VENDETTA",
+        "AE",
+        "AR",
+        "HIPPER",
+        "NAPPER",
+        "RICKSHA",
+        "AR",
+        "OBJECTIVIZE",
+        "AR",
+        "DEMISEMIQUAVER"
+      ],
+      "score": 882,
+      "score_table": [
+        [
+          "WHIPPERSNAPPERS",
+          621
+        ],
+        [
+          "RICKSHAW",
+          60
+        ],
+        [
+          "OBJECTIVIZES",
+          105
+        ],
+        [
+          "DEMISEMIQUAVERS",
+          96
+        ]
+      ],
+      "sequence": [
+        {
+          "move": 1,
+          "tiles_placed": 6,
+          "word": "OBJECT"
+        },
+        {
+          "move": 2,
+          "tiles_placed": 5,
+          "word": "OBJECTIVIZE"
+        },
+        {
+          "move": 3,
+          "tiles_placed": 7,
+          "word": "VENDETTA"
+        },
+        {
+          "move": 4,
+          "tiles_placed": 5,
+          "word": "QUAVER"
+        },
+        {
+          "move": 5,
+          "tiles_placed": 4,
+          "word": "SEMIQUAVER"
+        },
+        {
+          "move": 6,
+          "tiles_placed": 4,
+          "word": "DEMISEMIQUAVER"
+        },
+        {
+          "move": 7,
+          "tiles_placed": 7,
+          "word": "RABIETIC"
+        },
+        {
+          "move": 8,
+          "tiles_placed": 6,
+          "word": "RICKSHA"
+        },
+        {
+          "move": 9,
+          "tiles_placed": 1,
+          "word": "AE"
+        },
+        {
+          "move": 10,
+          "tiles_placed": 6,
+          "word": "HIPPER"
+        },
+        {
+          "move": 11,
+          "tiles_placed": 1,
+          "word": "AR"
+        },
+        {
+          "move": 12,
+          "tiles_placed": 6,
+          "word": "NAPPER"
+        }
+      ],
+      "tile_counts_with_blanks_removed": {
+        "A": 6,
+        "B": 2,
+        "C": 2,
+        "D": 2,
+        "E": 10,
+        "H": 2,
+        "I": 8,
+        "J": 1,
+        "K": 1,
+        "M": 2,
+        "N": 2,
+        "O": 1,
+        "P": 2,
+        "Q": 1,
+        "R": 4,
+        "S": 4,
+        "T": 4,
+        "U": 1,
+        "V": 2,
+        "W": 1,
+        "Z": 1
+      }
+    },
+    "4": {
+      "blank_cells": [
+        [
+          5,
+          3
+        ],
+        [
+          14,
+          3
+        ]
+      ],
+      "final_board": [
+        "..P............",
+        "..L...........V",
+        "..E...........E",
+        "..T...........N",
+        "..H...........T",
+        "BAY..........OR",
+        "ADS..........SI",
+        "L.M....FIREREEL",
+        "DUO......E....O",
+        "A.G......F....Q",
+        "CAR....J.I....U",
+        "H.A....OSTINATI",
+        "I.POETIC......Z",
+        "NAH.T..KA.....E",
+        "OXYHAEMOGLOBINS"
+      ],
+      "final_tiles": [
+        [
+          15,
+          1
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          15,
+          8
+        ],
+        [
+          15,
+          15
+        ]
+      ],
+      "lexicon": "NWL23",
+      "pre_final_words": [
+        "BAY",
+        "OR",
+        "ADS",
+        "SI",
+        "FIREREEL",
+        "DUO",
+        "CAR",
+        "OSTINATI",
+        "POETIC",
+        "NAH",
+        "KA",
+        "HAEM",
+        "GLOBIN",
+        "BALDACHIN",
+        "AD",
+        "AX",
+        "PLETHYSMOGRAPH",
+        "ETA",
+        "JOCK",
+        "AG",
+        "REFIT",
+        "OSE",
+        "VENTRILOQUIZE"
+      ],
+      "score": 1130,
+      "score_table": [
+        [
+          "OXYHAEMOGLOBINS",
+          891
+        ],
+        [
+          "BALDACHINO",
+          54
+        ],
+        [
+          "PLETHYSMOGRAPHY",
+          26
+        ],
+        [
+          "JOCKO",
+          54
+        ],
+        [
+          "VENTRILOQUIZES",
+          105
+        ]
+      ],
+      "sequence": [
+        {
+          "move": 1,
+          "tiles_placed": 5,
+          "word": "FIRER"
+        },
+        {
+          "move": 2,
+          "tiles_placed": 3,
+          "word": "FIREREEL"
+        },
+        {
+          "move": 3,
+          "tiles_placed": 2,
+          "word": "OSE"
+        },
+        {
+          "move": 4,
+          "tiles_placed": 1,
+          "word": "OR"
+        },
+        {
+          "move": 5,
+          "tiles_placed": 4,
+          "word": "REFIT"
+        },
+        {
+          "move": 6,
+          "tiles_placed": 7,
+          "word": "OSTINATI"
+        },
+        {
+          "move": 7,
+          "tiles_placed": 3,
+          "word": "QUIZ"
+        },
+        {
+          "move": 8,
+          "tiles_placed": 7,
+          "word": "VENTRILOQUIZE"
+        },
+        {
+          "move": 9,
+          "tiles_placed": 3,
+          "word": "JOCK"
+        },
+        {
+          "move": 10,
+          "tiles_placed": 5,
+          "word": "POETIC"
+        },
+        {
+          "move": 11,
+          "tiles_placed": 4,
+          "word": "GRAPH"
+        },
+        {
+          "move": 12,
+          "tiles_placed": 2,
+          "word": "NAH"
+        },
+        {
+          "move": 13,
+          "tiles_placed": 1,
+          "word": "AX"
+        },
+        {
+          "move": 14,
+          "tiles_placed": 1,
+          "word": "KA"
+        },
+        {
+          "move": 15,
+          "tiles_placed": 6,
+          "word": "GLOBIN"
+        },
+        {
+          "move": 16,
+          "tiles_placed": 2,
+          "word": "ETA"
+        },
+        {
+          "move": 17,
+          "tiles_placed": 3,
+          "word": "HAEM"
+        },
+        {
+          "move": 18,
+          "tiles_placed": 3,
+          "word": "CHI"
+        },
+        {
+          "move": 19,
+          "tiles_placed": 5,
+          "word": "BALDACHIN"
+        },
+        {
+          "move": 20,
+          "tiles_placed": 2,
+          "word": "BAY"
+        },
+        {
+          "move": 21,
+          "tiles_placed": 2,
+          "word": "THY"
+        },
+        {
+          "move": 22,
+          "tiles_placed": 6,
+          "word": "PLETHYSMOGRAPH"
+        },
+        {
+          "move": 23,
+          "tiles_placed": 1,
+          "word": "ADS"
+        },
+        {
+          "move": 24,
+          "tiles_placed": 1,
+          "word": "AR"
+        },
+        {
+          "move": 25,
+          "tiles_placed": 1,
+          "word": "DUO"
+        }
+      ],
+      "tile_counts_with_blanks_removed": {
+        "A": 9,
+        "B": 2,
+        "C": 2,
+        "D": 2,
+        "E": 9,
+        "F": 2,
+        "G": 2,
+        "H": 2,
+        "I": 8,
+        "J": 1,
+        "K": 1,
+        "L": 4,
+        "M": 2,
+        "N": 4,
+        "O": 8,
+        "P": 2,
+        "Q": 1,
+        "R": 4,
+        "S": 4,
+        "T": 6,
+        "U": 2,
+        "V": 1,
+        "X": 1,
+        "Y": 2,
+        "Z": 1
+      }
+    },
+    "5": {
+      "blank_cells": [],
+      "final_board": [
+        "H..............",
+        "Y..............",
+        "P..............",
+        "E..............",
+        "R...O..........",
+        "V...V.........M",
+        "E...E.........Y",
+        "NAPERIES......X",
+        "T.A.F.........A",
+        "I.R.U......Q..M",
+        "L.A.L..J...U..O",
+        "A.N.FADO...A..E",
+        "T.O.I..CITER..B",
+        "E.I.L.OK.I.TOEA",
+        "DICHLOROBENZENE"
+      ],
+      "final_tiles": [
+        [
+          15,
+          1
+        ],
+        [
+          15,
+          5
+        ],
+        [
+          15,
+          8
+        ],
+        [
+          15,
+          12
+        ],
+        [
+          15,
+          15
+        ]
+      ],
+      "lexicon": "NWL23",
+      "pre_final_board": [
+        "H..............",
+        "Y..............",
+        "P..............",
+        "E..............",
+        "R...O..........",
+        "V...V.........M",
+        "E...E.........Y",
+        "NAPERIES......X",
+        "T.A.F.........A",
+        "I.R.U......Q..M",
+        "L.A.L..J...U..O",
+        "A.N.FADO...A..E",
+        "T.O.I..CITER..B",
+        "E.I.L.OK.I.TOEA",
+        ".ICH.OR.BEN.EN."
+      ],
+      "pre_final_words": [
+        "NAPERIES",
+        "FADO",
+        "CITER",
+        "OK",
+        "TOEA",
+        "ICH",
+        "OR",
+        "BEN",
+        "EN",
+        "HYPERVENTILATE",
+        "PARANOIC",
+        "OVERFULFIL",
+        "OR",
+        "JOCK",
+        "TIE",
+        "QUART",
+        "OE",
+        "EN",
+        "MYXAMOEBA"
+      ],
+      "score": 1401,
+      "score_table": [
+        [
+          "DICHLOROBENZENE",
+          1134
+        ],
+        [
+          "HYPERVENTILATED",
+          81
+        ],
+        [
+          "OVERFULFILL",
+          20
+        ],
+        [
+          "JOCKO",
+          54
+        ],
+        [
+          "QUARTZ",
+          34
+        ],
+        [
+          "MYXAMOEBAE",
+          78
+        ]
+      ],
+      "sequence": [
+        {
+          "move": 1,
+          "tiles_placed": 7,
+          "word": "APERIES"
+        },
+        {
+          "move": 2,
+          "tiles_placed": 1,
+          "word": "NAPERIES"
+        },
+        {
+          "move": 3,
+          "tiles_placed": 3,
+          "word": "VENT"
+        },
+        {
+          "move": 4,
+          "tiles_placed": 5,
+          "word": "VENTILATE"
+        },
+        {
+          "move": 5,
+          "tiles_placed": 5,
+          "word": "HYPERVENTILATE"
+        },
+        {
+          "move": 6,
+          "tiles_placed": 3,
+          "word": "OVER"
+        },
+        {
+          "move": 7,
+          "tiles_placed": 6,
+          "word": "OVERFULFIL"
+        },
+        {
+          "move": 8,
+          "tiles_placed": 3,
+          "word": "FADO"
+        },
+        {
+          "move": 9,
+          "tiles_placed": 3,
+          "word": "JOCK"
+        },
+        {
+          "move": 10,
+          "tiles_placed": 2,
+          "word": "OR"
+        },
+        {
+          "move": 11,
+          "tiles_placed": 1,
+          "word": "OR"
+        },
+        {
+          "move": 12,
+          "tiles_placed": 7,
+          "word": "PARANOIC"
+        },
+        {
+          "move": 13,
+          "tiles_placed": 2,
+          "word": "ICH"
+        },
+        {
+          "move": 14,
+          "tiles_placed": 4,
+          "word": "CITER"
+        },
+        {
+          "move": 15,
+          "tiles_placed": 2,
+          "word": "TIE"
+        },
+        {
+          "move": 16,
+          "tiles_placed": 2,
+          "word": "BEN"
+        },
+        {
+          "move": 17,
+          "tiles_placed": 4,
+          "word": "QUART"
+        },
+        {
+          "move": 18,
+          "tiles_placed": 3,
+          "word": "TOEA"
+        },
+        {
+          "move": 19,
+          "tiles_placed": 2,
+          "word": "EN"
+        },
+        {
+          "move": 20,
+          "tiles_placed": 5,
+          "word": "AMOEBA"
+        },
+        {
+          "move": 21,
+          "tiles_placed": 3,
+          "word": "MYXAMOEBA"
+        }
+      ],
+      "tile_counts": {
+        "A": 8,
+        "B": 2,
+        "C": 2,
+        "D": 2,
+        "E": 12,
+        "F": 2,
+        "H": 2,
+        "I": 7,
+        "J": 1,
+        "K": 1,
+        "L": 4,
+        "M": 2,
+        "N": 4,
+        "O": 8,
+        "P": 2,
+        "Q": 1,
+        "R": 5,
+        "S": 1,
+        "T": 4,
+        "U": 2,
+        "V": 2,
+        "X": 1,
+        "Y": 2,
+        "Z": 1
+      }
+    },
+    "6": {
+      "blank_cells": {
+        "N9": "C"
+      },
+      "final_board": [
+        "OXYPHENBUTAZONE",
+        "PEER..EL..WO.US",
+        "AD.E...A...O..T",
+        "C..Q...D...G..A",
+        "I..U...D...A..B",
+        "F..ADORE...M..L",
+        "I..L...R...E..I",
+        "C..I...LEGIT..S",
+        "A..F...I...EACH",
+        "T..Y...K......M",
+        "I..I...E......E",
+        "O..N..........N",
+        "N..G..........T",
+        "S.............S",
+        "..............."
+      ],
+      "final_new_cells": [
+        "A1",
+        "B1",
+        "D1",
+        "H1",
+        "L1",
+        "O1"
+      ],
+      "final_rack": "BEOPXZ",
+      "lexicon": "NWL23",
+      "pre_final_board": [
+        "..Y.HEN.UTA.ON.",
+        "PEER..EL..WO.US",
+        "AD.E...A...O..T",
+        "C..Q...D...G..A",
+        "I..U...D...A..B",
+        "F..ADORE...M..L",
+        "I..L...R...E..I",
+        "C..I...LEGIT..S",
+        "A..F...I...EACH",
+        "T..Y...K......M",
+        "I..I...E......E",
+        "O..N..........N",
+        "N..G..........T",
+        "S.............S",
+        "..............."
+      ],
+      "pre_final_words": [
+        "HEN",
+        "UTA",
+        "ON",
+        "PEER",
+        "EL",
+        "WO",
+        "US",
+        "AD",
+        "ADORE",
+        "LEGIT",
+        "EACH",
+        "PACIFICATIONS",
+        "ED",
+        "YE",
+        "REQUALIFYING",
+        "NE",
+        "LADDERLIKE",
+        "AW",
+        "OOGAMETE",
+        "NU",
+        "STABLISHMENTS"
+      ],
+      "score": 1723,
+      "score_table": [
+        [
+          "OXYPHENBUTAZONE",
+          1458
+        ],
+        [
+          "OPACIFICATIONS",
+          69
+        ],
+        [
+          "XED",
+          11
+        ],
+        [
+          "PREQUALIFYING",
+          34
+        ],
+        [
+          "BLADDERLIKE",
+          57
+        ],
+        [
+          "ZOOGAMETE",
+          31
+        ],
+        [
+          "ESTABLISHMENTS",
+          63
+        ]
+      ],
+      "sequence": [
+        {
+          "move": 1,
+          "placement": "H8-H11",
+          "tiles_placed": 4,
+          "word": "LIKE"
+        },
+        {
+          "move": 2,
+          "placement": "H2-H11",
+          "tiles_placed": 6,
+          "word": "LADDERLIKE"
+        },
+        {
+          "move": 3,
+          "placement": "H8-L8",
+          "tiles_placed": 4,
+          "word": "LEGIT"
+        },
+        {
+          "move": 4,
+          "placement": "L2-L9",
+          "tiles_placed": 7,
+          "word": "OOGAMETE"
+        },
+        {
+          "move": 5,
+          "placement": "L9-O9",
+          "tiles_placed": 3,
+          "word": "EACH"
+        },
+        {
+          "move": 6,
+          "placement": "O2-O9",
+          "tiles_placed": 7,
+          "word": "STABLISH"
+        },
+        {
+          "move": 7,
+          "placement": "O2-O13",
+          "tiles_placed": 4,
+          "word": "STABLISHMENT"
+        },
+        {
+          "move": 8,
+          "placement": "O2-O14",
+          "tiles_placed": 1,
+          "word": "STABLISHMENTS"
+        },
+        {
+          "move": 9,
+          "placement": "D6-H6",
+          "tiles_placed": 4,
+          "word": "ADORE"
+        },
+        {
+          "move": 10,
+          "placement": "D4-D10",
+          "tiles_placed": 6,
+          "word": "QUALIFY"
+        },
+        {
+          "move": 11,
+          "placement": "D2-D13",
+          "tiles_placed": 5,
+          "word": "REQUALIFYING"
+        },
+        {
+          "move": 12,
+          "placement": "A2-D2",
+          "tiles_placed": 3,
+          "word": "PEER"
+        },
+        {
+          "move": 13,
+          "placement": "A2-A8",
+          "tiles_placed": 6,
+          "word": "PACIFIC"
+        },
+        {
+          "move": 14,
+          "placement": "A2-A14",
+          "tiles_placed": 6,
+          "word": "PACIFICATIONS"
+        },
+        {
+          "move": 15,
+          "placement": "B2-B3",
+          "tiles_placed": 1,
+          "word": "ED"
+        },
+        {
+          "move": 16,
+          "placement": "C1-C2",
+          "tiles_placed": 1,
+          "word": "YE"
+        },
+        {
+          "move": 17,
+          "placement": "G1-G2",
+          "tiles_placed": 2,
+          "word": "NE"
+        },
+        {
+          "move": 18,
+          "placement": "E1-G1",
+          "tiles_placed": 2,
+          "word": "HEN"
+        },
+        {
+          "move": 19,
+          "placement": "K1-K2",
+          "tiles_placed": 2,
+          "word": "AW"
+        },
+        {
+          "move": 20,
+          "placement": "I1-K1",
+          "tiles_placed": 2,
+          "word": "UTA"
+        },
+        {
+          "move": 21,
+          "placement": "N1-N2",
+          "tiles_placed": 2,
+          "word": "NU"
+        },
+        {
+          "move": 22,
+          "placement": "M1-N1",
+          "tiles_placed": 1,
+          "word": "ON"
+        }
+      ]
+    }
+  },
+  "mode": "fresh exhaustive reproduction",
+  "pending": [],
+  "schema": "reproduction-verdict-v1"
+}

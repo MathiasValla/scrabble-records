@@ -1,0 +1,615 @@
+\documentclass[letterpaper]{article}
+\usepackage[letterpaper,left=13mm,right=13mm,top=10mm,bottom=12mm]{geometry}
+\usepackage{times,booktabs}
+\renewcommand{\ttdefault}{cmtt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagestyle{plain}
+\input{figures/board_style}
+\begin{document}
+\begin{center}
+{\fontsize{15}{17}\selectfont\bfseries Supplementary Material: Record Boards and Construction Histories\par}
+\vspace{2pt}
+{\fontsize{9}{10}\selectfont for \textit{How Much Can a Scrabble Move Score? Exact Records from One Tile to Seven}\par}
+\vspace{5pt}
+{\fontsize{12}{14}\selectfont\bfseries Rules and Certificate Guide\par}
+\vspace{4pt}
+\end{center}
+{\fontsize{9}{10}\selectfont
+Columns A--O run left to right and rows 1--15 top to bottom; H8 is the centre. The first move covers H8. A later move places one to seven tiles in one row or column. Every new maximal string of length at least two must be in the stated dictionary. Premiums apply only when first covered. A seven-tile move earns 50 extra points.
+\vspace{5pt}
+\textbf{Tile supply and face values.}\par\vspace{2pt}
+\begin{center}\begin{tabular}{@{}crr@{\qquad}crr@{}}\toprule
+Tile&Copies&Value&Tile&Copies&Value\\\midrule
+A&9&1&N&6&1\\ B&2&3&O&8&1\\ C&2&3&P&2&3\\ D&4&2&Q&1&10\\
+E&12&1&R&6&1\\ F&2&4&S&4&1\\ G&3&2&T&6&1\\ H&2&4&U&4&1\\
+I&9&1&V&2&4\\ J&1&8&W&2&4\\ K&1&5&X&1&8\\ L&4&1&Y&2&4\\
+M&2&3&Z&1&10\\ Blank&2&0&&&\\\bottomrule\end{tabular}\end{center}
+\vspace{4pt}\textbf{Premium squares.}\par\vspace{2pt}
+TW, DW, TL, and DL mean triple word, double word, triple letter, and double letter, respectively.\par\vspace{2pt}
+\begin{tabular}{@{}lp{.78\textwidth}@{}}
+TW&A1, H1, O1, A8, O8, A15, H15, O15.\\
+DW&B2, N2, C3, M3, D4, L4, E5, K5, H8, E11, K11, D12, L12, C13, M13, B14, N14.\\
+TL&F2, J2, B6, F6, J6, N6, B10, F10, J10, N10, F14, J14.\\
+DL&D1, L1, G3, I3, A4, H4, O4, C7, G7, I7, M7, D8, L8, C9, G9, I9, M9, A12, H12, O12, G13, I13, D15, L15.\\
+\end{tabular}\par
+\vspace{5pt}\textbf{Dictionary identity.}\par\vspace{2pt}
+NWL23 binary SHA-256: \texttt{3e74af981fdd974e107283f686da0fe4}\\\texttt{b7ec84ad0d825d444330c338c33b91ba}.\par
+NWL23 sorted word-list SHA-256: \texttt{5254d44586c3af6a8530427b14ef0251}\\\texttt{af5aa47906ce32a45e4c229261b1456b}.\par
+CSW24 binary SHA-256: \texttt{62ca7a84f07429a9976f77a4f74b9491}\\\texttt{1aca5d49cce050dce72dd0e032c0566f}.\par
+CSW24 sorted word-list SHA-256: \texttt{5646ebbca6b1d5e57459ec431ee81aa8}\\\texttt{f627e81ab121fe9c7a815221cb727912}.\par
+NWL23 has 212,868 exported entries, of which 196,601 have board length 2--15. CSW24 has 299,162 exported entries, of which 280,887 have board length 2--15.\par
+The binary dictionaries are decoded as little-endian 32-bit directed-acyclic-word-graph nodes. A depth-first traversal emits a word precisely at an accepting node; sorting the emitted uppercase strings gives the word lists hashed above.\par
+\vspace{5pt}\textbf{Machine-readable certificates.}\par\vspace{2pt}
+\texttt{certificates/record\_witnesses.json}: \texttt{158c30e829bf88cd189eff063e333b29}\\\texttt{26fd7f48e9e0b3d59377f0caebdac677}.\par
+\texttt{certificates/one\_tile\_certificate.json}: \texttt{033a6d7681face564db6c049db51dff1}\\\texttt{43bc32476613d3eac72c4afb7dd9d4b3}.\par
+\texttt{certificates/upper\_bound\_audit.json}: \texttt{c024b76e9414755c9a65dea7291bcfa0}\\\texttt{827478c7febac292c1c19e5f0093d6d7}.\par
+\texttt{certificates/reproduction\_verified.json}: \texttt{5747a4d89de6b900b66ce9fc08a2fe8f}\\\texttt{1280011b345fcb6fe792041460cf7bd5}.\par
+\texttt{certificates/fresh\_run\_state.json}: \texttt{0cabc4e8bdc668f654a770282678d8af}\\\texttt{b792caee6c0403681b1d254267b86b91}.\par
+\texttt{certificates/nwl23\_k7\_rack\_certificate.json}: \texttt{39cc5f1295097eb5ffb2472a038d579e}\\\texttt{47daa2e140ca3818d5bfa125fb2e9691}.\par
+The public driver \texttt{scripts/reproduce\_release.py} regenerates every upper-bound search and invokes separate forward verifiers for every history. The following tables list every tile-placement turn; omitted intervening turns are passes, while rack refills and draws remain in the JSON certificates.
+}
+\clearpage
+\begin{center}
+{\fontsize{11}{12}\selectfont\bfseries NWL23: $k=1$, 213 points\par}
+\vspace{2pt}
+\input{figures/nwl23_k1}\par
+\vspace{1pt}
+{\fontsize{7.2}{8}\selectfont Black tiles are newly played; italic letters are blanks; the final rack appears below the board.\par}
+\vspace{2pt}
+{\fontsize{8.5}{9}\selectfont\bfseries Complete tile-placement history\par}
+\end{center}
+\begin{center}
+\fontsize{8.5}{8.8}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.90}
+\begin{tabular}{@{}rllrr@{}}\toprule
+No. & Word & Span & New tiles & Score\\
+\midrule
+1 & \texttt{AMNESIA} & H8--N8 & 7 & 70\\
+2 & \texttt{TECH} & O6--O9 & 4 & 63\\
+3 & \texttt{TECHNIQUE} & O6--O14 & 5 & 33\\
+4 & \texttt{MICROTECHNIQUE} & O1--O14 & 5 & 99\\
+5 & \texttt{RE} & N14--O14 & 1 & 4\\
+6 & \texttt{ZINE} & K15--N15 & 4 & 16\\
+7 & \texttt{HYDROXYZINE} & D15--N15 & 7 & 173\\
+\midrule
+\textbf{8} & \textbf{\texttt{HYDROXYZINES}} & \textbf{D15--O15} & \textbf{1} & \textbf{213}\\
+\bottomrule\end{tabular}
+\end{center}
+\vfill
+\clearpage
+\begin{center}
+{\fontsize{11}{12}\selectfont\bfseries CSW24: $k=1$, 225 points\par}
+\vspace{2pt}
+\input{figures/csw24_k1}\par
+\vspace{1pt}
+{\fontsize{7.2}{8}\selectfont Black tiles are newly played; italic letters are blanks; the final rack appears below the board.\par}
+\vspace{2pt}
+{\fontsize{8.5}{9}\selectfont\bfseries Complete tile-placement history\par}
+\end{center}
+\begin{center}
+\fontsize{8.5}{8.8}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.90}
+\begin{tabular}{@{}rllrr@{}}\toprule
+No. & Word & Span & New tiles & Score\\
+\midrule
+1 & \texttt{ANTENNA} & H8--N8 & 7 & 66\\
+2 & \texttt{SILVER} & O6--O11 & 6 & 51\\
+3 & \texttt{SILVERING} & O6--O14 & 3 & 14\\
+4 & \texttt{QUICKSILVERING} & O1--O14 & 5 & 108\\
+5 & \texttt{AG} & N14--O14 & 1 & 6\\
+6 & \texttt{BENZENE} & H15--N15 & 7 & 109\\
+7 & \texttt{METHOXYBENZENE} & A15--N15 & 7 & 182\\
+\midrule
+\textbf{8} & \textbf{\texttt{METHOXYBENZENES}} & \textbf{A15--O15} & \textbf{1} & \textbf{225}\\
+\bottomrule\end{tabular}
+\end{center}
+\vfill
+\clearpage
+\begin{center}
+{\fontsize{11}{12}\selectfont\bfseries NWL23: $k=2$, 459 points\par}
+\vspace{2pt}
+\input{figures/nwl23_k2}\par
+\vspace{1pt}
+{\fontsize{7.2}{8}\selectfont Black tiles are newly played; italic letters are blanks; the final rack appears below the board.\par}
+\vspace{2pt}
+{\fontsize{8.5}{9}\selectfont\bfseries Complete tile-placement history\par}
+\end{center}
+\begin{center}
+\fontsize{8.5}{8.8}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.90}
+\begin{tabular}{@{}rllrr@{}}\toprule
+No. & Word & Span & New tiles & Score\\
+\midrule
+1 & \texttt{LOG} & H8--H10 & 3 & 8\\
+2 & \texttt{XYLOGRAPH} & H6--H14 & 6 & 26\\
+3 & \texttt{YESSIREE} & H7--O7 & 7 & 63\\
+4 & \texttt{CAR} & M5--M7 & 2 & 5\\
+5 & \texttt{CAT} & M5--O5 & 2 & 5\\
+6 & \texttt{KAT} & O3--O5 & 2 & 8\\
+7 & \texttt{PALATINE} & H13--O13 & 7 & 68\\
+8 & \texttt{JAMMER} & O9--O14 & 5 & 20\\
+9 & \texttt{KATZENJAMMER} & O3--O14 & 2 & 108\\
+10 & \texttt{LA} & J13--J14 & 1 & 4\\
+11 & \texttt{CHEQUE} & I15--N15 & 6 & 36\\
+12 & \texttt{AH} & G14--H14 & 1 & 5\\
+13 & \texttt{PA} & F15--G15 & 2 & 6\\
+\midrule
+\textbf{14} & \textbf{\texttt{PAYCHEQUES}} & \textbf{F15--O15} & \textbf{2} & \textbf{459}\\
+\bottomrule\end{tabular}
+\end{center}
+\vfill
+\clearpage
+\begin{center}
+{\fontsize{11}{12}\selectfont\bfseries CSW24: $k=2$, 483 points\par}
+\vspace{2pt}
+\input{figures/csw24_k2}\par
+\vspace{1pt}
+{\fontsize{7.2}{8}\selectfont Black tiles are newly played; italic letters are blanks; the final rack appears below the board.\par}
+\vspace{2pt}
+{\fontsize{8.5}{9}\selectfont\bfseries Complete tile-placement history\par}
+\end{center}
+\begin{center}
+\fontsize{8.5}{8.8}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.90}
+\begin{tabular}{@{}rllrr@{}}\toprule
+No. & Word & Span & New tiles & Score\\
+\midrule
+1 & \texttt{ALIF} & H5--H8 & 4 & 14\\
+2 & \texttt{FIREBOMB} & H8--O8 & 7 & 110\\
+3 & \texttt{EAT} & K8--K10 & 2 & 3\\
+4 & \texttt{CART} & H10--K10 & 3 & 8\\
+5 & \texttt{CAT} & H10--H12 & 2 & 6\\
+6 & \texttt{QUALIFICATOR} & H3--H14 & 5 & 27\\
+7 & \texttt{BENZENE} & O8--O14 & 6 & 19\\
+8 & \texttt{METHOXYBENZENE} & O1--O14 & 7 & 182\\
+9 & \texttt{ERA} & G14--I14 & 2 & 3\\
+10 & \texttt{HAWKER} & I15--N15 & 6 & 26\\
+11 & \texttt{JA} & F15--G15 & 2 & 11\\
+\midrule
+\textbf{12} & \textbf{\texttt{JAYHAWKERS}} & \textbf{F15--O15} & \textbf{2} & \textbf{483}\\
+\bottomrule\end{tabular}
+\end{center}
+\vfill
+\clearpage
+\begin{center}
+{\fontsize{11}{12}\selectfont\bfseries NWL23: $k=3$, 882 points\par}
+\vspace{2pt}
+\input{figures/nwl23_k3}\par
+\vspace{1pt}
+{\fontsize{7.2}{8}\selectfont Black tiles are newly played; italic letters are blanks; the final rack appears below the board.\par}
+\vspace{2pt}
+{\fontsize{8.5}{9}\selectfont\bfseries Complete tile-placement history\par}
+\end{center}
+\begin{center}
+\fontsize{8.5}{8.8}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.90}
+\begin{tabular}{@{}rllrr@{}}\toprule
+No. & Word & Span & New tiles & Score\\
+\midrule
+1 & \texttt{OBJECT} & H4--H9 & 6 & 36\\
+2 & \texttt{OBJECTIVIZE} & H4--H14 & 5 & 35\\
+3 & \texttt{VENDETTA} & H11--O11 & 7 & 74\\
+4 & \texttt{QUAVER} & O9--O14 & 5 & 22\\
+5 & \texttt{SEMIQUAVER} & O5--O14 & 4 & 72\\
+6 & \texttt{DEMISEMIQUAVER} & O1--O14 & 4 & 96\\
+7 & \texttt{RABIETIC} & A8--H8 & 7 & 89\\
+8 & \texttt{RICKSHA} & A8--A14 & 6 & 17\\
+9 & \texttt{AE} & G14--H14 & 1 & 2\\
+10 & \texttt{HIPPER} & B15--G15 & 6 & 15\\
+11 & \texttt{AR} & N14--O14 & 1 & 4\\
+12 & \texttt{NAPPER} & I15--N15 & 6 & 12\\
+\midrule
+\textbf{13} & \textbf{\texttt{WHIPPERSNAPPERS}} & \textbf{A15--O15} & \textbf{3} & \textbf{882}\\
+\bottomrule\end{tabular}
+\end{center}
+\vfill
+\clearpage
+\begin{center}
+{\fontsize{11}{12}\selectfont\bfseries CSW24: $k=3$, 912 points\par}
+\vspace{2pt}
+\input{figures/csw24_k3}\par
+\vspace{1pt}
+{\fontsize{7.2}{8}\selectfont Black tiles are newly played; italic letters are blanks; the final rack appears below the board.\par}
+\vspace{2pt}
+{\fontsize{8.5}{9}\selectfont\bfseries Complete tile-placement history\par}
+\end{center}
+\begin{center}
+\fontsize{8.5}{8.8}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.90}
+\begin{tabular}{@{}rllrr@{}}\toprule
+No. & Word & Span & New tiles & Score\\
+\midrule
+1 & \texttt{BENZENE} & H8--H14 & 7 & 88\\
+2 & \texttt{METHOXYBENZENE} & H1--H14 & 7 & 182\\
+3 & \texttt{EE} & G14--H14 & 1 & 2\\
+4 & \texttt{HIPPER} & B15--G15 & 6 & 9\\
+5 & \texttt{SH} & B14--B15 & 1 & 10\\
+6 & \texttt{OU} & A13--A14 & 2 & 4\\
+7 & \texttt{KABELJOU} & A7--A14 & 6 & 87\\
+8 & \texttt{EUTECTIC} & H9--O9 & 7 & 64\\
+9 & \texttt{CAT} & O9--O11 & 2 & 5\\
+10 & \texttt{ORIENTAL} & H5--O5 & 7 & 66\\
+11 & \texttt{ALIF} & O4--O7 & 3 & 8\\
+12 & \texttt{QUALIFICATIVE} & O2--O14 & 6 & 93\\
+13 & \texttt{AE} & N14--O14 & 1 & 4\\
+14 & \texttt{NAPPER} & I15--N15 & 6 & 15\\
+\midrule
+\textbf{15} & \textbf{\texttt{WHIPPERSNAPPERS}} & \textbf{A15--O15} & \textbf{3} & \textbf{912}\\
+\bottomrule\end{tabular}
+\end{center}
+\vfill
+\clearpage
+\begin{center}
+{\fontsize{11}{12}\selectfont\bfseries NWL23: $k=4$, 1130 points\par}
+\vspace{2pt}
+\input{figures/nwl23_k4}\par
+\vspace{1pt}
+{\fontsize{7.2}{8}\selectfont Black tiles are newly played; italic letters are blanks; the final rack appears below the board.\par}
+\vspace{2pt}
+{\fontsize{8.5}{9}\selectfont\bfseries Complete tile-placement history\par}
+\end{center}
+\begin{center}
+\fontsize{8}{8.15}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.80}
+\begin{tabular}{@{}rllrr@{}}\toprule
+No. & Word & Span & New tiles & Score\\
+\midrule
+1 & \texttt{FIRER} & H8--L8 & 5 & 18\\
+2 & \texttt{FIREREEL} & H8--O8 & 3 & 33\\
+3 & \texttt{OSE} & N6--N8 & 2 & 5\\
+4 & \texttt{OR} & N6--O6 & 1 & 2\\
+5 & \texttt{REFIT} & J8--J12 & 4 & 16\\
+6 & \texttt{OSTINATI} & H12--O12 & 7 & 70\\
+7 & \texttt{QUIZ} & O10--O13 & 3 & 22\\
+8 & \texttt{VENTRILOQUIZE} & O2--O14 & 7 & 87\\
+9 & \texttt{JOCK} & H11--H14 & 3 & 17\\
+10 & \texttt{POETIC} & C13--H13 & 5 & 22\\
+11 & \texttt{GRAPH} & C10--C14 & 4 & 7\\
+12 & \texttt{NAH} & A14--C14 & 2 & 4\\
+13 & \texttt{AX} & B14--B15 & 1 & 9\\
+14 & \texttt{KA} & H14--I14 & 1 & 6\\
+15 & \texttt{GLOBIN} & I15--N15 & 6 & 15\\
+16 & \texttt{ETA} & E13--E15 & 2 & 3\\
+17 & \texttt{HAEM} & D15--G15 & 3 & 13\\
+18 & \texttt{CHI} & A11--A13 & 3 & 13\\
+19 & \texttt{BALDACHIN} & A6--A14 & 5 & 51\\
+20 & \texttt{BAY} & A6--C6 & 2 & 10\\
+21 & \texttt{THY} & C4--C6 & 2 & 5\\
+22 & \texttt{PLETHYSMOGRAPH} & C1--C14 & 6 & 48\\
+23 & \texttt{ADS} & A7--C7 & 1 & 7\\
+24 & \texttt{AR} & B11--C11 & 1 & 5\\
+25 & \texttt{DUO} & A9--C9 & 1 & 4\\
+\midrule
+\textbf{26} & \textbf{\texttt{OXYHAEMOGLOBINS}} & \textbf{A15--O15} & \textbf{4} & \textbf{1130}\\
+\bottomrule\end{tabular}
+\end{center}
+\vfill
+\clearpage
+\begin{center}
+{\fontsize{11}{12}\selectfont\bfseries CSW24: $k=4$, 1349 points\par}
+\vspace{2pt}
+\input{figures/csw24_k4}\par
+\vspace{1pt}
+{\fontsize{7.2}{8}\selectfont Black tiles are newly played; italic letters are blanks; the final rack appears below the board.\par}
+\vspace{2pt}
+{\fontsize{8.5}{9}\selectfont\bfseries Complete tile-placement history\par}
+\end{center}
+\begin{center}
+\fontsize{8}{8.3}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.84}
+\begin{tabular}{@{}rllrr@{}}\toprule
+No. & Word & Span & New tiles & Score\\
+\midrule
+1 & \texttt{TUTOR} & H8--L8 & 5 & 12\\
+2 & \texttt{TUTORIAL} & H8--O8 & 3 & 24\\
+3 & \texttt{TIRED} & J8--J12 & 4 & 8\\
+4 & \texttt{JUDO} & H12--K12 & 3 & 20\\
+5 & \texttt{JAM} & H12--H14 & 2 & 12\\
+6 & \texttt{WOOT} & K11--K14 & 3 & 24\\
+7 & \texttt{SILVER} & O6--O11 & 5 & 9\\
+8 & \texttt{SILVERING} & O6--O14 & 3 & 14\\
+9 & \texttt{QUICKSILVERING} & O1--O14 & 5 & 108\\
+10 & \texttt{AG} & N14--O14 & 1 & 6\\
+11 & \texttt{ENE} & L15--N15 & 3 & 6\\
+12 & \texttt{MA} & H14--I14 & 1 & 4\\
+13 & \texttt{EN} & I15--J15 & 2 & 4\\
+14 & \texttt{FORESTER} & C10--J10 & 7 & 63\\
+15 & \texttt{DEFORESTER} & A10--J10 & 2 & 16\\
+16 & \texttt{HOND} & A7--A10 & 3 & 24\\
+17 & \texttt{CHONDRI} & A6--A12 & 3 & 14\\
+18 & \texttt{HYPOCHONDRIA} & A2--A13 & 5 & 25\\
+19 & \texttt{HYPOCHONDRIAS} & A2--A14 & 1 & 23\\
+20 & \texttt{SH} & A14--B14 & 1 & 2\\
+21 & \texttt{ETHOXY} & B15--G15 & 6 & 24\\
+\midrule
+\textbf{22} & \textbf{\texttt{METHOXYBENZENES}} & \textbf{A15--O15} & \textbf{4} & \textbf{1349}\\
+\bottomrule\end{tabular}
+\end{center}
+\vfill
+\clearpage
+\begin{center}
+{\fontsize{11}{12}\selectfont\bfseries NWL23: $k=5$, 1401 points\par}
+\vspace{2pt}
+\input{figures/nwl23_k5}\par
+\vspace{1pt}
+{\fontsize{7.2}{8}\selectfont Black tiles are newly played; italic letters are blanks; the final rack appears below the board.\par}
+\vspace{2pt}
+{\fontsize{8.5}{9}\selectfont\bfseries Complete tile-placement history\par}
+\end{center}
+\begin{center}
+\fontsize{8}{8.3}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.84}
+\begin{tabular}{@{}rllrr@{}}\toprule
+No. & Word & Span & New tiles & Score\\
+\midrule
+1 & \texttt{APERIES} & B8--H8 & 7 & 70\\
+2 & \texttt{NAPERIES} & A8--H8 & 1 & 30\\
+3 & \texttt{VENT} & A6--A9 & 3 & 7\\
+4 & \texttt{VENTILATE} & A6--A14 & 5 & 13\\
+5 & \texttt{HYPERVENTILATE} & A1--A14 & 5 & 78\\
+6 & \texttt{OVER} & E5--E8 & 3 & 14\\
+7 & \texttt{OVERFULFIL} & E5--E14 & 6 & 38\\
+8 & \texttt{FADO} & E12--H12 & 3 & 9\\
+9 & \texttt{JOCK} & H11--H14 & 3 & 17\\
+10 & \texttt{OR} & G14--G15 & 2 & 8\\
+11 & \texttt{OR} & F15--G15 & 1 & 2\\
+12 & \texttt{PARANOIC} & C8--C15 & 7 & 76\\
+13 & \texttt{ICH} & B15--D15 & 2 & 12\\
+14 & \texttt{CITER} & H13--L13 & 4 & 8\\
+15 & \texttt{TIE} & J13--J15 & 2 & 5\\
+16 & \texttt{BEN} & I15--K15 & 2 & 5\\
+17 & \texttt{QUART} & L10--L14 & 4 & 28\\
+18 & \texttt{TOEA} & L14--O14 & 3 & 8\\
+19 & \texttt{EN} & M15--N15 & 2 & 6\\
+20 & \texttt{AMOEBA} & O9--O14 & 5 & 11\\
+21 & \texttt{MYXAMOEBA} & O6--O14 & 3 & 75\\
+\midrule
+\textbf{22} & \textbf{\texttt{DICHLOROBENZENE}} & \textbf{A15--O15} & \textbf{5} & \textbf{1401}\\
+\bottomrule\end{tabular}
+\end{center}
+\vfill
+\clearpage
+\begin{center}
+{\fontsize{11}{12}\selectfont\bfseries CSW24: $k=5$, 1478 points\par}
+\vspace{2pt}
+\input{figures/csw24_k5}\par
+\vspace{1pt}
+{\fontsize{7.2}{8}\selectfont Black tiles are newly played; italic letters are blanks; the final rack appears below the board.\par}
+\vspace{2pt}
+{\fontsize{8.5}{9}\selectfont\bfseries Complete tile-placement history\par}
+\end{center}
+\begin{center}
+\fontsize{8}{8.15}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.80}
+\begin{tabular}{@{}rllrr@{}}\toprule
+No. & Word & Span & New tiles & Score\\
+\midrule
+1 & \texttt{TUTOR} & H8--L8 & 5 & 12\\
+2 & \texttt{TUTORIAL} & H8--O8 & 3 & 24\\
+3 & \texttt{TIRED} & J8--J12 & 4 & 8\\
+4 & \texttt{JUDO} & H12--K12 & 3 & 20\\
+5 & \texttt{JAM} & H12--H14 & 2 & 12\\
+6 & \texttt{WOOT} & K11--K14 & 3 & 24\\
+7 & \texttt{SILVER} & O6--O11 & 5 & 9\\
+8 & \texttt{SILVERING} & O6--O14 & 3 & 14\\
+9 & \texttt{QUICKSILVERING} & O1--O14 & 5 & 108\\
+10 & \texttt{AG} & N14--O14 & 1 & 6\\
+11 & \texttt{ENE} & L15--N15 & 3 & 6\\
+12 & \texttt{MA} & H14--I14 & 1 & 4\\
+13 & \texttt{EN} & I15--J15 & 2 & 4\\
+14 & \texttt{YIELDER} & D10--J10 & 6 & 9\\
+15 & \texttt{PENNY} & D6--D10 & 4 & 7\\
+16 & \texttt{PENNYWORT} & D6--D14 & 4 & 26\\
+17 & \texttt{CLAP} & A6--D6 & 3 & 10\\
+18 & \texttt{CHONDRI} & A6--A12 & 6 & 42\\
+19 & \texttt{HYPOCHONDRIA} & A2--A13 & 5 & 25\\
+20 & \texttt{HYPOCHONDRIAS} & A2--A14 & 1 & 23\\
+21 & \texttt{SO} & A14--B14 & 1 & 4\\
+22 & \texttt{ET} & B15--C15 & 2 & 4\\
+23 & \texttt{TI} & D14--E14 & 1 & 2\\
+24 & \texttt{OXY} & E15--G15 & 3 & 15\\
+\midrule
+\textbf{25} & \textbf{\texttt{METHOXYBENZENES}} & \textbf{A15--O15} & \textbf{5} & \textbf{1478}\\
+\bottomrule\end{tabular}
+\end{center}
+\vfill
+\clearpage
+\begin{center}
+{\fontsize{11}{12}\selectfont\bfseries NWL23: $k=6$, 1723 points\par}
+\vspace{2pt}
+\input{figures/nwl23_k6}\par
+\vspace{1pt}
+{\fontsize{7.2}{8}\selectfont Black tiles are newly played; italic letters are blanks; the final rack appears below the board.\par}
+\vspace{2pt}
+{\fontsize{8.5}{9}\selectfont\bfseries Complete tile-placement history\par}
+\end{center}
+\begin{center}
+\fontsize{8}{8.3}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.84}
+\begin{tabular}{@{}rllrr@{}}\toprule
+No. & Word & Span & New tiles & Score\\
+\midrule
+1 & \texttt{LIKE} & H8--H11 & 4 & 16\\
+2 & \texttt{LADDERLIKE} & H2--H11 & 6 & 18\\
+3 & \texttt{LEGIT} & H8--L8 & 4 & 7\\
+4 & \texttt{OOGAMETE} & L2--L9 & 7 & 72\\
+5 & \texttt{EACH} & L9--O9 & 3 & 7\\
+6 & \texttt{STABLISH} & O2--O9 & 7 & 92\\
+7 & \texttt{STABLISHMENT} & O2--O13 & 4 & 20\\
+8 & \texttt{STABLISHMENTS} & O2--O14 & 1 & 20\\
+9 & \texttt{ADORE} & D6--H6 & 4 & 8\\
+10 & \texttt{QUALIFY} & D4--D10 & 6 & 46\\
+11 & \texttt{REQUALIFYING} & D2--D13 & 5 & 56\\
+12 & \texttt{PEER} & A2--D2 & 3 & 12\\
+13 & \texttt{PACIFIC} & A2--A8 & 6 & 57\\
+14 & \texttt{PACIFICATIONS} & A2--A14 & 6 & 23\\
+15 & \texttt{ED} & B2--B3 & 1 & 6\\
+16 & \texttt{YE} & C1--C2 & 1 & 5\\
+17 & \texttt{NE} & G1--G2 & 2 & 4\\
+18 & \texttt{HEN} & E1--G1 & 2 & 6\\
+19 & \texttt{AW} & K1--K2 & 2 & 10\\
+20 & \texttt{UTA} & I1--K1 & 2 & 3\\
+21 & \texttt{NU} & N1--N2 & 2 & 8\\
+22 & \texttt{ON} & M1--N1 & 1 & 2\\
+\midrule
+\textbf{23} & \textbf{\texttt{OXYPHENBUTAZONE}} & \textbf{A1--O1} & \textbf{6} & \textbf{1723}\\
+\bottomrule\end{tabular}
+\end{center}
+\vfill
+\clearpage
+\begin{center}
+{\fontsize{11}{12}\selectfont\bfseries CSW24: $k=6$, 1721 points\par}
+\vspace{2pt}
+\input{figures/csw24_k6}\par
+\vspace{1pt}
+{\fontsize{7.2}{8}\selectfont Black tiles are newly played; italic letters are blanks; the final rack appears below the board.\par}
+\vspace{2pt}
+{\fontsize{8.5}{9}\selectfont\bfseries Complete tile-placement history\par}
+\end{center}
+\begin{center}
+\fontsize{8}{8.15}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.80}
+\begin{tabular}{@{}rlllrr@{}}\toprule
+No. & Player & Word & Span & New tiles & Score\\
+\midrule
+1 & A & \texttt{SH} & H8--H9 & 2 & 10\\
+2 & A & \texttt{RAINWASH} & H2--H9 & 6 & 15\\
+3 & A & \texttt{INTREAT} & G5--M5 & 6 & 14\\
+4 & A & \texttt{AM} & L5--L6 & 1 & 4\\
+5 & A & \texttt{AE} & H3--I3 & 1 & 3\\
+6 & A & \texttt{DORR} & F2--I2 & 3 & 11\\
+7 & A & \texttt{AQUILINE} & C4--J4 & 7 & 89\\
+8 & A & \texttt{DUE} & E3--E5 & 2 & 8\\
+9 & A & \texttt{ARAK} & C2--C5 & 3 & 16\\
+10 & A & \texttt{EQUAL} & D3--D7 & 4 & 24\\
+11 & A & \texttt{ADRED} & A3--E3 & 2 & 7\\
+12 & A & \texttt{PA} & A2--A3 & 1 & 4\\
+13 & A & \texttt{OOGAMETES} & L2--L10 & 7 & 76\\
+14 & A & \texttt{OB} & L2--M2 & 1 & 4\\
+15 & A & \texttt{XED} & B1--B3 & 2 & 32\\
+16 & A & \texttt{TOO} & L8--N8 & 2 & 3\\
+17 & A & \texttt{SAL} & C6--E6 & 2 & 16\\
+18 & A & \texttt{ON} & M1--N1 & 2 & 6\\
+19 & A & \texttt{RAINWASHING} & H2--H12 & 3 & 20\\
+20 & A & \texttt{UTA} & I1--K1 & 3 & 7\\
+21 & A & \texttt{HEN} & E1--G1 & 3 & 11\\
+22 & A & \texttt{LATI} & O6--O9 & 4 & 24\\
+23 & A & \texttt{REQUALIFIED} & D2--D12 & 6 & 54\\
+24 & A & \texttt{JACULATIONS} & O2--O12 & 7 & 74\\
+25 & B & \texttt{PACIFYING} & A2--A10 & 7 & 119\\
+\midrule
+\textbf{26} & \textbf{A} & \textbf{\texttt{OXYPHENBUTAZONE}} & \textbf{A1--O1} & \textbf{6} & \textbf{1721}\\
+\bottomrule\end{tabular}
+\end{center}
+\vfill
+\clearpage
+\begin{center}
+{\fontsize{11}{12}\selectfont\bfseries NWL23: $k=7$, 1786 points\par}
+\vspace{2pt}
+\input{figures/nwl23_k7}\par
+\vspace{1pt}
+{\fontsize{7.2}{8}\selectfont Black tiles are newly played; italic letters are blanks; the final rack appears below the board.\par}
+\vspace{2pt}
+{\fontsize{8.5}{9}\selectfont\bfseries Complete tile-placement history\par}
+\end{center}
+\begin{center}
+\fontsize{8}{8.15}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.80}
+\begin{tabular}{@{}rlllrr@{}}\toprule
+No. & Player & Word & Span & New tiles & Score\\
+\midrule
+1 & A & \texttt{UNLED} & F8--J8 & 5 & 12\\
+2 & A & \texttt{ARROWING} & G2--G9 & 7 & 66\\
+3 & A & \texttt{HALT} & F2--I2 & 3 & 3\\
+4 & A & \texttt{UTS} & I1--I3 & 2 & 2\\
+5 & A & \texttt{UTA} & I1--K1 & 2 & 3\\
+6 & A & \texttt{WO} & K2--L2 & 2 & 10\\
+7 & A & \texttt{OOGAMETE} & L2--L9 & 7 & 74\\
+8 & A & \texttt{MERL} & L6--O6 & 3 & 8\\
+9 & A & \texttt{STABLISH} & O2--O9 & 7 & 92\\
+10 & A & \texttt{OS} & N2--O2 & 1 & 4\\
+11 & A & \texttt{REE} & I6--I8 & 2 & 4\\
+12 & A & \texttt{VOW} & E6--G6 & 2 & 11\\
+13 & A & \texttt{AL} & D6--D7 & 2 & 12\\
+14 & A & \texttt{REQUALIFY} & D2--D10 & 7 & 100\\
+15 & A & \texttt{YA} & C1--C2 & 2 & 7\\
+16 & A & \texttt{ED} & B2--B3 & 2 & 12\\
+17 & A & \texttt{URD} & F4--H4 & 2 & 6\\
+18 & A & \texttt{ON} & M1--N1 & 2 & 4\\
+19 & A & \texttt{HE} & E1--F1 & 2 & 6\\
+20 & A & \texttt{REQUALIFYING} & D2--D13 & 3 & 56\\
+21 & A & \texttt{STABLISHMENTS} & O2--O14 & 5 & 21\\
+22 & A & \texttt{PACIFIC} & A2--A8 & 7 & 116\\
+23 & A & \texttt{PACIFICATIONS} & A2--A14 & 6 & 23\\
+24 & B & \texttt{LADDERLIKE} & H2--H11 & 7 & 89\\
+\midrule
+\textbf{25} & \textbf{A} & \textbf{\texttt{OXYPHENBUTAZONE}} & \textbf{A1--O1} & \textbf{7} & \textbf{1786}\\
+\bottomrule\end{tabular}
+\end{center}
+\vspace{-2pt}\begin{center}{\fontsize{8}{8.4}\selectfont Construction due to Bob Lucassen (2024); the table is normalized from the independently verified rack certificate.\par}\end{center}
+\vfill
+\clearpage
+\begin{center}
+{\fontsize{11}{12}\selectfont\bfseries CSW24: $k=7$, 1787 points\par}
+\vspace{2pt}
+\input{figures/csw24_k7}\par
+\vspace{1pt}
+{\fontsize{7.2}{8}\selectfont Black tiles are newly played; italic letters are blanks; the final rack appears below the board.\par}
+\vspace{2pt}
+{\fontsize{8.5}{9}\selectfont\bfseries Complete tile-placement history\par}
+\end{center}
+\begin{center}
+\fontsize{8}{8.15}\selectfont
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.80}
+\begin{tabular}{@{}rlllrr@{}}\toprule
+No. & Player & Word & Span & New tiles & Score\\
+\midrule
+1 & A & \texttt{SH} & H8--H9 & 2 & 10\\
+2 & A & \texttt{RAINWASH} & H2--H9 & 6 & 15\\
+3 & A & \texttt{DIVULGE} & G4--M4 & 6 & 24\\
+4 & A & \texttt{ES} & M4--M5 & 1 & 2\\
+5 & A & \texttt{GAM} & L4--L6 & 2 & 8\\
+6 & A & \texttt{RE} & K7--L7 & 2 & 9\\
+7 & A & \texttt{OOGAMETE} & L2--L9 & 4 & 12\\
+8 & A & \texttt{OO} & L2--M2 & 1 & 2\\
+9 & A & \texttt{RUB} & J3--J5 & 2 & 5\\
+10 & A & \texttt{ORT} & G2--I2 & 2 & 3\\
+11 & A & \texttt{ER} & F1--F2 & 2 & 10\\
+12 & A & \texttt{DEEM} & C3--F3 & 4 & 10\\
+13 & A & \texttt{YAD} & C1--C3 & 2 & 6\\
+14 & A & \texttt{IS} & K10--L10 & 2 & 14\\
+15 & A & \texttt{ADDEEM} & A3--F3 & 2 & 7\\
+16 & A & \texttt{PEA} & A2--C2 & 2 & 18\\
+17 & A & \texttt{ON} & M1--N1 & 2 & 4\\
+18 & A & \texttt{UT} & I1--J1 & 2 & 4\\
+19 & A & \texttt{HEN} & E1--G1 & 2 & 8\\
+20 & A & \texttt{TETRI} & K9--O9 & 4 & 8\\
+21 & A & \texttt{IONS} & O9--O12 & 3 & 5\\
+22 & A & \texttt{RAINWASHING} & H2--H12 & 3 & 20\\
+23 & A & \texttt{EQUAL} & D3--D7 & 4 & 28\\
+24 & A & \texttt{REQUALIFIED} & D2--D12 & 6 & 55\\
+25 & A & \texttt{JACULATIONS} & O2--O12 & 7 & 119\\
+26 & A & \texttt{MELIORATIVE} & K2--K12 & 7 & 140\\
+27 & B & \texttt{PACIFYING} & A2--A10 & 7 & 119\\
+\midrule
+\textbf{28} & \textbf{A} & \textbf{\texttt{OXYPHENBUTAZONE}} & \textbf{A1--O1} & \textbf{7} & \textbf{1787}\\
+\bottomrule\end{tabular}
+\end{center}
+\vfill
+\clearpage
+\end{document}

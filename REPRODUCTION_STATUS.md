@@ -1,4 +1,4 @@
-# Scrabble record audit, 2026-09-11
+# Scrabble record audit, 2026-09-12
 
 The attached conversation is a research lead, not an execution certificate.
 Its numerical claims will be reproduced before being promoted to theorems.
@@ -93,19 +93,14 @@ threshold-1738 run. All final scored words exist in NWL23, but JACULATIONS, the
 required predecessor of EJACULATIONS, does not; this is the decisive dictionary
 obstruction to importing this construction.
 
-The distribution study now consists of 1,000 completed cooperative-model games
-per dictionary, with a fixed master seed. `build_sampling_figure.py` independently
-replays all 2,000 histories, physical bags, rack streams, and sampled scores.
-It rejects incomplete studies. Seven ECDF panels, sample sizes, and simultaneous
-model-based DKW band widths are in the article. These are not tournament data.
-
 ## Reproduction
 
 Run `python3 scripts/reproduce_release.py` for fresh computations from the exact
 KWG inputs. C++17, Python 3.10+, NumPy, and SciPy are required. SciPy proposes
 letter prices; only integer certificates prove exclusions. The release runs in
 minutes on the local machine; logs are saved per step under
-`output/reproduction/logs/`. The driver includes all fourteen cases and applies
+`output/reproduction/fresh_logs/`. Artifact-only checks use the separate
+`output/reproduction/existing_check_logs/` directory. The driver includes all fourteen cases and applies
 no time cap to the resource searches. The much larger attaining-board discovery
 is separate and need not be rerun to verify the fixed witness.
 
@@ -114,8 +109,8 @@ as NOT an exhaustive rerun. To build the manuscript after verification:
 
 ```sh
 python3 scripts/build_monthly_figures.py
-python3 scripts/build_sampling_figure.py
 python3 scripts/build_monthly.py
+python3 scripts/render_monthly.py
 ```
 
 The official Monthly template and its dependencies are fetched separately from
@@ -131,13 +126,13 @@ itself. Both counts should be reported with their meanings.
 
 ## Clean release verification
 
-On 2026-09-11, the minimal public source package was exported to a clean directory
-with an initially empty output tree. A fresh exhaustive run completed in
-1345.947 seconds (22 minutes 26 seconds), reproducing all fourteen exact maxima
-and leaving no pending cases. The atomic run record includes source hashes,
-per-step logs and timings, and the final result hash. Generated certificate
-boards were rebuilt from these fresh results. The final 19-page manuscript and
-16-page board atlas were rendered and visually reviewed.
+On 2026-09-12, the final fresh exhaustive run completed all 53 steps in
+1310.204 seconds, reproducing all fourteen exact maxima and leaving no pending
+cases. Its state records 73 source hashes, 53 log hashes, Python 3.10.18,
+NumPy 1.26.4, SciPy 1.15.3, and Apple Clang 16.0.0. A subsequent artifact-only
+check used a separate log directory; all fresh-run log hashes still matched.
+The final 12-page manuscript and 15-page Supplementary Material were rendered
+and visually reviewed.
 
 Licensed dictionary inputs remain external. Public continuous integration runs
 dictionary-free adversarial tests, not the full numerical proof. The latter

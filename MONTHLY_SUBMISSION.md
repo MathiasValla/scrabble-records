@@ -1,75 +1,52 @@
 # Monthly Submission Checklist
 
-Status: **research revision, not submission-ready**.
+Status: **scientific package complete; author metadata pending**.
 
-Primary sources consulted on 9 September 2026 and reread on 11 September 2026:
+Official sources checked again on 12 September 2026:
 - https://maa.org/publication/the-american-mathematical-monthly/
-- Official `README Author Instructions.pdf` and article/note template in the
-  journal's August 2025 template bundle, downloaded through its author page.
 - https://maa.org/guide-for-referees/
-- October 2025 figure instructions, inspected in the in-app browser (pages
-  1--2 for specifications, 4 and 6 for TikZ/vector export guidance):
-  https://maa.org/wp-content/uploads/2025/10/Revised_Figure_Instructions2025.pdf
-- https://ctan.org/pkg/scrabble and its English documentation.
+- the August 2025 `README Author Instructions.pdf` and article template from
+  the Monthly's Templates and Styleguide bundle;
+- https://maa.org/wp-content/uploads/2025/10/Revised_Figure_Instructions2025.pdf
+- https://authorservices.taylorandfrancis.com/publishing-your-research/writing-your-paper/enhancing-your-article-with-supplementary-material/
 
-The journal seeks accessible original expository research, not an archive of
-solver logs. The narrative should teach deletion fragments, physical-square
-blank accounting, resource prices, and connectivity before presenting totals.
+The journal asks for original exposition that is clear, engaging, and inviting
+to mathematicians who are novices in the subject. It uses double-anonymous
+review. Taylor & Francis calls the companion file **Supplementary Material**.
 
-## Confirmed Requirements
+## Completed
 
-- English; double-anonymous review.
-- Articles are 6--20 pages; abstract at most 250 words, concept-led.
-- Official `maa-monthly.sty`; numbered theorem environments in one sequence.
-- Separate author-details and anonymous manuscripts, each with a title page.
-- Title page: names, institution/affiliation, city, country, email, corresponding author.
-- Cover letter: originality, fit to scope, authors/contact information, conflicts, keywords.
-- Named manuscript: funding (or n/a), contributions, conflicts, biographies.
-- Reference style: NLM; BibTeX uses the supplied `vancouver.bst`.
-- Figure width at most 5 inches; minimum .5 pt lines; 9 pt labels, 8 pt axes.
-- Design at final size; do not scale included figures afterward.
-- Color figures must remain useful in monochrome print. Supply vector sources.
+- English article in the official `maa-monthly.sty`, 12 letter-size pages,
+  anonymous and including references. The author-identifying title page remains
+  a separate submission item.
+- Abstract under 250 words; results ordered from one tile through seven.
+- Scrabble rules, board coordinates, tile supply, premiums, scoring, and the
+  role of the dictionary are defined for a new reader.
+- A formal completeness proposition links every exhaustive stage to a necessary
+  condition on a real move. Exact integer and rational bounds are proved in the
+  text; the audit counts are consolidated in one table.
+- Both dictionary word sets are identified by sizes and SHA-256 hashes.
+- Fourteen attaining histories, all independently replayed, establish equality.
+- `monthly/supplementary_material.pdf`, 15 pages, begins with a rules and
+  certificate guide, followed by one board and its complete tile-placement
+  history per page. Dense histories use at least 8-point type.
+- Both PDFs were compiled without overfull boxes, all fonts are embedded, and
+  every page was rendered for visual review.
+- The public source exporter is allowlisted and omits licensed dictionaries,
+  private notes, build logs, and obsolete simulation material.
 
-The template text mentions Editorial Manager while the current journal landing
-page links to the Taylor & Francis portal. Resolve the active submission route
-at actual submission time, not by following the older template blindly.
+## Required Before Upload
 
-## Completed in This Revision
+- Supply author-confirmed name, affiliation, city, country, email, corresponding
+  author, funding, contribution, conflict, and short biography information.
+- Generate the named manuscript and cover letter from those declarations.
+- Confirm originality and concurrent-submission status in the cover letter.
+- Upload the board/history PDF as **Supplementary Material for review**. Upload
+  source code and certificate data through the review portal or an anonymous
+  archival link; the public GitHub repository identifies its owner.
+- Confirm the active Taylor & Francis submission route on the day of submission.
 
-- NWL23 k=3..5 now have explicit score decompositions, blank locations,
-  new-tile coordinates, and construction narratives in the article.
-- The simulation study contains 1,000 completed games per dictionary. All
-  2,000 histories and selected scores were replayed. Seven empirical CDF
-  panels show k=1..7, with sample sizes and simultaneous model-based bands.
-- References are generated by the supplied `vancouver.bst` from `references.bib`.
-  Inaccessible Mental Floss content and unused contextual sources are not cited
-  as evidence. Historical attribution and competition/club distinctions remain explicit.
-- Fourteen board/rack figures and the record curve have standalone TeX, PDF,
-  and EPS exports; the distribution figure uses the same export driver.
-- The six-tile Collins case is exact at 1721, with a 93-tile construction and
-  complete two-player rack/draw certificate. Its proof and dictionary contrast
-  are included in the main text.
-- The seven-tile Collins case is exact at 1787. Its independent upper proof
-  excludes 420,538 products; its 96-tile witness has a 27-move setup and full
-  alternating rack/draw accounting. The article explains the crucial
-  CSW24-only predecessor JACULATIONS.
-- All 19 manuscript pages and 16 atlas pages have been rendered and reviewed.
-- The source release is allowlisted, with an MIT software license and explicit
-  third-party/manuscript exclusions. No licensed dictionary or private notes
-  are included. TeX dependencies are fetched from hash-pinned official archives.
-
-## Still Required
-
-- Obtain author-confirmed affiliation, city, email, funding, conflicts,
-  contributions, biography, originality, and concurrent-submission status.
-  These are not inferred from filesystem paths or invented.
-- Prepare the named version and cover letter after these declarations are confirmed.
-- Supply a metadata-clean reproducibility snapshot through the review portal;
-  the owner-authorized public GitHub repository is not anonymous. Do not put
-  its identifying link into the anonymous manuscript.
-- Obtain an external mathematical review; local independent implementations
-  and adversarial tests are not a substitute for a referee's judgment.
-
-The older claim that all stages could be verified merely by running the supplied
-`verify_all.py` was too broad: it verifies the final tail. The new top-level
-driver regenerates the preceding search and links the certificates by content.
+The two reports generated during development are internal adversarial mock
+reviews. They must not be presented as journal referee reports. The MAA's
+current referee policy expressly forbids appointed reviewers from using
+generative AI on unpublished manuscripts.

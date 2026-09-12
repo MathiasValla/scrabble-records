@@ -7,7 +7,7 @@ import subprocess
 ROOT=Path(__file__).resolve().parents[1]
 folder=ROOT/'monthly'
 env=dict(os.environ,TEXINPUTS='.:../vendor//:')
-for stem in ('manuscript','board_atlas'):
+for stem in ('manuscript','supplementary_material'):
     for i in range(3):
         log=folder/f'{stem}_build{i+1}.txt'
         with log.open('w') as f:
