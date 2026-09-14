@@ -15,8 +15,8 @@ file **Supplementary Material**.
 
 The named manuscript identifies Mathias Valla, Chaire DIALog, Institut Louis
 Bachelier, Paris, France. The anonymous manuscript contains no author identity,
-acknowledgments, declarations, local paths, or public-repository link. No
-declaration section is included, as requested by the author.
+acknowledgments, local paths, or public-repository link. Both versions contain
+the same disclosure of generative AI use required by Taylor & Francis.
 
 ## Checks completed
 
@@ -29,6 +29,10 @@ declaration section is included, as requested by the author.
 - Every cited web reference was opened and checked on 14 September 2026. The
   obsolete CSW24 document URL was replaced by the active official WESPA
   initiation kit.
+- The manuscript identifies OpenAI Codex (GPT-5), explains its use for code
+  verification and text editing, gives the reasons for that use, and records
+  the author's subsequent verification of every result, code change,
+  mathematical argument, and passage of text.
 - Both manuscript PDFs, the cover letter, and the supplement were compiled
   without overfull boxes, checked for embedded fonts, rendered page by page,
   and inspected visually.
