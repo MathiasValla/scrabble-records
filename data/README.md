@@ -1,4 +1,4 @@
-# Versioned Dictionary Inputs
+# Versioned dictionary inputs
 
 The proof uses the NWL23 and CSW24 dictionary files publicly served by the
 [Woogles web client](https://github.com/woogles-io/liwords/blob/master/liwords-ui/src/wasm/loader.ts).

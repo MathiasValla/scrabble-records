@@ -17,7 +17,7 @@ verify_csw_three verify_csw_four verify_csw_five find_csw_six_history
 verify_csw_six build_csw_seven_baseline test_csw_seven_witness
 find_csw_seven_history verify_csw_seven verify_seven_racks verify_seven_chain
 verify_upper_bound_audit verify_release_manifest build_review_bundle
-build_monthly_figures build_monthly export_monthly_figures
+build_monthly_figures build_monthly build_submission export_monthly_figures
 render_monthly fetch_tex_dependencies build_public_release'''.split()
 
 
@@ -52,6 +52,8 @@ def selected_files():
                     and p.name not in ('board_atlas.tex', 'board_atlas.pdf')
                     and p.name not in ('sampling_statistics.tex', 'small_record_histories.tex')
                     and p.stem not in ('sampling_distributions', 'score_distributions', 'record_curve'))
+    selected.update(p for p in (ROOT/'submission').rglob('*')
+                    if p.suffix in ('.md', '.pdf'))
     selected.update(ROOT/name for name in ('README.md', 'LICENSE', 'THIRD_PARTY.md',
                     'MONTHLY_SUBMISSION.md', 'REPRODUCTION_STATUS.md', 'requirements-reproduce.txt',
                     '.gitignore', 'data/README.md', '.github/workflows/ci.yml'))

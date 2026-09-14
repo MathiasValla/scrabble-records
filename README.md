@@ -1,4 +1,4 @@
-# How Much Can a Scrabble Move Score?
+# How much can a Scrabble move score?
 
 Reproducible computer-assisted extremal proofs for the standard 15 by 15
 English Scrabble board, with exact dictionary editions NWL23 and CSW24.
@@ -23,10 +23,9 @@ discussion in 2016 (clarified as CSW15 in 2018). We certify it for CSW24;
 we do not claim priority for that previously reported number.
 
 The English article targets **The American Mathematical Monthly**. It is a
-research manuscript, not an accepted paper. See [the manuscript source](monthly/manuscript.tex),
-[manuscript PDF](monthly/manuscript.pdf), and
-[Supplementary Material](monthly/supplementary_material.pdf).
-Author declarations and journal submission steps remain in [the checklist](MONTHLY_SUBMISSION.md).
+research manuscript, not an accepted paper. The journal-ready files are in
+[`submission/`](submission/); source and build instructions remain in
+[`monthly/`](monthly/) and [the checklist](MONTHLY_SUBMISSION.md).
 
 ## Reproduce All Fourteen Maxima
 

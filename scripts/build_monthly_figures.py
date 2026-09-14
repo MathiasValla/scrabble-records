@@ -187,11 +187,11 @@ def main():
                 r'\input{figures/board_style}',r'\begin{document}']
     supplement.extend([
         r'\begin{center}',
-        r'{\fontsize{15}{17}\selectfont\bfseries Supplementary Material: Record Boards and Construction Histories\par}',
+        r'{\fontsize{15}{17}\selectfont\bfseries Supplementary material: record boards and construction histories\par}',
         r'\vspace{2pt}',
-        r'{\fontsize{9}{10}\selectfont for \textit{How Much Can a Scrabble Move Score? Exact Records from One Tile to Seven}\par}',
+        r'{\fontsize{9}{10}\selectfont for \textit{How much can a Scrabble move score? Exact records from one tile to seven}\par}',
         r'\vspace{5pt}',
-        r'{\fontsize{12}{14}\selectfont\bfseries Rules and Certificate Guide\par}',
+        r'{\fontsize{12}{14}\selectfont\bfseries Rules and certificate guide\par}',
         r'\vspace{4pt}',r'\end{center}',
         r'{\fontsize{9}{10}\selectfont',
         r'Columns A--O run left to right and rows 1--15 top to bottom; H8 is the centre. The first move covers H8. A later move places one to seven tiles in one row or column. Every new maximal string of length at least two must be in the stated dictionary. Premiums apply only when first covered. A seven-tile move earns 50 extra points.',
